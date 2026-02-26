@@ -4,18 +4,37 @@ import matter from "gray-matter";
 import readingTime from "reading-time";
 import type { BlogPostMeta, BlogPost } from "@/types";
 
-const BLOG_DIR = path.join(process.cwd(), "content", "blog");
+function getBlogDir(locale: string): string {
+  return path.join(process.cwd(), "content", "blog", locale);
+}
 
-export function getAllPostSlugs(): string[] {
-  if (!fs.existsSync(BLOG_DIR)) return [];
+export function getAllPostSlugs(locale: string = "en"): string[] {
+  const blogDir = getBlogDir(locale);
+  if (!fs.existsSync(blogDir)) {
+    // Fallback to English if locale dir doesn't exist
+    const enDir = getBlogDir("en");
+    if (!fs.existsSync(enDir)) return [];
+    return fs
+      .readdirSync(enDir)
+      .filter((file) => file.endsWith(".mdx"))
+      .map((file) => file.replace(/\.mdx$/, ""));
+  }
   return fs
-    .readdirSync(BLOG_DIR)
+    .readdirSync(blogDir)
     .filter((file) => file.endsWith(".mdx"))
     .map((file) => file.replace(/\.mdx$/, ""));
 }
 
-export function getPostBySlug(slug: string): BlogPost {
-  const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
+export function getPostBySlug(slug: string, locale: string = "en"): BlogPost {
+  let blogDir = getBlogDir(locale);
+  let filePath = path.join(blogDir, `${slug}.mdx`);
+
+  // Fallback to English if the locale-specific post doesn't exist
+  if (!fs.existsSync(filePath)) {
+    blogDir = getBlogDir("en");
+    filePath = path.join(blogDir, `${slug}.mdx`);
+  }
+
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
   const stats = readingTime(content);
@@ -32,12 +51,12 @@ export function getPostBySlug(slug: string): BlogPost {
   };
 }
 
-export function getAllPosts(): BlogPostMeta[] {
-  const slugs = getAllPostSlugs();
+export function getAllPosts(locale: string = "en"): BlogPostMeta[] {
+  const slugs = getAllPostSlugs(locale);
 
   return slugs
     .map((slug) => {
-      const post = getPostBySlug(slug);
+      const post = getPostBySlug(slug, locale);
       const { content: _, ...meta } = post;
       return meta;
     })

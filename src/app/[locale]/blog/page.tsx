@@ -1,33 +1,46 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { getAllPosts } from "@/lib/blog";
 import { Container } from "@/components/layout/Container";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description: "Thoughts on software development, design, and technology.",
-};
+interface Props {
+  params: Promise<{ locale: string }>;
+}
 
-export default function BlogPage() {
-  const posts = getAllPosts();
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "blog" });
+  return {
+    title: t("pageTitle"),
+    description: t("metaDescription"),
+  };
+}
+
+export default async function BlogPage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "blog" });
+  const posts = getAllPosts(locale);
 
   return (
     <section className="py-16">
       <Container>
-        <h1 className="text-3xl font-bold tracking-tight">Blog</h1>
+        <h1 className="text-3xl font-bold tracking-tight">
+          {t("pageTitle")}
+        </h1>
         <p className="mt-2 text-neutral-600 dark:text-neutral-400">
-          Thoughts on software development, design, and technology.
+          {t("subtitle")}
         </p>
 
         {posts.length === 0 ? (
-          <p className="mt-8 text-neutral-500">No posts yet. Check back soon!</p>
+          <p className="mt-8 text-neutral-500">{t("noPosts")}</p>
         ) : (
           <div className="mt-8 divide-y divide-neutral-200 dark:divide-neutral-800">
             {posts.map((post) => (
               <article key={post.slug} className="py-6">
                 <Link href={`/blog/${post.slug}`} className="group">
                   <time className="text-sm text-neutral-500">
-                    {new Date(post.date).toLocaleDateString("en-US", {
+                    {new Date(post.date).toLocaleDateString(locale, {
                       year: "numeric",
                       month: "long",
                       day: "numeric",

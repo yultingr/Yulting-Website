@@ -1,31 +1,59 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/layout/Container";
-import { projects } from "@/data/projects";
 
-export const metadata: Metadata = {
-  title: "Projects",
-  description: "A collection of my projects and work.",
-};
+interface Props {
+  params: Promise<{ locale: string }>;
+}
 
-export default function ProjectsPage() {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "projects" });
+  return {
+    title: t("pageTitle"),
+    description: t("metaDescription"),
+  };
+}
+
+const projectData = [
+  {
+    titleKey: "project1Title",
+    descKey: "project1Desc",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "MDX"],
+    liveUrl: "/",
+  },
+  {
+    titleKey: "project2Title",
+    descKey: "project2Desc",
+    technologies: ["React", "Node.js", "PostgreSQL"],
+    githubUrl: "https://github.com",
+  },
+];
+
+export default async function ProjectsPage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "projects" });
+
   return (
     <section className="py-16">
       <Container>
-        <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
+        <h1 className="text-3xl font-bold tracking-tight">
+          {t("pageTitle")}
+        </h1>
         <p className="mt-2 text-neutral-600 dark:text-neutral-400">
-          Things I&apos;ve built and worked on.
+          {t("subtitle")}
         </p>
 
         <div className="mt-8 grid gap-6 sm:grid-cols-2">
-          {projects.map((project) => (
+          {projectData.map((project) => (
             <article
-              key={project.title}
+              key={project.titleKey}
               className="rounded-lg border border-neutral-200 p-6 transition-colors hover:border-neutral-300 dark:border-neutral-800 dark:hover:border-neutral-700"
             >
-              <h3 className="text-lg font-semibold">{project.title}</h3>
+              <h3 className="text-lg font-semibold">{t(project.titleKey)}</h3>
               <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
-                {project.description}
+                {t(project.descKey)}
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {project.technologies.map((tech) => (
@@ -41,20 +69,19 @@ export default function ProjectsPage() {
                 {project.liveUrl && (
                   <Link
                     href={project.liveUrl}
-                    target={project.liveUrl.startsWith("http") ? "_blank" : undefined}
                     className="text-blue-600 hover:underline dark:text-blue-400"
                   >
-                    Live Demo
+                    {t("liveDemo")}
                   </Link>
                 )}
                 {project.githubUrl && (
-                  <Link
+                  <a
                     href={project.githubUrl}
                     target="_blank"
                     className="text-blue-600 hover:underline dark:text-blue-400"
                   >
-                    GitHub
-                  </Link>
+                    {t("github")}
+                  </a>
                 )}
               </div>
             </article>

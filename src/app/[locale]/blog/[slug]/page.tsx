@@ -6,20 +6,30 @@ import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import { getPostBySlug, getAllPostSlugs } from "@/lib/blog";
 import { Container } from "@/components/layout/Container";
-import { useMDXComponents } from "../../../../mdx-components";
+import { useMDXComponents } from "../../../../../mdx-components";
+import { routing } from "@/i18n/routing";
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return getAllPostSlugs().map((slug) => ({ slug }));
+  const params: { locale: string; slug: string }[] = [];
+  for (const locale of routing.locales) {
+    const slugs = getAllPostSlugs(locale);
+    for (const slug of slugs) {
+      params.push({ locale, slug });
+    }
+  }
+  return params;
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { locale, slug } = await params;
   try {
-    const post = getPostBySlug(slug);
+    const post = getPostBySlug(slug, locale);
     return {
       title: post.title,
       description: post.summary,
@@ -30,11 +40,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
 
   let post;
   try {
-    post = getPostBySlug(slug);
+    post = getPostBySlug(slug, locale);
   } catch {
     notFound();
   }
@@ -58,7 +68,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         <article>
           <header className="mb-8">
             <time className="text-sm text-neutral-500">
-              {new Date(post.date).toLocaleDateString("en-US", {
+              {new Date(post.date).toLocaleDateString(locale, {
                 year: "numeric",
                 month: "long",
                 day: "numeric",

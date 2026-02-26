@@ -1,0 +1,127 @@
+{
+  "common": {
+    "siteName": "玉灵仁波切",
+    "siteDescription": "玉灵仁波切的个人网站——教育家、翻译家、佛学学者。"
+  },
+  "nav": {
+    "about": "关于",
+    "projects": "项目",
+    "blog": "博客",
+    "contact": "联系"
+  },
+  "home": {
+    "title": "玉灵仁波切",
+    "subtitle": "英藏翻译与教学法教师",
+    "bio": "驻锡于甘丹夏孜寺的佛学学者、教育家和翻译家。致力于佛法的弘扬以及禅修实践与现代科学的融合。",
+    "aboutButton": "关于我",
+    "blogButton": "阅读博客"
+  },
+  "about": {
+    "pageTitle": "关于我",
+    "metaTitle": "关于",
+    "metaDescription": "了解玉灵仁波切——甘丹夏孜寺的教育家、翻译家和佛学学者。",
+    "bio1": "经认证的转世活佛，1994年出生于尼泊尔，在佛教哲学、教育和翻译方面拥有杰出的背景。精通传统和现代教育环境，在寺院学习和跨文化交流方面成绩卓著。",
+    "bio2": "目前在甘丹夏孜寺攻读格鲁派大考（格西拉让巴学位，相当于博士），同时担任教师和翻译，致力于佛法的弘扬以及禅修实践与现代科学的融合。",
+    "workExperience": "工作经验",
+    "job1Title": "英藏翻译课教师",
+    "job1Place": "甘丹夏孜学校，印度",
+    "job1Period": "2022年 – 至今",
+    "job1Detail1": "负责英藏翻译课程的教学工作已四年",
+    "job1Detail2": "促进翻译能力的发展，以支持寺院教育和跨文化理解",
+    "job2Title": "佛法教师",
+    "job2Place": "甘丹夏孜学校，印度",
+    "job2Period": "2017年 – 2021年",
+    "job2Detail1": "进行佛教哲学和禅修实践的正式教学",
+    "job2Detail2": "为学生提供心灵指导和辅导，促进他们的学术和个人成长",
+    "internationalEngagements": "国际交流",
+    "engagement1Title": "第二届印藏学者会议，2022年",
+    "engagement1Desc": "关于禅修实践与佛教心理学融合的演讲者",
+    "engagement2Title": "埃默里大学西藏科学倡议暑期项目",
+    "engagement2Desc": "担任翻译，促进科学材料的英藏翻译，推动寺院学者的跨学科学习",
+    "engagement3Title": "研讨会与工作坊",
+    "engagement3Desc": "在各种研讨会和工作坊中担任翻译，支持科学与佛教哲学的融合",
+    "educationTitle": "教育与证书",
+    "educationInstitution": "甘丹夏孜寺",
+    "cert1Name": "洛本证书",
+    "cert1Desc": "（四年制博士课程完成）— 2024年",
+    "cert2Name": "噶让证书",
+    "cert2Desc": "（两年制博士课程完成）— 2022年",
+    "cert3Name": "律藏证书",
+    "cert3Desc": "（佛教戒律）— 2020年",
+    "cert4Name": "阿毗达磨证书",
+    "cert4Desc": "（认识论与形而上学）— 2018年",
+    "cert5Name": "中观证书",
+    "cert5Desc": "（中观哲学）— 2017年",
+    "cert6Name": "般若波罗蜜多证书",
+    "cert6Desc": "（智慧圆满）— 2014年",
+    "cert7Name": "量释论证书",
+    "cert7Desc": "（佛教逻辑学）— 2009年",
+    "currentStudy": "目前正在攻读格鲁派大考（格西拉让巴学位，相当于博士），四年来每年均为最优秀学生。",
+    "skillsTitle": "技能",
+    "skillLanguages": "语言",
+    "skillTibetan": "藏语（流利）",
+    "skillEnglish": "英语（流利）",
+    "skillTechnology": "技术",
+    "skillWord": "Microsoft Word",
+    "skillPowerPoint": "Microsoft PowerPoint",
+    "skillExcel": "Microsoft Excel",
+    "skillInDesign": "Adobe InDesign",
+    "skillTranslation": "翻译",
+    "skillEngTib": "英藏翻译",
+    "skillEduContexts": "教育领域",
+    "skillSciContexts": "科学领域",
+    "otherContributions": "其他贡献",
+    "contribution1": "在新加坡进行佛法教学和开示，面向国际听众弘扬佛学。",
+    "contribution2": "在甘丹夏孜寺成功完成六年综合科学课程，促进科学与佛教思想的融合。"
+  },
+  "projects": {
+    "pageTitle": "项目",
+    "metaDescription": "我的项目和作品集。",
+    "subtitle": "我构建和参与的项目。",
+    "liveDemo": "在线演示",
+    "github": "GitHub",
+    "project1Title": "个人网站",
+    "project1Desc": "使用 Next.js、TypeScript、Tailwind CSS 和 MDX 构建的个人网站和博客。",
+    "project2Title": "示例项目",
+    "project2Desc": "用于展示的示例项目。请替换为您的真实项目。"
+  },
+  "blog": {
+    "pageTitle": "博客",
+    "metaDescription": "关于佛教哲学、翻译和教育的思考、反思与见解。",
+    "subtitle": "思考、反思与见解。",
+    "readMore": "阅读更多",
+    "minRead": "分钟阅读",
+    "noPosts": "暂无文章。请稍后再来！"
+  },
+  "contact": {
+    "pageTitle": "联系方式",
+    "metaDescription": "与玉灵仁波切取得联系。",
+    "intro": "欢迎与我联系。我随时愿意就佛教哲学、翻译工作和教育合作进行交流。",
+    "emailLabel": "电子邮件",
+    "phoneLabel": "电话",
+    "locationLabel": "地址",
+    "locationValue": "甘丹夏孜寺，印度"
+  },
+  "footer": {
+    "copyright": "© {year} 玉灵仁波切。保留所有权利。",
+    "email": "电子邮件"
+  },
+  "theme": {
+    "toggleLight": "切换至浅色模式",
+    "toggleDark": "切换至深色模式",
+    "toggleLabel": "切换主题"
+  },
+  "language": {
+    "label": "语言",
+    "en": "English",
+    "bo": "བོད་སྐད",
+    "zh": "中文",
+    "ne": "नेपाली",
+    "hi": "हिन्दी"
+  },
+  "notFound": {
+    "title": "页面未找到",
+    "description": "您查找的页面不存在或已被移动。",
+    "backHome": "返回首页"
+  }
+}

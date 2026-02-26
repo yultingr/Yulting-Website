@@ -1,21 +1,27 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
+import { routing } from "@/i18n/routing";
 
 const BASE_URL = "https://yulting.dev";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const posts = getAllPosts().map((post) => ({
-    url: `${BASE_URL}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
-  }));
+  const locales = routing.locales;
+  const staticPaths = ["", "/about", "/projects", "/blog", "/contact"];
 
-  const staticPages = [
-    { url: BASE_URL, lastModified: new Date() },
-    { url: `${BASE_URL}/about`, lastModified: new Date() },
-    { url: `${BASE_URL}/projects`, lastModified: new Date() },
-    { url: `${BASE_URL}/blog`, lastModified: new Date() },
-    { url: `${BASE_URL}/contact`, lastModified: new Date() },
-  ];
+  const staticPages = staticPaths.flatMap((path) =>
+    locales.map((locale) => ({
+      url: `${BASE_URL}/${locale}${path}`,
+      lastModified: new Date(),
+    }))
+  );
 
-  return [...staticPages, ...posts];
+  const blogPages = locales.flatMap((locale) => {
+    const posts = getAllPosts(locale);
+    return posts.map((post) => ({
+      url: `${BASE_URL}/${locale}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+    }));
+  });
+
+  return [...staticPages, ...blogPages];
 }

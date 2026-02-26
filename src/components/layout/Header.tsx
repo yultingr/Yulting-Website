@@ -1,27 +1,36 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { Container } from "@/components/layout/Container";
-import { navigationLinks } from "@/data/navigation";
+
+const navKeys = [
+  { key: "about", href: "/about" as const },
+  { key: "projects", href: "/projects" as const },
+  { key: "blog", href: "/blog" as const },
+  { key: "contact", href: "/contact" as const },
+];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const t = useTranslations("nav");
+  const tCommon = useTranslations("common");
 
   return (
     <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/80 backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-950/80">
       <Container>
         <nav className="flex h-16 items-center justify-between">
           <Link href="/" className="text-lg font-bold">
-            Yulting Rinpoche
+            {tCommon("siteName")}
           </Link>
 
-          <div className="hidden items-center gap-8 md:flex">
-            {navigationLinks.map((link) => (
+          <div className="hidden items-center gap-6 md:flex">
+            {navKeys.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -31,13 +40,15 @@ export function Header() {
                     : "text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
                 }`}
               >
-                {link.label}
+                {t(link.key)}
               </Link>
             ))}
+            <LanguageSwitcher />
             <ThemeToggle />
           </div>
 
-          <div className="flex items-center gap-4 md:hidden">
+          <div className="flex items-center gap-3 md:hidden">
+            <LanguageSwitcher />
             <ThemeToggle />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
