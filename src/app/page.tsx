@@ -6,7 +6,7 @@ export default function Home() {
     <section className="py-20 sm:py-28">
       <Container>
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          Tulku Lobsang Khenrab
+          Yulting Rinpoche
         </h1>
         <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
           English-Tibetan Translations &amp; Methodology Teacher

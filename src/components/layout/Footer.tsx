@@ -6,7 +6,7 @@ export function Footer() {
       <Container>
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-sm text-neutral-500">
-            &copy; {new Date().getFullYear()} Tulku Lobsang Khenrab. All rights
+            &copy; {new Date().getFullYear()} Yulting Rinpoche. All rights
             reserved.
           </p>
           <div className="flex gap-6">

@@ -17,7 +17,7 @@ export function Header() {
       <Container>
         <nav className="flex h-16 items-center justify-between">
           <Link href="/" className="text-lg font-bold">
-            Tulku Lobsang Khenrab
+            Yulting Rinpoche
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">

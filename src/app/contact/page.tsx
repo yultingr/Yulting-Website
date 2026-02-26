@@ -3,7 +3,7 @@ import { Container } from "@/components/layout/Container";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Tulku Lobsang Khenrab.",
+  description: "Get in touch with Yulting Rinpoche.",
 };
 
 export default function ContactPage() {

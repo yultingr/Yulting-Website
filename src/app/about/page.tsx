@@ -5,7 +5,7 @@ import { skills } from "@/data/skills";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Learn about Tulku Lobsang Khenrab — educator, translator, and Buddhist scholar at Gaden Shartse Monastery.",
+    "Learn about Yulting Rinpoche — educator, translator, and Buddhist scholar at Gaden Shartse Monastery.",
 };
 
 export default function AboutPage() {

@@ -12,10 +12,10 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Tulku Lobsang Khenrab",
-    template: "%s | Tulku Lobsang Khenrab",
+    default: "Yulting Rinpoche",
+    template: "%s | Yulting Rinpoche",
   },
-  description: "Personal website of Tulku Lobsang Khenrab — educator, translator, and Buddhist scholar.",
+  description: "Personal website of Yulting Rinpoche — educator, translator, and Buddhist scholar.",
 };
 
 export default function RootLayout({
