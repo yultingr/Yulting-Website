@@ -105,7 +105,8 @@
   "footer": {
     "copyright": "© {year} Yulting Rinpoche. All rights reserved.",
     "email": "Email",
-    "terms": "Terms & Conditions"
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy"
   },
   "theme": {
     "toggleLight": "Switch to light mode",
@@ -163,5 +164,45 @@
     "s7l3": "Limit any of our or your liabilities in any way that is not permitted under applicable law",
     "s7p2": "The limitations and prohibitions of liability set in this section and elsewhere in this disclaimer are subject to applicable law and govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort, and for breach of statutory duty.",
     "s7p3": "As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature."
+  },
+  "privacy": {
+    "pageTitle": "Privacy Policy",
+    "metaDescription": "Privacy policy for the Yulting Rinpoche website.",
+    "lastUpdated": "Last updated: {date}",
+    "intro": "Yulting Rinpoche is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website. By using this website, you agree to the practices described in this policy.",
+    "s1Title": "Information We Collect",
+    "s1p1": "We may collect information that you voluntarily provide to us, such as your name, email address, and any messages you send through our contact form.",
+    "s1p2": "We may also automatically collect certain information when you visit our website, including your browser type, operating system, pages visited, and language preferences.",
+    "s2Title": "How We Use Your Information",
+    "s2p1": "We use the information we collect for the following purposes:",
+    "s2l1": "To respond to your inquiries and messages",
+    "s2l2": "To improve and maintain our website",
+    "s2l3": "To send you updates about teachings, events, or publications (only if you opt in)",
+    "s2l4": "To ensure the security and functionality of our website",
+    "s3Title": "Information We Share",
+    "s3p1": "We do not sell, trade, or otherwise transfer your personal information to outside parties. We may share information only in the following circumstances:",
+    "s3l1": "With your explicit consent",
+    "s3l2": "To comply with legal obligations or respond to lawful requests",
+    "s3l3": "To protect our rights, privacy, safety, or property",
+    "s4Title": "Cookies and Local Storage",
+    "s4p1": "Our website uses cookies and local storage to remember your language preference and theme setting. These are essential for the functionality of the website.",
+    "s4p2": "We do not use cookies for tracking or advertising purposes. Third-party services integrated into our website may have their own cookie policies.",
+    "s5Title": "Your Rights",
+    "s5p1": "You have the right to:",
+    "s5l1": "Access the personal information we hold about you",
+    "s5l2": "Request correction of any inaccurate information",
+    "s5l3": "Request deletion of your personal information",
+    "s5l4": "Object to the processing of your personal information",
+    "s5p2": "To exercise any of these rights, please contact us using the details provided below. We will respond to your request within 30 days.",
+    "s6Title": "Security",
+    "s6p1": "We take reasonable measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the Internet is 100% secure, and we cannot guarantee absolute security.",
+    "s7Title": "Third-Party Links",
+    "s7p1": "Our website may contain links to third-party websites. We are not responsible for the privacy practices or content of these external sites. We encourage you to review the privacy policies of any third-party sites you visit.",
+    "s8Title": "Changes to This Policy",
+    "s8p1": "We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated revision date. We encourage you to review this policy periodically.",
+    "s9Title": "Contact Us",
+    "s9p1": "If you have any questions about this Privacy Policy or our data practices, please contact us at:",
+    "s9email": "Email: tulkuyulting@gmail.com",
+    "s9location": "Gaden Shartse Monastery, Mundgod, Karnataka, India"
   }
 }

@@ -27,6 +27,12 @@ export function Footer() {
             >
               {t("terms")}
             </Link>
+            <Link
+              href="/privacy"
+              className="text-sm text-neutral-500 transition-colors hover:text-neutral-900 dark:hover:text-neutral-100"
+            >
+              {t("privacy")}
+            </Link>
           </div>
         </div>
       </Container>
