@@ -104,7 +104,8 @@
   },
   "footer": {
     "copyright": "© {year} Yulting Rinpoche. All rights reserved.",
-    "email": "Email"
+    "email": "Email",
+    "terms": "Terms & Conditions"
   },
   "theme": {
     "toggleLight": "Switch to light mode",
@@ -123,5 +124,44 @@
     "title": "Page not found",
     "description": "The page you're looking for doesn't exist or has been moved.",
     "backHome": "Back to Home"
+  },
+  "terms": {
+    "pageTitle": "Terms and Conditions",
+    "metaDescription": "Terms and conditions for using the Yulting Rinpoche website.",
+    "lastUpdated": "Last updated: {date}",
+    "intro": "Welcome to the Yulting Rinpoche website. By accessing this website, you agree to be bound by these terms and conditions. If you disagree with any part of these terms, please do not use this website.",
+    "s1Title": "Cookies",
+    "s1p1": "This website employs the use of cookies. By accessing this website, you agree to use cookies in accordance with our privacy practices.",
+    "s1p2": "Cookies are used by our website to enable the functionality of certain areas and to make it easier for visitors to use. Some of our third-party integrations may also use cookies.",
+    "s2Title": "License",
+    "s2p1": "Unless otherwise stated, Yulting Rinpoche and/or licensors own the intellectual property rights for all material on this website. All intellectual property rights are reserved. You may access this for your own personal use subject to the restrictions set in these terms and conditions.",
+    "s2p2": "You must not:",
+    "s2l1": "Republish material from this website",
+    "s2l2": "Sell, rent, or sub-license material from this website",
+    "s2l3": "Reproduce, duplicate, or copy material from this website",
+    "s2l4": "Redistribute content from this website",
+    "s3Title": "User Comments",
+    "s3p1": "Certain parts of this website may offer the opportunity for users to post and exchange opinions and information. Yulting Rinpoche does not filter, edit, publish, or review comments prior to their presence on the website. Comments do not reflect the views and opinions of Yulting Rinpoche.",
+    "s3p2": "Yulting Rinpoche reserves the right to monitor all comments and to remove any comments which can be considered inappropriate, offensive, or in breach of these terms and conditions.",
+    "s3p3": "You warrant and represent that:",
+    "s3l1": "You are entitled to post comments on this website and have all necessary licenses and consents to do so",
+    "s3l2": "Comments do not infringe any intellectual property rights of any third party",
+    "s3l3": "Comments do not contain any defamatory, libelous, offensive, indecent, or otherwise unlawful material",
+    "s3l4": "Comments will not be used to solicit or promote business or present commercial activities or unlawful activity",
+    "s4Title": "Hyperlinking to Our Content",
+    "s4p1": "The following organizations may link to our website without prior written approval: government agencies, search engines, news organizations, and online directory distributors.",
+    "s4p2": "Other organizations may request to link to our website by contacting us. We may consider and approve link requests from commonly-known organizations, educational institutions, and trade associations.",
+    "s4p3": "No use of our logo or other artwork shall be allowed for linking absent a trademark license agreement.",
+    "s5Title": "Content Liability",
+    "s5p1": "We shall not be held responsible for any content that appears on your website. You agree to protect and defend us against all claims that arise from content appearing on your website. No links should appear on any website that may be interpreted as libelous, obscene, or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of any third party rights.",
+    "s6Title": "Reservation of Rights",
+    "s6p1": "We reserve the right to request that you remove all links or any particular link to our website. You approve to immediately remove all links to our website upon request. We also reserve the right to amend these terms and conditions and its linking policy at any time.",
+    "s7Title": "Disclaimer",
+    "s7p1": "To the maximum extent permitted by applicable law, we exclude all representations, warranties, and conditions relating to our website and the use of this website. Nothing in this disclaimer will:",
+    "s7l1": "Limit or exclude our or your liability for death or personal injury",
+    "s7l2": "Limit or exclude our or your liability for fraud or fraudulent misrepresentation",
+    "s7l3": "Limit any of our or your liabilities in any way that is not permitted under applicable law",
+    "s7p2": "The limitations and prohibitions of liability set in this section and elsewhere in this disclaimer are subject to applicable law and govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort, and for breach of statutory duty.",
+    "s7p3": "As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature."
   }
 }

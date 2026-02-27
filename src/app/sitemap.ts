@@ -6,7 +6,7 @@ const BASE_URL = "https://yulting.dev";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const locales = routing.locales;
-  const staticPaths = ["", "/about", "/projects", "/blog", "/contact"];
+  const staticPaths = ["", "/about", "/projects", "/blog", "/contact", "/terms"];
 
   const staticPages = staticPaths.flatMap((path) =>
     locales.map((locale) => ({

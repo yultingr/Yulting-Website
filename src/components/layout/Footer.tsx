@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/layout/Container";
 
 export function Footer() {
@@ -20,6 +21,12 @@ export function Footer() {
             >
               {t("email")}
             </a>
+            <Link
+              href="/terms"
+              className="text-sm text-neutral-500 transition-colors hover:text-neutral-900 dark:hover:text-neutral-100"
+            >
+              {t("terms")}
+            </Link>
           </div>
         </div>
       </Container>
