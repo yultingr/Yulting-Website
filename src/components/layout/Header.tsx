@@ -22,27 +22,30 @@ export function Header() {
   const tCommon = useTranslations("common");
 
   return (
-    <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/80 backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-950/80">
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md">
       <Container>
-        <nav className="flex h-16 items-center justify-between">
-          <Link href="/" className="text-lg font-bold">
+        <nav className="flex h-[72px] items-center justify-between">
+          <Link href="/" className="text-lg font-bold tracking-tight">
             {tCommon("siteName")}
           </Link>
 
-          <div className="hidden items-center gap-6 md:flex">
+          <div className="hidden items-center gap-8 md:flex">
             {navKeys.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm transition-colors ${
+                className={`text-[15px] transition-colors ${
                   pathname === link.href
-                    ? "text-neutral-900 dark:text-neutral-100"
-                    : "text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+                    ? "text-foreground font-medium"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {t(link.key)}
               </Link>
             ))}
+          </div>
+
+          <div className="hidden items-center gap-3 md:flex">
             <LanguageSwitcher />
             <ThemeToggle />
           </div>
@@ -53,35 +56,15 @@ export function Header() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
-              className="rounded-md p-2 text-neutral-600 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800"
+              className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               {mobileMenuOpen ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M18 6 6 18" />
                   <path d="m6 6 12 12" />
                 </svg>
               ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="4" x2="20" y1="12" y2="12" />
                   <line x1="4" x2="20" y1="6" y2="6" />
                   <line x1="4" x2="20" y1="18" y2="18" />

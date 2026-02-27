@@ -28,7 +28,7 @@ export function LanguageSwitcher() {
       value={locale}
       onChange={handleChange}
       aria-label={t("label")}
-      className="rounded-md border border-neutral-300 bg-transparent px-2 py-1.5 text-sm text-neutral-600 transition-colors hover:border-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-400 dark:border-neutral-700 dark:text-neutral-400 dark:hover:border-neutral-600 dark:focus:ring-neutral-600"
+      className="rounded-lg border border-border bg-transparent px-2.5 py-1.5 text-sm text-muted-foreground transition-colors hover:border-foreground/30 focus:outline-none focus:ring-2 focus:ring-accent/50"
     >
       {Object.entries(localeNames).map(([code, name]) => (
         <option key={code} value={code}>

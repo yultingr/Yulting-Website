@@ -6,34 +6,80 @@ import { Container } from "@/components/layout/Container";
 
 export function Footer() {
   const t = useTranslations("footer");
+  const tNav = useTranslations("nav");
+  const tCommon = useTranslations("common");
 
   return (
-    <footer className="border-t border-neutral-200 py-8 dark:border-neutral-800">
+    <footer className="bg-foreground text-background">
       <Container>
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-sm text-neutral-500">
+        <div className="py-16">
+          <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Brand */}
+            <div className="sm:col-span-2 lg:col-span-1">
+              <h3 className="text-lg font-bold">{tCommon("siteName")}</h3>
+              <p className="mt-3 text-sm leading-relaxed opacity-60">
+                {tCommon("siteDescription")}
+              </p>
+            </div>
+
+            {/* Navigation */}
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wider opacity-40">
+                Pages
+              </h4>
+              <nav className="mt-4 flex flex-col gap-3">
+                <Link href="/about" className="text-sm opacity-60 transition-opacity hover:opacity-100">
+                  {tNav("about")}
+                </Link>
+                <Link href="/projects" className="text-sm opacity-60 transition-opacity hover:opacity-100">
+                  {tNav("projects")}
+                </Link>
+                <Link href="/blog" className="text-sm opacity-60 transition-opacity hover:opacity-100">
+                  {tNav("blog")}
+                </Link>
+                <Link href="/contact" className="text-sm opacity-60 transition-opacity hover:opacity-100">
+                  {tNav("contact")}
+                </Link>
+              </nav>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wider opacity-40">
+                Contact
+              </h4>
+              <nav className="mt-4 flex flex-col gap-3">
+                <a
+                  href="mailto:tulkuyulting@gmail.com"
+                  className="text-sm opacity-60 transition-opacity hover:opacity-100"
+                >
+                  {t("email")}
+                </a>
+              </nav>
+            </div>
+
+            {/* Legal */}
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wider opacity-40">
+                Legal
+              </h4>
+              <nav className="mt-4 flex flex-col gap-3">
+                <Link href="/terms" className="text-sm opacity-60 transition-opacity hover:opacity-100">
+                  {t("terms")}
+                </Link>
+                <Link href="/privacy" className="text-sm opacity-60 transition-opacity hover:opacity-100">
+                  {t("privacy")}
+                </Link>
+              </nav>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="border-t border-background/10 py-6">
+          <p className="text-sm opacity-40">
             {t("copyright", { year: new Date().getFullYear() })}
           </p>
-          <div className="flex gap-6">
-            <a
-              href="mailto:tulkuyulting@gmail.com"
-              className="text-sm text-neutral-500 transition-colors hover:text-neutral-900 dark:hover:text-neutral-100"
-            >
-              {t("email")}
-            </a>
-            <Link
-              href="/terms"
-              className="text-sm text-neutral-500 transition-colors hover:text-neutral-900 dark:hover:text-neutral-100"
-            >
-              {t("terms")}
-            </Link>
-            <Link
-              href="/privacy"
-              className="text-sm text-neutral-500 transition-colors hover:text-neutral-900 dark:hover:text-neutral-100"
-            >
-              {t("privacy")}
-            </Link>
-          </div>
         </div>
       </Container>
     </footer>

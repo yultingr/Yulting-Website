@@ -20,181 +20,244 @@ export default async function AboutPage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: "about" });
 
   return (
-    <section className="py-16">
+    <section className="py-20 md:py-28">
       <Container>
-        <h1 className="text-3xl font-bold tracking-tight">{t("pageTitle")}</h1>
-        <div className="mt-8 space-y-6 text-neutral-700 leading-7 dark:text-neutral-300">
-          <p>{t("bio1")}</p>
-          <p>{t("bio2")}</p>
-        </div>
-
-        <h2 className="mt-12 text-2xl font-semibold tracking-tight">
-          {t("workExperience")}
-        </h2>
-        <div className="mt-6 space-y-8">
-          <div className="border-l-2 border-neutral-200 pl-4 dark:border-neutral-800">
-            <h3 className="font-medium">{t("job1Title")}</h3>
-            <p className="text-sm text-neutral-500">
-              {t("job1Place")} &middot; {t("job1Period")}
-            </p>
-            <ul className="mt-2 space-y-1 text-sm text-neutral-600 dark:text-neutral-400">
-              <li>{t("job1Detail1")}</li>
-              <li>{t("job1Detail2")}</li>
-            </ul>
-          </div>
-
-          <div className="border-l-2 border-neutral-200 pl-4 dark:border-neutral-800">
-            <h3 className="font-medium">{t("job2Title")}</h3>
-            <p className="text-sm text-neutral-500">
-              {t("job2Place")} &middot; {t("job2Period")}
-            </p>
-            <ul className="mt-2 space-y-1 text-sm text-neutral-600 dark:text-neutral-400">
-              <li>{t("job2Detail1")}</li>
-              <li>{t("job2Detail2")}</li>
-            </ul>
+        {/* ── Hero / Bio ────────────────────────────────── */}
+        <div className="max-w-3xl">
+          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+            {t("pageTitle")}
+          </h1>
+          <div className="mt-8 space-y-5 text-lg leading-8 text-muted-foreground">
+            <p>{t("bio1")}</p>
+            <p>{t("bio2")}</p>
           </div>
         </div>
 
-        <h2 className="mt-12 text-2xl font-semibold tracking-tight">
-          {t("internationalEngagements")}
-        </h2>
-        <div className="mt-6 space-y-6">
-          <div className="border-l-2 border-neutral-200 pl-4 dark:border-neutral-800">
-            <h3 className="font-medium">{t("engagement1Title")}</h3>
-            <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
-              {t("engagement1Desc")}
-            </p>
-          </div>
-          <div className="border-l-2 border-neutral-200 pl-4 dark:border-neutral-800">
-            <h3 className="font-medium">{t("engagement2Title")}</h3>
-            <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
-              {t("engagement2Desc")}
-            </p>
-          </div>
-          <div className="border-l-2 border-neutral-200 pl-4 dark:border-neutral-800">
-            <h3 className="font-medium">{t("engagement3Title")}</h3>
-            <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
-              {t("engagement3Desc")}
-            </p>
-          </div>
-        </div>
-
-        <h2 className="mt-12 text-2xl font-semibold tracking-tight">
-          {t("educationTitle")}
-        </h2>
-        <div className="mt-6">
-          <h3 className="font-medium text-neutral-900 dark:text-neutral-100">
-            {t("educationInstitution")}
-          </h3>
-          <ul className="mt-3 space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
-            <li>
-              <span className="text-neutral-900 dark:text-neutral-100">
-                {t("cert1Name")}
-              </span>{" "}
-              {t("cert1Desc")}
-            </li>
-            <li>
-              <span className="text-neutral-900 dark:text-neutral-100">
-                {t("cert2Name")}
-              </span>{" "}
-              {t("cert2Desc")}
-            </li>
-            <li>
-              <span className="text-neutral-900 dark:text-neutral-100">
-                {t("cert3Name")}
-              </span>{" "}
-              {t("cert3Desc")}
-            </li>
-            <li>
-              <span className="text-neutral-900 dark:text-neutral-100">
-                {t("cert4Name")}
-              </span>{" "}
-              {t("cert4Desc")}
-            </li>
-            <li>
-              <span className="text-neutral-900 dark:text-neutral-100">
-                {t("cert5Name")}
-              </span>{" "}
-              {t("cert5Desc")}
-            </li>
-            <li>
-              <span className="text-neutral-900 dark:text-neutral-100">
-                {t("cert6Name")}
-              </span>{" "}
-              {t("cert6Desc")}
-            </li>
-            <li>
-              <span className="text-neutral-900 dark:text-neutral-100">
-                {t("cert7Name")}
-              </span>{" "}
-              {t("cert7Desc")}
-            </li>
-          </ul>
-          <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-400">
-            {t("currentStudy")}
+        {/* ── Work Experience ───────────────────────────── */}
+        <div className="mt-20">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            {t("workExperience")}
           </p>
-        </div>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
+            {t("workExperience")}
+          </h2>
 
-        <h2 className="mt-12 text-2xl font-semibold tracking-tight">
-          {t("skillsTitle")}
-        </h2>
-        <div className="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <div>
-            <h3 className="font-medium text-neutral-900 dark:text-neutral-100">
-              {t("skillLanguages")}
-            </h3>
-            <ul className="mt-2 space-y-1">
-              <li className="text-sm text-neutral-600 dark:text-neutral-400">
-                {t("skillTibetan")}
-              </li>
-              <li className="text-sm text-neutral-600 dark:text-neutral-400">
-                {t("skillEnglish")}
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-medium text-neutral-900 dark:text-neutral-100">
-              {t("skillTechnology")}
-            </h3>
-            <ul className="mt-2 space-y-1">
-              <li className="text-sm text-neutral-600 dark:text-neutral-400">
-                {t("skillWord")}
-              </li>
-              <li className="text-sm text-neutral-600 dark:text-neutral-400">
-                {t("skillPowerPoint")}
-              </li>
-              <li className="text-sm text-neutral-600 dark:text-neutral-400">
-                {t("skillExcel")}
-              </li>
-              <li className="text-sm text-neutral-600 dark:text-neutral-400">
-                {t("skillInDesign")}
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-medium text-neutral-900 dark:text-neutral-100">
-              {t("skillTranslation")}
-            </h3>
-            <ul className="mt-2 space-y-1">
-              <li className="text-sm text-neutral-600 dark:text-neutral-400">
-                {t("skillEngTib")}
-              </li>
-              <li className="text-sm text-neutral-600 dark:text-neutral-400">
-                {t("skillEduContexts")}
-              </li>
-              <li className="text-sm text-neutral-600 dark:text-neutral-400">
-                {t("skillSciContexts")}
-              </li>
-            </ul>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {/* Job 1 */}
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <div className="border-l-4 border-accent pl-4">
+                <h3 className="text-lg font-semibold text-card-foreground">
+                  {t("job1Title")}
+                </h3>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {t("job1Place")} &middot; {t("job1Period")}
+                </p>
+              </div>
+              <ul className="mt-4 space-y-2 text-sm leading-6 text-muted-foreground">
+                <li className="flex gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  {t("job1Detail1")}
+                </li>
+                <li className="flex gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  {t("job1Detail2")}
+                </li>
+              </ul>
+            </div>
+
+            {/* Job 2 */}
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <div className="border-l-4 border-accent pl-4">
+                <h3 className="text-lg font-semibold text-card-foreground">
+                  {t("job2Title")}
+                </h3>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {t("job2Place")} &middot; {t("job2Period")}
+                </p>
+              </div>
+              <ul className="mt-4 space-y-2 text-sm leading-6 text-muted-foreground">
+                <li className="flex gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  {t("job2Detail1")}
+                </li>
+                <li className="flex gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  {t("job2Detail2")}
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <h2 className="mt-12 text-2xl font-semibold tracking-tight">
-          {t("otherContributions")}
-        </h2>
-        <div className="mt-6 space-y-4 text-sm text-neutral-600 dark:text-neutral-400">
-          <p>{t("contribution1")}</p>
-          <p>{t("contribution2")}</p>
+        {/* ── International Engagements ─────────────────── */}
+        <div className="mt-20">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            {t("internationalEngagements")}
+          </p>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
+            {t("internationalEngagements")}
+          </h2>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <h3 className="text-base font-semibold text-card-foreground">
+                {t("engagement1Title")}
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                {t("engagement1Desc")}
+              </p>
+            </div>
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <h3 className="text-base font-semibold text-card-foreground">
+                {t("engagement2Title")}
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                {t("engagement2Desc")}
+              </p>
+            </div>
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <h3 className="text-base font-semibold text-card-foreground">
+                {t("engagement3Title")}
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                {t("engagement3Desc")}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Education ─────────────────────────────────── */}
+        <div className="mt-20">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            {t("educationTitle")}
+          </p>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
+            {t("educationTitle")}
+          </h2>
+          <p className="mt-3 text-base text-muted-foreground">
+            {t("educationInstitution")}
+          </p>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {(
+              [
+                ["cert1Name", "cert1Desc"],
+                ["cert2Name", "cert2Desc"],
+                ["cert3Name", "cert3Desc"],
+                ["cert4Name", "cert4Desc"],
+                ["cert5Name", "cert5Desc"],
+                ["cert6Name", "cert6Desc"],
+                ["cert7Name", "cert7Desc"],
+              ] as const
+            ).map(([nameKey, descKey]) => (
+              <div
+                key={nameKey}
+                className="rounded-2xl border border-border bg-card p-5 shadow-sm"
+              >
+                <h3 className="text-sm font-semibold text-card-foreground">
+                  {t(nameKey)}
+                </h3>
+                <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                  {t(descKey)}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 rounded-2xl bg-muted px-5 py-4">
+            <p className="text-sm font-medium text-foreground">
+              {t("currentStudy")}
+            </p>
+          </div>
+        </div>
+
+        {/* ── Skills ────────────────────────────────────── */}
+        <div className="mt-20">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            {t("skillsTitle")}
+          </p>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
+            {t("skillsTitle")}
+          </h2>
+
+          <div className="mt-8 grid gap-8 md:grid-cols-3">
+            {/* Languages */}
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
+                {t("skillLanguages")}
+              </h3>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <span className="inline-flex items-center rounded-full bg-accent-light px-3 py-1 text-sm font-medium text-accent">
+                  {t("skillTibetan")}
+                </span>
+                <span className="inline-flex items-center rounded-full bg-accent-light px-3 py-1 text-sm font-medium text-accent">
+                  {t("skillEnglish")}
+                </span>
+              </div>
+            </div>
+
+            {/* Technology */}
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
+                {t("skillTechnology")}
+              </h3>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-sm font-medium text-foreground">
+                  {t("skillWord")}
+                </span>
+                <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-sm font-medium text-foreground">
+                  {t("skillPowerPoint")}
+                </span>
+                <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-sm font-medium text-foreground">
+                  {t("skillExcel")}
+                </span>
+                <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-sm font-medium text-foreground">
+                  {t("skillInDesign")}
+                </span>
+              </div>
+            </div>
+
+            {/* Translation */}
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
+                {t("skillTranslation")}
+              </h3>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <span className="inline-flex items-center rounded-full bg-accent-light px-3 py-1 text-sm font-medium text-accent">
+                  {t("skillEngTib")}
+                </span>
+                <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-sm font-medium text-foreground">
+                  {t("skillEduContexts")}
+                </span>
+                <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-sm font-medium text-foreground">
+                  {t("skillSciContexts")}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Other Contributions ───────────────────────── */}
+        <div className="mt-20 mb-4">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            {t("otherContributions")}
+          </p>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
+            {t("otherContributions")}
+          </h2>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <p className="text-sm leading-6 text-card-foreground">
+                {t("contribution1")}
+              </p>
+            </div>
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <p className="text-sm leading-6 text-card-foreground">
+                {t("contribution2")}
+              </p>
+            </div>
+          </div>
         </div>
       </Container>
     </section>
