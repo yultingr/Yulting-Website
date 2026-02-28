@@ -34,7 +34,7 @@ export default async function ContactPage({ params }: Props) {
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
               {t("intro")}
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="mailto:tulkuyulting@gmail.com"
                 className="inline-flex items-center gap-2 rounded-full bg-foreground px-8 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
@@ -54,13 +54,37 @@ export default async function ContactPage({ params }: Props) {
                 </svg>
                 Email Me
               </a>
+              <a
+                href="https://instagram.com/yultingr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-8 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+              >
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                </svg>
+                Follow
+              </a>
             </div>
           </div>
 
           {/* Right side: contact info cards */}
           <div className="space-y-4">
             {/* Email card */}
-            <div className="rounded-2xl border border-border bg-card p-6">
+            <a
+              href="mailto:tulkuyulting@gmail.com"
+              className="block rounded-2xl border border-border bg-card p-6 transition-colors hover:bg-muted/50"
+            >
               <div className="flex items-start gap-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-muted text-lg">
                   <svg
@@ -81,18 +105,20 @@ export default async function ContactPage({ params }: Props) {
                   <h2 className="font-medium text-foreground">
                     {t("emailLabel")}
                   </h2>
-                  <a
-                    href="mailto:tulkuyulting@gmail.com"
-                    className="mt-1 inline-block text-sm text-accent-foreground hover:underline"
-                  >
+                  <span className="mt-1 inline-block text-sm text-accent-foreground">
                     tulkuyulting@gmail.com
-                  </a>
+                  </span>
                 </div>
               </div>
-            </div>
+            </a>
 
             {/* Instagram card */}
-            <div className="rounded-2xl border border-border bg-card p-6">
+            <a
+              href="https://instagram.com/yultingr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block rounded-2xl border border-border bg-card p-6 transition-colors hover:bg-muted/50"
+            >
               <div className="flex items-start gap-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-muted text-lg">
                   <svg
@@ -113,20 +139,18 @@ export default async function ContactPage({ params }: Props) {
                   <h2 className="font-medium text-foreground">
                     Instagram
                   </h2>
-                  <a
-                    href="https://instagram.com/yultingr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-1 inline-block text-sm text-accent-foreground hover:underline"
-                  >
+                  <span className="mt-1 inline-block text-sm text-accent-foreground">
                     @yultingr
-                  </a>
+                  </span>
                 </div>
               </div>
-            </div>
+            </a>
 
             {/* Phone card */}
-            <div className="rounded-2xl border border-border bg-card p-6">
+            <a
+              href="tel:+919738414606"
+              className="block rounded-2xl border border-border bg-card p-6 transition-colors hover:bg-muted/50"
+            >
               <div className="flex items-start gap-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-muted text-lg">
                   <svg
@@ -147,12 +171,12 @@ export default async function ContactPage({ params }: Props) {
                   <h2 className="font-medium text-foreground">
                     {t("phoneLabel")}
                   </h2>
-                  <p className="mt-1 text-sm text-muted-foreground">
+                  <span className="mt-1 inline-block text-sm text-muted-foreground">
                     +91 9738414606
-                  </p>
+                  </span>
                 </div>
               </div>
-            </div>
+            </a>
 
             {/* Location card */}
             <div className="rounded-2xl border border-border bg-card p-6">
