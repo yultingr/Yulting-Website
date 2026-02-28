@@ -91,6 +91,40 @@ export default async function ContactPage({ params }: Props) {
               </div>
             </div>
 
+            {/* Instagram card */}
+            <div className="rounded-2xl border border-border bg-card p-6">
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-muted text-lg">
+                  <svg
+                    className="h-5 w-5 text-muted-foreground"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={1.5}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                  </svg>
+                </div>
+                <div>
+                  <h2 className="font-medium text-foreground">
+                    Instagram
+                  </h2>
+                  <a
+                    href="https://instagram.com/yultingr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 inline-block text-sm text-accent-foreground hover:underline"
+                  >
+                    @yultingr
+                  </a>
+                </div>
+              </div>
+            </div>
+
             {/* Phone card */}
             <div className="rounded-2xl border border-border bg-card p-6">
               <div className="flex items-start gap-4">
@@ -153,6 +187,7 @@ export default async function ContactPage({ params }: Props) {
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </Container>
