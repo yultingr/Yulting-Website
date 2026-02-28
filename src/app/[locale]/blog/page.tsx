@@ -62,7 +62,7 @@ export default async function BlogPage({ params }: Props) {
                           })}
                         </time>
                         <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">
-                          {post.readingTime} {t("minRead")}
+                          {post.readingTime}
                         </span>
                       </div>
 

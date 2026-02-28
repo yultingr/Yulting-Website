@@ -72,9 +72,6 @@ export default function Home() {
                   🗣
                 </span>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                {tAbout("skillTibetan")} · {tAbout("skillEnglish")}
-              </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
                   {tAbout("skillTibetan")}
@@ -95,9 +92,6 @@ export default function Home() {
                   📝
                 </span>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                {tAbout("skillEngTib")} · {tAbout("skillEduContexts")} · {tAbout("skillSciContexts")}
-              </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
                   {tAbout("skillEduContexts")}
@@ -118,9 +112,6 @@ export default function Home() {
                   💻
                 </span>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                {tAbout("skillWord")} · {tAbout("skillPowerPoint")} · {tAbout("skillExcel")}
-              </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
                   {tAbout("skillWord")}
@@ -147,20 +138,20 @@ export default function Home() {
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <div className="rounded-2xl bg-background/5 p-6 backdrop-blur-sm">
-              <span className="text-2xl font-bold opacity-30">1</span>
-              <h3 className="mt-3 text-lg font-semibold">{tAbout("cert1Name")}</h3>
-              <p className="mt-2 text-sm opacity-60">{tAbout("cert1Desc")}</p>
+            <div className="rounded-2xl bg-background/10 p-6">
+              <span className="text-2xl font-bold opacity-40">1</span>
+              <h3 className="mt-3 text-lg font-semibold text-background">{tAbout("cert1Name")}</h3>
+              <p className="mt-2 text-sm text-background/70">{tAbout("cert1Desc")}</p>
             </div>
-            <div className="rounded-2xl bg-background/5 p-6 backdrop-blur-sm">
-              <span className="text-2xl font-bold opacity-30">2</span>
-              <h3 className="mt-3 text-lg font-semibold">{tAbout("cert2Name")}</h3>
-              <p className="mt-2 text-sm opacity-60">{tAbout("cert2Desc")}</p>
+            <div className="rounded-2xl bg-background/10 p-6">
+              <span className="text-2xl font-bold opacity-40">2</span>
+              <h3 className="mt-3 text-lg font-semibold text-background">{tAbout("cert2Name")}</h3>
+              <p className="mt-2 text-sm text-background/70">{tAbout("cert2Desc")}</p>
             </div>
-            <div className="rounded-2xl bg-background/5 p-6 backdrop-blur-sm">
-              <span className="text-2xl font-bold opacity-30">3</span>
-              <h3 className="mt-3 text-lg font-semibold">{tAbout("cert5Name")}</h3>
-              <p className="mt-2 text-sm opacity-60">{tAbout("cert5Desc")}</p>
+            <div className="rounded-2xl bg-background/10 p-6">
+              <span className="text-2xl font-bold opacity-40">3</span>
+              <h3 className="mt-3 text-lg font-semibold text-background">{tAbout("cert5Name")}</h3>
+              <p className="mt-2 text-sm text-background/70">{tAbout("cert5Desc")}</p>
             </div>
           </div>
 

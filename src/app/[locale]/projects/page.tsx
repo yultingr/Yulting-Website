@@ -24,13 +24,6 @@ const projectData = [
     liveUrl: "/",
     gradient: "from-rose-500/20 via-amber-500/10 to-violet-500/20",
   },
-  {
-    titleKey: "project2Title",
-    descKey: "project2Desc",
-    technologies: ["React", "Node.js", "PostgreSQL"],
-    githubUrl: "https://github.com",
-    gradient: "from-cyan-500/20 via-blue-500/10 to-emerald-500/20",
-  },
 ];
 
 export default async function ProjectsPage({ params }: Props) {
