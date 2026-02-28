@@ -2,13 +2,190 @@
   {
     "id": "1",
     "platform": "youtube",
-    "videoId": "dQw4w9WgXcQ",
-    "title": "Placeholder Video 1"
+    "videoId": "b71Ut9IDIzA",
+    "title": "How to Transform The Current Pandemic Into The Path",
+    "category": "COVID-19 Series"
   },
   {
     "id": "2",
     "platform": "youtube",
-    "videoId": "jNQXAC9IVRw",
-    "title": "Placeholder Video 2"
+    "videoId": "CMZXDUJU1cQ",
+    "title": "How to Reduce Anxiety During This Pandemic",
+    "category": "COVID-19 Series"
+  },
+  {
+    "id": "3",
+    "platform": "youtube",
+    "videoId": "vWFvx6z3o2E",
+    "title": "How to Practice Compassion During This Pandemic",
+    "category": "COVID-19 Series"
+  },
+  {
+    "id": "4",
+    "platform": "youtube",
+    "videoId": "kX6gumVmms4",
+    "title": "How to Meditate",
+    "category": "COVID-19 Series"
+  },
+  {
+    "id": "5",
+    "platform": "youtube",
+    "videoId": "w1ZuKUxeXUE",
+    "title": "Questions & Answers Session",
+    "category": "COVID-19 Series"
+  },
+  {
+    "id": "6",
+    "platform": "youtube",
+    "videoId": "FzTErZfe_TA",
+    "title": "Teachings For The Layman Buddhist (Letter To A Friend) Part 1",
+    "category": "Teachings"
+  },
+  {
+    "id": "7",
+    "platform": "youtube",
+    "videoId": "556qVJrSOZ8",
+    "title": "Teachings For The Layman Buddhist (Letter To A Friend) Part 2",
+    "category": "Teachings"
+  },
+  {
+    "id": "8",
+    "platform": "youtube",
+    "videoId": "KxIbXw_c_M4",
+    "title": "Teachings For The Layman Buddhist (Letter To A Friend) Part 3",
+    "category": "Teachings"
+  },
+  {
+    "id": "9",
+    "platform": "youtube",
+    "videoId": "cGlyR9AdJGM",
+    "title": "Teachings For The Layman Buddhist (Letter To A Friend) Part 4",
+    "category": "Teachings"
+  },
+  {
+    "id": "10",
+    "platform": "youtube",
+    "videoId": "9meKzrCewSQ",
+    "title": "Teachings For The Layman Buddhist (Letter To A Friend) Part 5",
+    "category": "Teachings"
+  },
+  {
+    "id": "11",
+    "platform": "youtube",
+    "videoId": "H8zyFH53_cc",
+    "title": "How to Reflect on Karma in Our Everyday Lives",
+    "category": "Teachings"
+  },
+  {
+    "id": "12",
+    "platform": "youtube",
+    "videoId": "qCg576wGOBk",
+    "title": "How to Undo Our Bad Karma (A 10-min Practice)",
+    "category": "Teachings"
+  },
+  {
+    "id": "13",
+    "platform": "youtube",
+    "videoId": "K2MHz1Iw6cU",
+    "title": "Why is Ethics So Important for Everyone, Even if You Are Not Religious",
+    "category": "Teachings"
+  },
+  {
+    "id": "14",
+    "platform": "youtube",
+    "videoId": "O0uyGQtAhqA",
+    "title": "How to Apply Ancient Everyday-Wisdom For The Modern People [1]",
+    "category": "Ancient Everyday-Wisdom"
+  },
+  {
+    "id": "15",
+    "platform": "youtube",
+    "videoId": "l3SiXwiSfv0",
+    "title": "How to Apply Ancient Everyday-Wisdom For The Modern People [2]",
+    "category": "Ancient Everyday-Wisdom"
+  },
+  {
+    "id": "16",
+    "platform": "youtube",
+    "videoId": "7qJ_PMaz3Vs",
+    "title": "Why We Gossip — Ancient Everyday-Wisdom [3]",
+    "category": "Ancient Everyday-Wisdom"
+  },
+  {
+    "id": "17",
+    "platform": "youtube",
+    "videoId": "8bpgyCUv8ho",
+    "title": "Toxic People — Ancient Everyday-Wisdom [4]",
+    "category": "Ancient Everyday-Wisdom"
+  },
+  {
+    "id": "18",
+    "platform": "youtube",
+    "videoId": "8Si8K5Azp7M",
+    "title": "How We Can Do Better During 5 Degenerations Times [5]",
+    "category": "Ancient Everyday-Wisdom"
+  },
+  {
+    "id": "19",
+    "platform": "youtube",
+    "videoId": "MWotJCj0bio",
+    "title": "How to Meditate & Deal With Three Different Types of People [6]",
+    "category": "Ancient Everyday-Wisdom"
+  },
+  {
+    "id": "20",
+    "platform": "youtube",
+    "videoId": "SSqtTzMCmLg",
+    "title": "Managing Today's Mental Struggles — Buddhist Psychology [1]",
+    "category": "Managing Mental Struggles"
+  },
+  {
+    "id": "21",
+    "platform": "youtube",
+    "videoId": "Xg1CGj2s6nY",
+    "title": "Overcoming Our Anger & Doubt [2]",
+    "category": "Managing Mental Struggles"
+  },
+  {
+    "id": "22",
+    "platform": "youtube",
+    "videoId": "fQBRVCFXkwc",
+    "title": "Overcoming Our Craving & Jealousy [3]",
+    "category": "Managing Mental Struggles"
+  },
+  {
+    "id": "23",
+    "platform": "youtube",
+    "videoId": "7MjO0jdctrY",
+    "title": "Mindfulness Practice to Overcome Distraction & Excitement [4]",
+    "category": "Managing Mental Struggles"
+  },
+  {
+    "id": "24",
+    "platform": "youtube",
+    "videoId": "QUh_Bl-tXnI",
+    "title": "Pride, Non-Introspection & Negligence [5]",
+    "category": "Managing Mental Struggles"
+  },
+  {
+    "id": "25",
+    "platform": "youtube",
+    "videoId": "l7NSv3hpDgE",
+    "title": "Laziness & Afflictive View [6]",
+    "category": "Managing Mental Struggles"
+  },
+  {
+    "id": "26",
+    "platform": "youtube",
+    "videoId": "NdeXcaNQtnY",
+    "title": "Pretense & Ignorance [7]",
+    "category": "Managing Mental Struggles"
+  },
+  {
+    "id": "27",
+    "platform": "youtube",
+    "videoId": "Rk0kARYnlkk",
+    "title": "The Meaning of Life [8]",
+    "category": "Managing Mental Struggles"
   }
 ]

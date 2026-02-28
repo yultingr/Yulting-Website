@@ -5,6 +5,8 @@ export interface Video {
   videoId: string;
   /** Direct title string. */
   title?: string;
+  /** Optional category/playlist grouping. */
+  category?: string;
 }
 
 /** Parse a YouTube or Facebook URL and extract platform + videoId. */
