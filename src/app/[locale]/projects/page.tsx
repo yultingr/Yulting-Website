@@ -17,7 +17,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const projectData = [
+const projectData: {
+  titleKey: string;
+  descKey: string;
+  technologies: string[];
+  liveUrl: string;
+  githubUrl?: string;
+  gradient: string;
+}[] = [
   {
     titleKey: "project1Title",
     descKey: "project1Desc",
