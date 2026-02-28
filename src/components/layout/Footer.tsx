@@ -37,6 +37,9 @@ export function Footer() {
                 <Link href="/blog" className="text-sm opacity-60 transition-opacity hover:opacity-100">
                   {tNav("blog")}
                 </Link>
+                <Link href="/videos" className="text-sm opacity-60 transition-opacity hover:opacity-100">
+                  {tNav("videos")}
+                </Link>
                 <Link href="/contact" className="text-sm opacity-60 transition-opacity hover:opacity-100">
                   {tNav("contact")}
                 </Link>
@@ -54,6 +57,14 @@ export function Footer() {
                   className="text-sm opacity-60 transition-opacity hover:opacity-100"
                 >
                   {t("email")}
+                </a>
+                <a
+                  href="https://instagram.com/yultingr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm opacity-60 transition-opacity hover:opacity-100"
+                >
+                  Instagram
                 </a>
               </nav>
               {/* Social */}
