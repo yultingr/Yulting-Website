@@ -85,24 +85,24 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Translation Card - Highlighted */}
-            <div className="group rounded-2xl bg-accent p-8 text-white transition-all hover:shadow-lg">
+            {/* Translation Card */}
+            <div className="group rounded-2xl border border-border bg-card p-8 transition-all hover:border-foreground/20 hover:shadow-lg">
               <div className="flex items-center justify-between">
-                <h3 className="text-xl font-semibold">
+                <h3 className="text-xl font-semibold text-card-foreground">
                   {tAbout("skillTranslation")}
                 </h3>
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 text-lg">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-muted text-lg">
                   📝
                 </span>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-white/80">
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                 {tAbout("skillEngTib")} · {tAbout("skillEduContexts")} · {tAbout("skillSciContexts")}
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
-                <span className="rounded-full bg-white/20 px-3 py-1 text-xs">
+                <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
                   {tAbout("skillEduContexts")}
                 </span>
-                <span className="rounded-full bg-white/20 px-3 py-1 text-xs">
+                <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
                   {tAbout("skillSciContexts")}
                 </span>
               </div>
