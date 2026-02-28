@@ -7,7 +7,8 @@
     "about": "About",
     "projects": "Projects",
     "blog": "Blog",
-    "contact": "Contact"
+    "contact": "Contact",
+    "videos": "Videos"
   },
   "home": {
     "title": "Yulting Rinpoche",
@@ -164,6 +165,13 @@
     "s7l3": "Limit any of our or your liabilities in any way that is not permitted under applicable law",
     "s7p2": "The limitations and prohibitions of liability set in this section and elsewhere in this disclaimer are subject to applicable law and govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort, and for breach of statutory duty.",
     "s7p3": "As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature."
+  },
+  "videos": {
+    "pageTitle": "Videos",
+    "metaDescription": "Watch videos of teachings, talks, and events by Yulting Rinpoche.",
+    "subtitle": "Teachings, talks, and events.",
+    "video1Title": "Placeholder Video 1",
+    "video2Title": "Placeholder Video 2"
   },
   "privacy": {
     "pageTitle": "Privacy Policy",
