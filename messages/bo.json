@@ -1,7 +1,8 @@
 {
   "common": {
     "siteName": "ཡུལ་ཐིང་རིན་པོ་ཆེ།",
-    "siteDescription": "ཡུལ་ཐིང་རིན་པོ་ཆེའི་སྒེར་གྱི་དྲ་ཚིགས། — སློབ་དཔོན། ལོ་ཙཱ་བ། ནང་ཆོས་མཁས་པ།"
+    "siteDescription": "ཡུལ་ཐིང་རིན་པོ་ཆེའི་སྒེར་གྱི་དྲ་ཚིགས། — སློབ་དཔོན། ལོ་ཙཱ་བ། ནང་ཆོས་མཁས་པ།",
+    "backToTop": "Back to top"
   },
   "nav": {
     "about": "ངོ་སྤྲོད།",
@@ -92,7 +93,8 @@
     "subtitle": "བསམ་ཚུལ། བསམ་བློ། གོ་རྟོགས།",
     "readMore": "མུ་མཐུད་ཀློག",
     "minRead": "སྐར་མའི་ཀློག་ཡུན།",
-    "noPosts": "ད་ལྟའི་ཆར་རྩོམ་ཡིག་མེད། ཕྱིས་སུ་བསྐྱར་དུ་ལྟོས།"
+    "noPosts": "ད་ལྟའི་ཆར་རྩོམ་ཡིག་མེད། ཕྱིས་སུ་བསྐྱར་དུ་ལྟོས།",
+    "allPosts": "All"
   },
   "contact": {
     "pageTitle": "འབྲེལ་གཏུགས།",
@@ -101,7 +103,17 @@
     "emailLabel": "གློག་འཕྲིན།",
     "phoneLabel": "ཁ་པར།",
     "locationLabel": "ཆགས་ས།",
-    "locationValue": "དགའ་ལྡན་ཤར་རྩེ་གྲྭ་ཚང་། རྒྱ་གར།"
+    "locationValue": "དགའ་ལྡན་ཤར་རྩེ་གྲྭ་ཚང་། རྒྱ་གར།",
+    "formTitle": "Send a Message",
+    "formSubtitle": "Fill out the form below and it will open your email client with the message pre-filled.",
+    "formName": "Your Name",
+    "formNamePlaceholder": "Enter your name",
+    "formEmail": "Your Email",
+    "formEmailPlaceholder": "Enter your email",
+    "formMessage": "Message",
+    "formMessagePlaceholder": "Write your message here...",
+    "formSend": "Send Message",
+    "formNote": "This will open your default email application."
   },
   "footer": {
     "copyright": "© {year} ཡུལ་ཐིང་རིན་པོ་ཆེ། དབང་ཆ་ཡོངས་རྫོགས་ཕྱོགས་བསྡུས།",

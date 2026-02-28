@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/layout/Container";
+import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -34,6 +35,7 @@ export default async function ProjectsPage({ params }: Props) {
     <section className="py-20">
       <Container>
         {/* Section header */}
+        <AnimateOnScroll>
         <div className="mb-14">
           <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             {t("subtitle")}
@@ -42,8 +44,10 @@ export default async function ProjectsPage({ params }: Props) {
             {t("pageTitle")}
           </h1>
         </div>
+        </AnimateOnScroll>
 
         {/* 2-column project grid */}
+        <AnimateOnScroll>
         <div className="grid gap-6 sm:grid-cols-2">
           {projectData.map((project) => (
             <article
@@ -123,6 +127,7 @@ export default async function ProjectsPage({ params }: Props) {
             </article>
           ))}
         </div>
+        </AnimateOnScroll>
       </Container>
     </section>
   );

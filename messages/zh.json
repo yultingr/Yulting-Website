@@ -1,7 +1,8 @@
 {
   "common": {
     "siteName": "玉灵仁波切",
-    "siteDescription": "玉灵仁波切的个人网站——教育家、翻译家、佛学学者。"
+    "siteDescription": "玉灵仁波切的个人网站——教育家、翻译家、佛学学者。",
+    "backToTop": "Back to top"
   },
   "nav": {
     "about": "关于",
@@ -92,7 +93,8 @@
     "subtitle": "思考、反思与见解。",
     "readMore": "阅读更多",
     "minRead": "分钟阅读",
-    "noPosts": "暂无文章。请稍后再来！"
+    "noPosts": "暂无文章。请稍后再来！",
+    "allPosts": "All"
   },
   "contact": {
     "pageTitle": "联系方式",
@@ -101,7 +103,17 @@
     "emailLabel": "电子邮件",
     "phoneLabel": "电话",
     "locationLabel": "地址",
-    "locationValue": "甘丹夏孜寺，印度"
+    "locationValue": "甘丹夏孜寺，印度",
+    "formTitle": "Send a Message",
+    "formSubtitle": "Fill out the form below and it will open your email client with the message pre-filled.",
+    "formName": "Your Name",
+    "formNamePlaceholder": "Enter your name",
+    "formEmail": "Your Email",
+    "formEmailPlaceholder": "Enter your email",
+    "formMessage": "Message",
+    "formMessagePlaceholder": "Write your message here...",
+    "formSend": "Send Message",
+    "formNote": "This will open your default email application."
   },
   "footer": {
     "copyright": "© {year} 玉灵仁波切。保留所有权利。",

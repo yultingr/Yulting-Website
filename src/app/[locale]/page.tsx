@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/layout/Container";
+import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 
 export default function Home() {
   const t = useTranslations("home");
@@ -11,6 +12,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="pb-20 pt-12 sm:pb-28 sm:pt-20">
         <Container>
+          <AnimateOnScroll>
           <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
               <div className="flex items-center gap-2">
@@ -49,12 +51,14 @@ export default function Home() {
               </div>
             </div>
           </div>
+          </AnimateOnScroll>
         </Container>
       </section>
 
       {/* Skills / Services Section */}
       <section className="py-20">
         <Container>
+          <AnimateOnScroll>
           <div className="mb-12">
             <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
               {tAbout("skillsTitle")}
@@ -122,12 +126,14 @@ export default function Home() {
               </div>
             </div>
           </div>
+          </AnimateOnScroll>
         </Container>
       </section>
 
       {/* Education Highlights - Dark Section */}
       <section className="bg-foreground py-20 text-background">
         <Container>
+          <AnimateOnScroll>
           <div className="mb-12 max-w-2xl">
             <p className="text-sm font-medium uppercase tracking-wider opacity-40">
               {tAbout("educationTitle")}
@@ -158,12 +164,14 @@ export default function Home() {
           <p className="mt-10 max-w-2xl text-sm leading-relaxed opacity-60">
             {tAbout("currentStudy")}
           </p>
+          </AnimateOnScroll>
         </Container>
       </section>
 
       {/* CTA Section */}
       <section className="py-20">
         <Container>
+          <AnimateOnScroll>
           <div className="text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
               <span className="text-muted-foreground">Get in touch,</span>{" "}
@@ -199,6 +207,7 @@ export default function Home() {
               </a>
             </div>
           </div>
+          </AnimateOnScroll>
         </Container>
       </section>
     </>

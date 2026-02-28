@@ -4,6 +4,7 @@ import { getMessages, getTranslations } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { BackToTop } from "@/components/ui/BackToTop";
 import { routing } from "@/i18n/routing";
 import type { Metadata } from "next";
 
@@ -26,6 +27,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       template: `%s | ${t("siteName")}`,
     },
     description: t("siteDescription"),
+    alternates: {
+      types: {
+        "application/rss+xml": "/feed.xml",
+      },
+    },
   };
 }
 
@@ -46,6 +52,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <BackToTop />
         </div>
       </ThemeProvider>
     </NextIntlClientProvider>

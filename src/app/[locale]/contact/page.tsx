@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/layout/Container";
+import { ContactForm } from "@/components/contact/ContactForm";
+import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -22,6 +24,7 @@ export default async function ContactPage({ params }: Props) {
   return (
     <section className="py-24">
       <Container>
+        <AnimateOnScroll>
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
           {/* Left side: heading, intro, CTA */}
           <div className="flex flex-col justify-center">
@@ -214,6 +217,11 @@ export default async function ContactPage({ params }: Props) {
 
           </div>
         </div>
+        </AnimateOnScroll>
+
+        <AnimateOnScroll>
+          <ContactForm />
+        </AnimateOnScroll>
       </Container>
     </section>
   );

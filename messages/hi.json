@@ -1,7 +1,8 @@
 {
   "common": {
     "siteName": "युल्टिंग रिनपोछे",
-    "siteDescription": "युल्टिंग रिनपोछे की व्यक्तिगत वेबसाइट — शिक्षक, अनुवादक और बौद्ध विद्वान।"
+    "siteDescription": "युल्टिंग रिनपोछे की व्यक्तिगत वेबसाइट — शिक्षक, अनुवादक और बौद्ध विद्वान।",
+    "backToTop": "Back to top"
   },
   "nav": {
     "about": "परिचय",
@@ -92,7 +93,8 @@
     "subtitle": "विचार, चिंतन और अंतर्दृष्टि।",
     "readMore": "और पढ़ें",
     "minRead": "मिनट पढ़ने का समय",
-    "noPosts": "अभी तक कोई लेख नहीं। जल्द ही वापस आएँ!"
+    "noPosts": "अभी तक कोई लेख नहीं। जल्द ही वापस आएँ!",
+    "allPosts": "All"
   },
   "contact": {
     "pageTitle": "संपर्क",
@@ -101,7 +103,17 @@
     "emailLabel": "ईमेल",
     "phoneLabel": "फ़ोन",
     "locationLabel": "स्थान",
-    "locationValue": "गादेन शार्त्से मठ, भारत"
+    "locationValue": "गादेन शार्त्से मठ, भारत",
+    "formTitle": "Send a Message",
+    "formSubtitle": "Fill out the form below and it will open your email client with the message pre-filled.",
+    "formName": "Your Name",
+    "formNamePlaceholder": "Enter your name",
+    "formEmail": "Your Email",
+    "formEmailPlaceholder": "Enter your email",
+    "formMessage": "Message",
+    "formMessagePlaceholder": "Write your message here...",
+    "formSend": "Send Message",
+    "formNote": "This will open your default email application."
   },
   "footer": {
     "copyright": "© {year} युल्टिंग रिनपोछे। सर्वाधिकार सुरक्षित।",

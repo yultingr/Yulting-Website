@@ -1,7 +1,8 @@
 {
   "common": {
     "siteName": "Yulting Rinpoche",
-    "siteDescription": "Personal website of Yulting Rinpoche — educator, translator, and Buddhist scholar."
+    "siteDescription": "Personal website of Yulting Rinpoche — educator, translator, and Buddhist scholar.",
+    "backToTop": "Back to top"
   },
   "nav": {
     "about": "About",
@@ -92,7 +93,8 @@
     "subtitle": "Thoughts, reflections, and insights.",
     "readMore": "Read more",
     "minRead": "min read",
-    "noPosts": "No posts yet. Check back soon!"
+    "noPosts": "No posts yet. Check back soon!",
+    "allPosts": "All"
   },
   "contact": {
     "pageTitle": "Contact",
@@ -101,7 +103,17 @@
     "emailLabel": "Email",
     "phoneLabel": "Phone",
     "locationLabel": "Location",
-    "locationValue": "Gaden Shartse Monastery, India"
+    "locationValue": "Gaden Shartse Monastery, India",
+    "formTitle": "Send a Message",
+    "formSubtitle": "Fill out the form below and it will open your email client with the message pre-filled.",
+    "formName": "Your Name",
+    "formNamePlaceholder": "Enter your name",
+    "formEmail": "Your Email",
+    "formEmailPlaceholder": "Enter your email",
+    "formMessage": "Message",
+    "formMessagePlaceholder": "Write your message here...",
+    "formSend": "Send Message",
+    "formNote": "This will open your default email application."
   },
   "footer": {
     "copyright": "© {year} Yulting Rinpoche. All rights reserved.",
