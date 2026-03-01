@@ -40,10 +40,7 @@ export default async function AboutPage({ params }: Props) {
         {/* ── Work Experience ───────────────────────────── */}
         <AnimateOnScroll>
           <div className="mt-20">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              {t("workExperience")}
-            </p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground">
               {t("workExperience")}
             </h2>
 
@@ -88,10 +85,7 @@ export default async function AboutPage({ params }: Props) {
         {/* ── International Engagements ─────────────────── */}
         <AnimateOnScroll>
           <div className="mt-20">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              {t("internationalEngagements")}
-            </p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground">
               {t("internationalEngagements")}
             </h2>
 
@@ -127,10 +121,7 @@ export default async function AboutPage({ params }: Props) {
         {/* ── Education ─────────────────────────────────── */}
         <AnimateOnScroll>
           <div className="mt-20">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              {t("educationTitle")}
-            </p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground">
               {t("educationTitle")}
             </h2>
             <p className="mt-3 text-base text-muted-foreground">
@@ -169,10 +160,7 @@ export default async function AboutPage({ params }: Props) {
         {/* ── Skills ────────────────────────────────────── */}
         <AnimateOnScroll>
           <div className="mt-20">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              {t("skillsTitle")}
-            </p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground">
               {t("skillsTitle")}
             </h2>
 
@@ -237,10 +225,7 @@ export default async function AboutPage({ params }: Props) {
         {/* ── Other Contributions ───────────────────────── */}
         <AnimateOnScroll>
           <div className="mt-20 mb-4">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              {t("otherContributions")}
-            </p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground">
               {t("otherContributions")}
             </h2>
 

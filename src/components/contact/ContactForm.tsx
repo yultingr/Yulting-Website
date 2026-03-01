@@ -22,7 +22,7 @@ export function ContactForm() {
       </h2>
       <p className="mt-2 text-muted-foreground">{t("formSubtitle")}</p>
 
-      <div className="mt-8 max-w-xl space-y-4">
+      <div className="mt-8 space-y-4">
         <div>
           <label
             htmlFor="contact-name"
