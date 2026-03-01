@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/layout/Container";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
+import { TibetanDivider } from "@/components/ui/TibetanDivider";
 
 export default function Home() {
   const t = useTranslations("home");
@@ -54,6 +55,11 @@ export default function Home() {
           </AnimateOnScroll>
         </Container>
       </section>
+
+      {/* Tibetan Cloud Divider */}
+      <Container>
+        <TibetanDivider variant="cloud" />
+      </Container>
 
       {/* Skills / Services Section */}
       <section className="py-20">
@@ -185,6 +191,11 @@ export default function Home() {
           </AnimateOnScroll>
         </Container>
       </section>
+
+      {/* Knot Divider */}
+      <Container>
+        <TibetanDivider variant="knot" />
+      </Container>
 
       {/* CTA Section */}
       <section className="py-20">
