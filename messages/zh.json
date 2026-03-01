@@ -98,6 +98,8 @@
     "readMore": "阅读更多",
     "minRead": "分钟阅读",
     "noPosts": "暂无文章。请稍后再来！",
+    "noResults": "没有找到匹配的文章。",
+    "searchPlaceholder": "搜索文章…",
     "allPosts": "All",
     "backToBlog": "返回博客"
   },
@@ -188,6 +190,8 @@
     "pageTitle": "视频",
     "metaDescription": "观看玉灵仁波切的教学、讲座和活动视频。",
     "subtitle": "教学、讲座与活动。",
+    "searchPlaceholder": "搜索视频…",
+    "noResults": "没有找到匹配的视频。",
     "video1Title": "占位视频一",
     "video2Title": "占位视频二"
   },

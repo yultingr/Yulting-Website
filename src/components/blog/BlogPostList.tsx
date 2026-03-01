@@ -13,17 +13,59 @@ interface BlogPostListProps {
 
 export function BlogPostList({ posts, allTags, locale }: BlogPostListProps) {
   const [activeTag, setActiveTag] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const t = useTranslations("blog");
 
-  const filteredPosts = activeTag
-    ? posts.filter((post) => post.tags?.includes(activeTag))
-    : posts;
+  const filteredPosts = posts.filter((post) => {
+    const matchesTag = activeTag ? post.tags?.includes(activeTag) : true;
+    if (!matchesTag) return false;
+    if (!searchQuery.trim()) return true;
+    const q = searchQuery.toLowerCase();
+    return (
+      post.title.toLowerCase().includes(q) ||
+      post.summary.toLowerCase().includes(q)
+    );
+  });
 
   return (
     <>
+      {/* Search bar */}
+      <div className="relative mt-10">
+        <svg
+          className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"
+          />
+        </svg>
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder={t("searchPlaceholder")}
+          className="w-full rounded-xl border border-border bg-card py-3 pl-12 pr-10 text-sm text-foreground placeholder:text-muted-foreground focus:border-foreground/30 focus:outline-none focus:ring-1 focus:ring-foreground/20"
+        />
+        {searchQuery && (
+          <button
+            onClick={() => setSearchQuery("")}
+            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-muted-foreground hover:text-foreground"
+          >
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        )}
+      </div>
+
       {/* Tag filter pills */}
       {allTags.length > 0 && (
-        <div className="mt-10 flex flex-wrap gap-2">
+        <div className="mt-4 flex flex-wrap gap-2">
           <button
             onClick={() => setActiveTag(null)}
             className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
@@ -55,7 +97,9 @@ export function BlogPostList({ posts, allTags, locale }: BlogPostListProps) {
       {/* Post list */}
       {filteredPosts.length === 0 ? (
         <div className="mt-16 rounded-2xl border border-border bg-muted p-12 text-center">
-          <p className="text-muted-foreground">{t("noPosts")}</p>
+          <p className="text-muted-foreground">
+            {searchQuery || activeTag ? t("noResults") : t("noPosts")}
+          </p>
         </div>
       ) : (
         <div className="mt-10 space-y-6">
