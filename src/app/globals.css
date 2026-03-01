@@ -20,51 +20,195 @@
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-border: var(--border-color);
+  --color-maroon: var(--maroon);
+  --color-saffron: var(--saffron);
   --font-sans: var(--font-inter);
+  --font-serif: var(--font-serif);
   --font-tibetan: "Monlam", sans-serif;
 }
 
+/* ============================================================
+   Saffron & Maroon — Light palette
+   ============================================================ */
 :root {
-  --background: #fffbf5;
-  --foreground: #1e293b;
-  --accent: #ea580c;
-  --accent-light: #fff7ed;
-  --muted: #fef3c7;
-  --muted-foreground: #64748b;
-  --card: #ffffff;
-  --card-foreground: #1e293b;
-  --border-color: #e7e5e4;
+  --background: #faf6f0;
+  --foreground: #2c1810;
+  --accent: #D4AF37;
+  --accent-light: #fdf8eb;
+  --muted: #f5ede0;
+  --muted-foreground: #7a6b5d;
+  --card: #fffdf8;
+  --card-foreground: #2c1810;
+  --border-color: #e5ddd0;
+  --maroon: #800000;
+  --saffron: #D4AF37;
 }
 
+/* ============================================================
+   Saffron & Maroon — Dark palette
+   ============================================================ */
 .dark {
-  --background: #1e293b;
-  --foreground: #fef3c7;
-  --accent: #fb923c;
-  --accent-light: #2d3a4e;
-  --muted: #2d3a4e;
-  --muted-foreground: #94a3b8;
-  --card: #2d3a4e;
-  --card-foreground: #fef3c7;
-  --border-color: #3b4a5e;
+  --background: #1a1210;
+  --foreground: #f0e6d6;
+  --accent: #D4AF37;
+  --accent-light: #2a1f18;
+  --muted: #2a1f18;
+  --muted-foreground: #a0917e;
+  --card: #261c15;
+  --card-foreground: #f0e6d6;
+  --border-color: #3d3028;
+  --maroon: #c45c5c;
+  --saffron: #D4AF37;
+}
+
+/* ============================================================
+   Base styles
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-html {
-  scroll-behavior: smooth;
+/* Subtle old-paper texture via CSS (light mode only) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.3;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(128, 0, 0, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+.dark body::before {
+  opacity: 0.15;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(196, 92, 92, 0.03) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
 }
 
 ::selection {
-  background: var(--accent);
+  background: var(--maroon);
   color: white;
 }
 
-/* Tibetan locale font */
+/* ============================================================
+   Headings — Maroon color
+   ============================================================ */
+h1, h2, h3 {
+  color: var(--maroon);
+}
+
+/* ============================================================
+   Blog prose — Serif font (EB Garamond)
+   ============================================================ */
+.prose {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  color: var(--maroon);
+}
+
+.prose a {
+  color: var(--maroon);
+  text-decoration: underline;
+  text-decoration-color: var(--saffron);
+  text-underline-offset: 3px;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+
+.prose a:hover {
+  color: var(--saffron);
+}
+
+.prose blockquote {
+  border-left-color: var(--saffron);
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+
+.prose strong {
+  color: var(--maroon);
+}
+
+.prose code {
+  background: var(--muted);
+  padding: 0.15em 0.4em;
+  border-radius: 0.25em;
+  font-size: 0.875em;
+}
+
+.prose pre {
+  background: var(--card);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+}
+
+.prose hr {
+  border: none;
+  height: 1px;
+  background: var(--border-color);
+  margin: 2.5rem 0;
+}
+
+/* ============================================================
+   Tibetan Decorative Divider
+   ============================================================ */
+.tibetan-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.tibetan-divider::before,
+.tibetan-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--border-color) 20%,
+    var(--border-color) 80%,
+    transparent
+  );
+}
+
+/* ============================================================
+   Saffron buttons / accent overrides
+   ============================================================ */
+.btn-saffron {
+  background: var(--saffron);
+  color: #1a1210;
+  font-weight: 600;
+}
+
+.btn-saffron:hover {
+  background: #c9a42e;
+}
+
+/* ============================================================
+   Tibetan locale font
+   ============================================================ */
 html[lang="bo"] {
   font-family: var(--font-tibetan);
 }
