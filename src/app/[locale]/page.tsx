@@ -18,7 +18,7 @@ export default function Home() {
               <div className="flex items-center gap-2">
                 <span className="inline-block h-2.5 w-2.5 rounded-full bg-green-500" />
                 <span className="text-sm text-muted-foreground">
-                  Gaden Shartse Monastery
+                  {t("location")}
                 </span>
               </div>
 
@@ -37,7 +37,7 @@ export default function Home() {
 
               <div className="flex gap-4">
                 <Link
-                  href="/contact"
+                  href="/about"
                   className="inline-flex items-center rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-80"
                 >
                   {t("aboutButton")}
@@ -121,6 +121,12 @@ export default function Home() {
                   {tAbout("skillWord")}
                 </span>
                 <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
+                  {tAbout("skillPowerPoint")}
+                </span>
+                <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
+                  {tAbout("skillExcel")}
+                </span>
+                <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
                   {tAbout("skillInDesign")}
                 </span>
               </div>
@@ -164,6 +170,18 @@ export default function Home() {
           <p className="mt-10 max-w-2xl text-sm leading-relaxed opacity-60">
             {tAbout("currentStudy")}
           </p>
+
+          <div className="mt-6">
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-background opacity-70 transition-opacity hover:opacity-100"
+            >
+              {t("educationSeeAll")}
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
           </AnimateOnScroll>
         </Container>
       </section>
@@ -174,15 +192,15 @@ export default function Home() {
           <AnimateOnScroll>
           <div className="text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              <span className="text-muted-foreground">Get in touch,</span>{" "}
-              and let&apos;s connect
+              <span className="text-muted-foreground">{t("ctaHeading1")}</span>{" "}
+              {t("ctaHeading2")}
             </h2>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <a
                 href="mailto:tulkuyulting@gmail.com"
                 className="inline-flex items-center rounded-full bg-foreground px-8 py-3.5 text-sm font-medium text-background transition-opacity hover:opacity-80"
               >
-                Email Me
+                {t("ctaEmail")}
               </a>
               <a
                 href="https://instagram.com/yultingr"
@@ -203,7 +221,7 @@ export default function Home() {
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                   <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
                 </svg>
-                Follow
+                {t("ctaFollow")}
               </a>
             </div>
           </div>

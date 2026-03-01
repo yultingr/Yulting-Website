@@ -8,6 +8,8 @@ import { getPostBySlug, getAllPostSlugs } from "@/lib/blog";
 import { Container } from "@/components/layout/Container";
 import { useMDXComponents } from "../../../../../mdx-components";
 import { routing } from "@/i18n/routing";
+import { Link } from "@/i18n/navigation";
+import { getTranslations } from "next-intl/server";
 
 interface PageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -61,10 +63,20 @@ export default async function BlogPostPage({ params }: PageProps) {
   });
 
   const components = useMDXComponents({});
+  const t = await getTranslations({ locale, namespace: "blog" });
 
   return (
     <section className="py-16">
       <Container>
+        <Link
+          href="/blog"
+          className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          {t("backToBlog")}
+        </Link>
         <article>
           <header className="mb-8">
             <time className="text-sm text-neutral-500">

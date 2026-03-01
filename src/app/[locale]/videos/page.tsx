@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { readFileSync } from "fs";
 import { join } from "path";
 import { Container } from "@/components/layout/Container";
+import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { type Video } from "@/data/videos";
 
 interface Props {
@@ -51,6 +52,7 @@ export default async function VideosPage({ params }: Props) {
     <section className="py-20">
       <Container>
         {/* Section header */}
+        <AnimateOnScroll>
         <div className="mb-14">
           <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             {t("subtitle")}
@@ -59,6 +61,7 @@ export default async function VideosPage({ params }: Props) {
             {t("pageTitle")}
           </h1>
         </div>
+        </AnimateOnScroll>
 
         {/* Video groups */}
         {videos.length === 0 ? (
@@ -68,7 +71,8 @@ export default async function VideosPage({ params }: Props) {
         ) : (
           <div className="space-y-16">
             {groups.map((group) => (
-              <div key={group.category}>
+              <AnimateOnScroll key={group.category}>
+              <div>
                 {/* Playlist heading */}
                 <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground">
                   {group.category}
@@ -87,6 +91,7 @@ export default async function VideosPage({ params }: Props) {
                           <iframe
                             src={`https://www.youtube.com/embed/${video.videoId}`}
                             title={video.title || "Video"}
+                            loading="lazy"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowFullScreen
                             className="absolute inset-0 h-full w-full"
@@ -95,6 +100,7 @@ export default async function VideosPage({ params }: Props) {
                           <iframe
                             src={`https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(video.videoId)}&show_text=false`}
                             title={video.title || "Video"}
+                            loading="lazy"
                             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                             allowFullScreen
                             className="absolute inset-0 h-full w-full"
@@ -112,6 +118,7 @@ export default async function VideosPage({ params }: Props) {
                   ))}
                 </div>
               </div>
+              </AnimateOnScroll>
             ))}
           </div>
         )}
