@@ -3,6 +3,8 @@ import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/layout/Container";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { TibetanDivider } from "@/components/ui/TibetanDivider";
+import { ButtonLink, ButtonAnchor } from "@/components/ui/Button";
+import { siteConfig } from "@/lib/config";
 
 export default function Home() {
   const t = useTranslations("home");
@@ -37,18 +39,12 @@ export default function Home() {
               </p>
 
               <div className="flex gap-4">
-                <Link
-                  href="/about"
-                  className="inline-flex items-center rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-80"
-                >
+                <ButtonLink href="/about" variant="primary">
                   {t("aboutButton")}
-                </Link>
-                <Link
-                  href="/blog"
-                  className="inline-flex items-center rounded-full border border-border px-6 py-3 text-sm font-medium transition-colors hover:bg-muted"
-                >
+                </ButtonLink>
+                <ButtonLink href="/blog" variant="secondary">
                   {t("blogButton")}
-                </Link>
+                </ButtonLink>
               </div>
             </div>
           </div>
@@ -207,17 +203,15 @@ export default function Home() {
               {t("ctaHeading2")}
             </h2>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <a
-                href="mailto:tulkuyulting@gmail.com"
-                className="inline-flex items-center rounded-full bg-foreground px-8 py-3.5 text-sm font-medium text-background transition-opacity hover:opacity-80"
-              >
+              <ButtonAnchor href={`mailto:${siteConfig.email}`} variant="primary" size="lg">
                 {t("ctaEmail")}
-              </a>
-              <a
-                href="https://instagram.com/yultingr"
+              </ButtonAnchor>
+              <ButtonAnchor
+                href={siteConfig.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-border px-8 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+                variant="secondary"
+                size="lg"
               >
                 <svg
                   className="h-4 w-4"
@@ -233,7 +227,7 @@ export default function Home() {
                   <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
                 </svg>
                 {t("ctaFollow")}
-              </a>
+              </ButtonAnchor>
             </div>
           </div>
           </AnimateOnScroll>

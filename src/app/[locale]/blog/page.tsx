@@ -4,6 +4,7 @@ import { getAllPosts } from "@/lib/blog";
 import { Container } from "@/components/layout/Container";
 import { BlogPostList } from "@/components/blog/BlogPostList";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -30,6 +31,7 @@ export default async function BlogPage({ params }: Props) {
   return (
     <section className="py-24">
       <Container>
+        <Breadcrumbs items={[{ labelKey: "blog" }]} />
         {/* Section header */}
         <AnimateOnScroll>
           <div className="max-w-2xl">

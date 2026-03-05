@@ -63,3 +63,12 @@ export function getAllPosts(locale: string = "en"): BlogPostMeta[] {
     .filter((post) => post.published)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
+
+export function getAdjacentPosts(slug: string, locale: string = "en"): { prev: BlogPostMeta | null; next: BlogPostMeta | null } {
+  const allPosts = getAllPosts(locale);
+  const currentIndex = allPosts.findIndex((p) => p.slug === slug);
+  return {
+    prev: currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null,
+    next: currentIndex > 0 ? allPosts[currentIndex - 1] : null,
+  };
+}

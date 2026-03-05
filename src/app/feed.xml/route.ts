@@ -2,15 +2,6 @@ import { getAllPosts } from "@/lib/blog";
 
 const BASE_URL = "https://yultingrinpoche.com";
 
-function escapeXml(str: string): string {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&apos;");
-}
-
 export async function GET() {
   const posts = getAllPosts("en");
 
@@ -18,19 +9,19 @@ export async function GET() {
     .map(
       (post) => `
     <item>
-      <title>${escapeXml(post.title)}</title>
+      <title><![CDATA[${post.title}]]></title>
       <link>${BASE_URL}/en/blog/${post.slug}</link>
-      <guid isPermaLink="true">${BASE_URL}/en/blog/${post.slug}</guid>
-      <description>${escapeXml(post.summary)}</description>
+      <description><![CDATA[${post.summary}]]></description>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-    </item>`,
+      <guid isPermaLink="true">${BASE_URL}/en/blog/${post.slug}</guid>
+    </item>`
     )
     .join("");
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Yulting Rinpoche - Blog</title>
+    <title>Yulting Rinpoche</title>
     <link>${BASE_URL}</link>
     <description>Thoughts, reflections, and insights on Buddhist philosophy, translation, and education.</description>
     <language>en</language>
@@ -39,10 +30,9 @@ export async function GET() {
   </channel>
 </rss>`;
 
-  return new Response(rss.trim(), {
+  return new Response(rss, {
     headers: {
-      "Content-Type": "application/rss+xml; charset=utf-8",
-      "Cache-Control": "s-maxage=3600, stale-while-revalidate",
+      "Content-Type": "application/xml; charset=utf-8",
     },
   });
 }

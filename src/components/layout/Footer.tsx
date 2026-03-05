@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/layout/Container";
+import { siteConfig } from "@/lib/config";
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -25,7 +26,7 @@ export function Footer() {
             {/* Navigation */}
             <div>
               <h4 className="text-sm font-semibold uppercase tracking-wider opacity-40">
-                Pages
+                {t("pages")}
               </h4>
               <nav className="mt-4 flex flex-col gap-3">
                 <Link href="/about" className="text-sm opacity-60 transition-opacity hover:opacity-100">
@@ -49,11 +50,11 @@ export function Footer() {
             {/* Contact */}
             <div>
               <h4 className="text-sm font-semibold uppercase tracking-wider opacity-40">
-                Contact
+                {t("contact")}
               </h4>
               <nav className="mt-4 flex flex-col gap-3">
                 <a
-                  href="mailto:tulkuyulting@gmail.com"
+                  href={`mailto:${siteConfig.email}`}
                   className="inline-flex items-center gap-2 text-sm opacity-60 transition-opacity hover:opacity-100"
                 >
                   <svg
@@ -73,7 +74,7 @@ export function Footer() {
                   {t("email")}
                 </a>
                 <a
-                  href="https://instagram.com/yultingr"
+                  href={siteConfig.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm opacity-60 transition-opacity hover:opacity-100"
@@ -122,7 +123,7 @@ export function Footer() {
             {/* Legal */}
             <div>
               <h4 className="text-sm font-semibold uppercase tracking-wider opacity-40">
-                Legal
+                {t("legal")}
               </h4>
               <nav className="mt-4 flex flex-col gap-3">
                 <Link href="/terms" className="text-sm opacity-60 transition-opacity hover:opacity-100">

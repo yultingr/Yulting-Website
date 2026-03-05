@@ -4,12 +4,15 @@ import { compile, run } from "@mdx-js/mdx";
 import * as runtime from "react/jsx-runtime";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
-import { getPostBySlug, getAllPostSlugs } from "@/lib/blog";
+import { getPostBySlug, getAllPostSlugs, getAdjacentPosts } from "@/lib/blog";
 import { Container } from "@/components/layout/Container";
 import { useMDXComponents } from "../../../../../mdx-components";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
+import { ShareButtons } from "@/components/blog/ShareButtons";
+import { ReadingProgress } from "@/components/blog/ReadingProgress";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 interface PageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -64,38 +67,65 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   const components = useMDXComponents({});
   const t = await getTranslations({ locale, namespace: "blog" });
+  const { prev, next } = getAdjacentPosts(slug, locale);
 
   return (
-    <section className="py-16">
-      <Container>
-        <Link
-          href="/blog"
-          className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-          {t("backToBlog")}
-        </Link>
-        <article>
-          <header className="mb-8">
-            <time className="text-sm text-neutral-500">
-              {new Date(post.date).toLocaleDateString(locale, {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
-            <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-              {post.title}
-            </h1>
-            <p className="mt-2 text-sm text-neutral-500">{post.readingTime}</p>
-          </header>
-          <div className="prose">
-            <MDXContent components={components} />
-          </div>
-        </article>
-      </Container>
-    </section>
+    <>
+      <ReadingProgress />
+      <section className="py-16">
+        <Container>
+          <Breadcrumbs items={[
+            { labelKey: "blog", href: "/blog" },
+            { label: post.title },
+          ]} />
+          <article>
+            <header className="mb-8">
+              <time className="text-sm text-neutral-500">
+                {new Date(post.date).toLocaleDateString(locale, {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
+              <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+                {post.title}
+              </h1>
+              <p className="mt-2 text-sm text-neutral-500">{post.readingTime}</p>
+            </header>
+            <div className="prose">
+              <MDXContent components={components} />
+            </div>
+            <ShareButtons title={post.title} slug={slug} />
+          </article>
+          {/* Previous / Next Navigation */}
+          {(prev || next) && (
+            <nav className="mt-16 grid gap-4 sm:grid-cols-2" aria-label="Blog post navigation">
+              {prev ? (
+                <Link
+                  href={`/blog/${prev.slug}`}
+                  className="group rounded-2xl border border-border bg-card p-5 transition-all hover:border-foreground/20 hover:shadow-lg"
+                >
+                  <span className="text-xs text-muted-foreground">{t("prevPost")}</span>
+                  <p className="mt-1 font-medium text-foreground transition-colors group-hover:text-foreground/80">
+                    {prev.title}
+                  </p>
+                </Link>
+              ) : <div />}
+              {next ? (
+                <Link
+                  href={`/blog/${next.slug}`}
+                  className="group rounded-2xl border border-border bg-card p-5 text-right transition-all hover:border-foreground/20 hover:shadow-lg"
+                >
+                  <span className="text-xs text-muted-foreground">{t("nextPost")}</span>
+                  <p className="mt-1 font-medium text-foreground transition-colors group-hover:text-foreground/80">
+                    {next.title}
+                  </p>
+                </Link>
+              ) : <div />}
+            </nav>
+          )}
+        </Container>
+      </section>
+    </>
   );
 }

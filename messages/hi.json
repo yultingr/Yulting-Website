@@ -89,7 +89,9 @@
     "liveDemo": "लाइव डेमो",
     "github": "GitHub",
     "project1Title": "व्यक्तिगत वेबसाइट",
-    "project1Desc": "Next.js, TypeScript, Tailwind CSS और MDX से बनी मेरी व्यक्तिगत वेबसाइट और ब्लॉग।"
+    "project1Desc": "Next.js, TypeScript, Tailwind CSS और MDX से बनी मेरी व्यक्तिगत वेबसाइट और ब्लॉग।",
+    "comingSoon": "और परियोजनाएँ जल्द आ रही हैं",
+    "comingSoonDesc": "मैं नई परियोजनाओं पर काम कर रहा हूँ। अपडेट के लिए बाद में देखें!"
   },
   "blog": {
     "pageTitle": "ब्लॉग",
@@ -101,7 +103,11 @@
     "noResults": "आपकी खोज से कोई लेख नहीं मिला।",
     "searchPlaceholder": "लेख खोजें…",
     "allPosts": "All",
-    "backToBlog": "ब्लॉग पर वापस जाएँ"
+    "backToBlog": "ब्लॉग पर वापस जाएँ",
+    "prevPost": "पिछला",
+    "nextPost": "अगला",
+    "share": "साझा करें",
+    "copyLink": "लिंक कॉपी करें"
   },
   "contact": {
     "pageTitle": "संपर्क",
@@ -123,6 +129,9 @@
     "formNote": "यह आपका डिफ़ॉल्ट ईमेल एप्लिकेशन खोलेगा।"
   },
   "footer": {
+    "pages": "पृष्ठ",
+    "contact": "संपर्क",
+    "legal": "कानूनी",
     "copyright": "© {year} युल्टिंग रिनपोछे। सर्वाधिकार सुरक्षित।",
     "email": "ईमेल",
     "subscribe": "RSS के माध्यम से सदस्यता लें",

@@ -11,6 +11,21 @@ interface BlogPostListProps {
   locale: string;
 }
 
+function highlightMatch(text: string, query: string): React.ReactNode {
+  if (!query.trim()) return text;
+  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi");
+  const parts = text.split(regex);
+  return parts.map((part, i) =>
+    regex.test(part) ? (
+      <mark key={i} className="rounded bg-accent/20 px-0.5 text-foreground">
+        {part}
+      </mark>
+    ) : (
+      part
+    )
+  );
+}
+
 export function BlogPostList({ posts, allTags, locale }: BlogPostListProps) {
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -127,12 +142,12 @@ export function BlogPostList({ posts, allTags, locale }: BlogPostListProps) {
 
                     {/* Title */}
                     <h2 className="text-xl font-semibold text-foreground transition-colors group-hover:text-foreground/80">
-                      {post.title}
+                      {highlightMatch(post.title, searchQuery)}
                     </h2>
 
                     {/* Summary */}
                     <p className="line-clamp-2 text-muted-foreground">
-                      {post.summary}
+                      {highlightMatch(post.summary, searchQuery)}
                     </p>
 
                     {/* Tags */}

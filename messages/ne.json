@@ -89,7 +89,9 @@
     "liveDemo": "लाइभ डेमो",
     "github": "GitHub",
     "project1Title": "व्यक्तिगत वेबसाइट",
-    "project1Desc": "Next.js, TypeScript, Tailwind CSS, र MDX प्रयोग गरेर बनाइएको मेरो व्यक्तिगत वेबसाइट र ब्लग।"
+    "project1Desc": "Next.js, TypeScript, Tailwind CSS, र MDX प्रयोग गरेर बनाइएको मेरो व्यक्तिगत वेबसाइट र ब्लग।",
+    "comingSoon": "थप परियोजनाहरू चाँडै आउँदैछन्",
+    "comingSoonDesc": "म नयाँ परियोजनाहरूमा काम गर्दैछु। अपडेटहरूको लागि पछि हेर्नुहोस्!"
   },
   "blog": {
     "pageTitle": "ब्लग",
@@ -101,7 +103,11 @@
     "noResults": "तपाईंको खोजसँग मिल्ने लेखहरू भेटिएन।",
     "searchPlaceholder": "लेखहरू खोज्नुहोस्…",
     "allPosts": "All",
-    "backToBlog": "ब्लगमा फर्कनुहोस्"
+    "backToBlog": "ब्लगमा फर्कनुहोस्",
+    "prevPost": "अघिल्लो",
+    "nextPost": "अर्को",
+    "share": "साझा गर्नुहोस्",
+    "copyLink": "लिंक कपि गर्नुहोस्"
   },
   "contact": {
     "pageTitle": "सम्पर्क",
@@ -123,6 +129,9 @@
     "formNote": "यसले तपाईंको पूर्वनिर्धारित इमेल एप्लिकेसन खोल्नेछ।"
   },
   "footer": {
+    "pages": "पृष्ठहरू",
+    "contact": "सम्पर्क",
+    "legal": "कानूनी",
     "copyright": "© {year} युल्टिङ रिन्पोचे। सर्वाधिकार सुरक्षित।",
     "email": "इमेल",
     "subscribe": "RSS मार्फत सदस्यता लिनुहोस्",

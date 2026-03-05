@@ -1,27 +1,37 @@
 import type { MetadataRoute } from "next";
-import { getAllPosts } from "@/lib/blog";
 import { routing } from "@/i18n/routing";
+import { getAllPostSlugs } from "@/lib/blog";
 
-const BASE_URL = "https://yulting.dev";
+const BASE_URL = "https://yultingrinpoche.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const locales = routing.locales;
-  const staticPaths = ["", "/about", "/projects", "/blog", "/videos", "/contact", "/terms", "/privacy"];
+  const pages = ["", "/about", "/projects", "/blog", "/videos", "/contact", "/terms", "/privacy"];
+  const entries: MetadataRoute.Sitemap = [];
 
-  const staticPages = staticPaths.flatMap((path) =>
-    locales.map((locale) => ({
-      url: `${BASE_URL}/${locale}${path}`,
-      lastModified: new Date(),
-    }))
-  );
+  // Static pages for each locale
+  for (const locale of routing.locales) {
+    for (const page of pages) {
+      entries.push({
+        url: `${BASE_URL}/${locale}${page}`,
+        lastModified: new Date(),
+        changeFrequency: page === "" ? "weekly" : "monthly",
+        priority: page === "" ? 1.0 : 0.8,
+      });
+    }
+  }
 
-  const blogPages = locales.flatMap((locale) => {
-    const posts = getAllPosts(locale);
-    return posts.map((post) => ({
-      url: `${BASE_URL}/${locale}/blog/${post.slug}`,
-      lastModified: new Date(post.date),
-    }));
-  });
+  // Blog posts for each locale
+  for (const locale of routing.locales) {
+    const slugs = getAllPostSlugs(locale);
+    for (const slug of slugs) {
+      entries.push({
+        url: `${BASE_URL}/${locale}/blog/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.6,
+      });
+    }
+  }
 
-  return [...staticPages, ...blogPages];
+  return entries;
 }

@@ -19,9 +19,32 @@ function groupByCategory(videos: Video[]): { category: string; videos: Video[] }
   return Array.from(map.entries()).map(([category, videos]) => ({ category, videos }));
 }
 
+function highlightMatch(text: string, query: string): React.ReactNode {
+  if (!query.trim()) return text;
+  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi");
+  const parts = text.split(regex);
+  return parts.map((part, i) =>
+    regex.test(part) ? (
+      <mark key={i} className="rounded bg-accent/20 px-0.5 text-foreground">
+        {part}
+      </mark>
+    ) : (
+      part
+    )
+  );
+}
+
 export function VideoList({ videos }: VideoListProps) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [playingVideos, setPlayingVideos] = useState<Set<string>>(new Set());
   const t = useTranslations("videos");
+
+  const togglePlay = (id: string) =>
+    setPlayingVideos((prev) => {
+      const next = new Set(prev);
+      next.add(id);
+      return next;
+    });
 
   const filteredVideos = searchQuery.trim()
     ? videos.filter((v) => {
@@ -84,7 +107,7 @@ export function VideoList({ videos }: VideoListProps) {
             <AnimateOnScroll key={group.category}>
               <div>
                 <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground">
-                  {group.category}
+                  {highlightMatch(group.category, searchQuery)}
                 </h2>
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {group.videos.map((video) => (
@@ -93,29 +116,54 @@ export function VideoList({ videos }: VideoListProps) {
                       className="group overflow-hidden rounded-2xl border border-border bg-card transition-all hover:shadow-lg"
                     >
                       <div className="relative aspect-video w-full">
-                        {video.platform === "youtube" ? (
-                          <iframe
-                            src={`https://www.youtube.com/embed/${video.videoId}`}
-                            title={video.title || "Video"}
-                            loading="lazy"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowFullScreen
-                            className="absolute inset-0 h-full w-full"
-                          />
+                        {playingVideos.has(video.id) ? (
+                          video.platform === "youtube" ? (
+                            <iframe
+                              src={`https://www.youtube.com/embed/${video.videoId}?autoplay=1`}
+                              title={video.title || "Video"}
+                              loading="lazy"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                              allowFullScreen
+                              className="absolute inset-0 h-full w-full"
+                            />
+                          ) : (
+                            <iframe
+                              src={`https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(video.videoId)}&show_text=false`}
+                              title={video.title || "Video"}
+                              loading="lazy"
+                              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                              allowFullScreen
+                              className="absolute inset-0 h-full w-full"
+                            />
+                          )
                         ) : (
-                          <iframe
-                            src={`https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(video.videoId)}&show_text=false`}
-                            title={video.title || "Video"}
-                            loading="lazy"
-                            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                            allowFullScreen
-                            className="absolute inset-0 h-full w-full"
-                          />
+                          <button
+                            onClick={() => togglePlay(video.id)}
+                            className="absolute inset-0 flex items-center justify-center bg-black"
+                            aria-label={`Play ${video.title || "video"}`}
+                          >
+                            {video.platform === "youtube" ? (
+                              <img
+                                src={`https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`}
+                                alt={video.title || "Video thumbnail"}
+                                className="absolute inset-0 h-full w-full object-cover"
+                                loading="lazy"
+                              />
+                            ) : (
+                              <div className="absolute inset-0 bg-muted" />
+                            )}
+                            {/* Play button overlay */}
+                            <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-foreground/80 text-background shadow-lg transition-transform hover:scale-110">
+                              <svg className="ml-1 h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                              </svg>
+                            </div>
+                          </button>
                         )}
                       </div>
                       <div className="p-4">
                         <h3 className="text-sm font-semibold leading-snug text-card-foreground">
-                          {video.title}
+                          {highlightMatch(video.title || "", searchQuery)}
                         </h3>
                       </div>
                     </div>

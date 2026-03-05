@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/layout/Container";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -41,6 +42,7 @@ export default async function ProjectsPage({ params }: Props) {
   return (
     <section className="py-20">
       <Container>
+        <Breadcrumbs items={[{ labelKey: "projects" }]} />
         {/* Section header */}
         <AnimateOnScroll>
         <div className="mb-14">
@@ -134,6 +136,20 @@ export default async function ProjectsPage({ params }: Props) {
             </article>
           ))}
         </div>
+        </AnimateOnScroll>
+
+        <AnimateOnScroll>
+          <div className="mt-12 rounded-2xl border border-dashed border-border bg-muted/50 p-8 text-center">
+            <div className="mx-auto max-w-md">
+              <span className="text-3xl">🚧</span>
+              <h3 className="mt-3 text-lg font-semibold text-foreground">
+                {t("comingSoon")}
+              </h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                {t("comingSoonDesc")}
+              </p>
+            </div>
+          </div>
         </AnimateOnScroll>
       </Container>
     </section>

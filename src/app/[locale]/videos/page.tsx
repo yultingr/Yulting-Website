@@ -4,6 +4,7 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import { Container } from "@/components/layout/Container";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { VideoList } from "@/components/videos/VideoList";
 import { type Video } from "@/data/videos";
 
@@ -40,6 +41,7 @@ export default async function VideosPage({ params }: Props) {
   return (
     <section className="py-20">
       <Container>
+        <Breadcrumbs items={[{ labelKey: "videos" }]} />
         {/* Section header */}
         <AnimateOnScroll>
           <div className="mb-14">

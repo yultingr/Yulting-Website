@@ -23,6 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: "common" });
 
   return {
+    metadataBase: new URL("https://yultingrinpoche.com"),
     title: {
       default: t("siteName"),
       template: `%s | ${t("siteName")}`,
@@ -32,6 +33,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       types: {
         "application/rss+xml": "/feed.xml",
       },
+    },
+    openGraph: {
+      title: t("siteName"),
+      description: t("siteDescription"),
+      url: "https://yultingrinpoche.com",
+      siteName: t("siteName"),
+      locale,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("siteName"),
+      description: t("siteDescription"),
     },
   };
 }
@@ -51,8 +65,31 @@ export default async function LocaleLayout({ children, params }: Props) {
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <SetHtmlLang locale={locale} />
         <div className="flex min-h-screen flex-col">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Person",
+                name: "Yulting Rinpoche",
+                url: "https://yultingrinpoche.com",
+                jobTitle: "Buddhist Scholar, Educator, Translator",
+                worksFor: {
+                  "@type": "Organization",
+                  name: "Gaden Shartse Monastery",
+                },
+                sameAs: ["https://instagram.com/yultingr"],
+              }),
+            }}
+          />
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-background focus:px-4 focus:py-2 focus:text-foreground focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent"
+          >
+            Skip to content
+          </a>
           <Header />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" className="flex-1">{children}</main>
           <Footer />
           <BackToTop />
         </div>

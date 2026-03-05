@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/layout/Container";
 import { Timeline, TimelineItem } from "@/components/ui/Timeline";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -24,6 +25,7 @@ export default async function AboutPage({ params }: Props) {
   return (
     <section className="py-20 md:py-28">
       <Container>
+        <Breadcrumbs items={[{ labelKey: "about" }]} />
         {/* ── Hero / Bio ────────────────────────────────── */}
         <AnimateOnScroll>
           <div className="max-w-3xl">

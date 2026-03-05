@@ -89,7 +89,9 @@
     "liveDemo": "Live Demo",
     "github": "GitHub",
     "project1Title": "Personal Website",
-    "project1Desc": "My personal website and blog built with Next.js, TypeScript, Tailwind CSS, and MDX."
+    "project1Desc": "My personal website and blog built with Next.js, TypeScript, Tailwind CSS, and MDX.",
+    "comingSoon": "More Projects Coming Soon",
+    "comingSoonDesc": "I'm working on new projects. Check back later for updates!"
   },
   "blog": {
     "pageTitle": "Blog",
@@ -101,7 +103,11 @@
     "noResults": "No posts match your search.",
     "searchPlaceholder": "Search posts…",
     "allPosts": "All",
-    "backToBlog": "Back to Blog"
+    "backToBlog": "Back to Blog",
+    "prevPost": "Previous",
+    "nextPost": "Next",
+    "share": "Share",
+    "copyLink": "Copy link"
   },
   "contact": {
     "pageTitle": "Contact",
@@ -123,6 +129,9 @@
     "formNote": "This will open your default email application."
   },
   "footer": {
+    "pages": "Pages",
+    "contact": "Contact",
+    "legal": "Legal",
     "copyright": "© {year} Yulting Rinpoche. All rights reserved.",
     "email": "Email",
     "subscribe": "Subscribe via RSS",
