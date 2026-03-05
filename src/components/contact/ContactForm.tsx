@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { siteConfig } from "@/lib/config";
 
 export function ContactForm() {
   const t = useTranslations("contact");
@@ -11,7 +12,7 @@ export function ContactForm() {
 
   const isValid = name.trim() && email.trim() && message.trim();
 
-  const mailtoHref = `mailto:tulkuyulting@gmail.com?subject=${encodeURIComponent(
+  const mailtoHref = `mailto:${siteConfig.email}?subject=${encodeURIComponent(
     `Message from ${name}`,
   )}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
 
@@ -35,7 +36,7 @@ export function ContactForm() {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-foreground/40 focus:outline-none focus:ring-1 focus:ring-foreground/40"
+            className="mt-1 w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-foreground/30 focus:outline-none focus:ring-1 focus:ring-foreground/20"
             placeholder={t("formNamePlaceholder")}
           />
         </div>
@@ -51,7 +52,7 @@ export function ContactForm() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-foreground/40 focus:outline-none focus:ring-1 focus:ring-foreground/40"
+            className="mt-1 w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-foreground/30 focus:outline-none focus:ring-1 focus:ring-foreground/20"
             placeholder={t("formEmailPlaceholder")}
           />
         </div>
@@ -67,21 +68,22 @@ export function ContactForm() {
             rows={5}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="mt-1 w-full resize-none rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-foreground/40 focus:outline-none focus:ring-1 focus:ring-foreground/40"
+            className="mt-1 w-full resize-none rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-foreground/30 focus:outline-none focus:ring-1 focus:ring-foreground/20"
             placeholder={t("formMessagePlaceholder")}
           />
         </div>
-        <a
-          href={isValid ? mailtoHref : undefined}
-          aria-disabled={!isValid}
+        <button
+          type="button"
+          disabled={!isValid}
+          onClick={() => { if (isValid) window.location.href = mailtoHref; }}
           className={`inline-flex items-center gap-2 rounded-full px-8 py-3 text-sm font-medium transition-opacity ${
             isValid
               ? "bg-foreground text-background hover:opacity-90"
-              : "pointer-events-none bg-muted text-muted-foreground opacity-50"
+              : "bg-muted text-muted-foreground opacity-50 cursor-not-allowed"
           }`}
         >
           {t("formSend")}
-        </a>
+        </button>
         <p className="text-xs text-muted-foreground">{t("formNote")}</p>
       </div>
     </div>

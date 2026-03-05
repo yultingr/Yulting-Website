@@ -60,7 +60,7 @@ export default function Home() {
       {/* Skills / Services Section */}
       <section className="py-20">
         <Container>
-          <AnimateOnScroll>
+          <AnimateOnScroll delay={100}>
           <div className="mb-12">
             <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
               {tAbout("skillsTitle")}
@@ -141,7 +141,7 @@ export default function Home() {
       {/* Education Highlights - Dark Section */}
       <section className="bg-foreground py-20 text-background">
         <Container>
-          <AnimateOnScroll>
+          <AnimateOnScroll delay={100}>
           <div className="mb-12 max-w-2xl">
             <p className="text-sm font-medium uppercase tracking-wider opacity-40">
               {tAbout("educationTitle")}
@@ -196,7 +196,7 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-20">
         <Container>
-          <AnimateOnScroll>
+          <AnimateOnScroll delay={100}>
           <div className="text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
               <span className="text-muted-foreground">{t("ctaHeading1")}</span>{" "}

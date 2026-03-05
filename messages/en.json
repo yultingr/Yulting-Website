@@ -202,9 +202,7 @@
     "searchPlaceholder": "Search videos…",
     "noResults": "No videos match your search.",
     "showMore": "Show {count} more",
-    "showLess": "Show less",
-    "video1Title": "Placeholder Video 1",
-    "video2Title": "Placeholder Video 2"
+    "showLess": "Show less"
   },
   "privacy": {
     "pageTitle": "Privacy Policy",

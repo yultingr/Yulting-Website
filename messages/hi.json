@@ -202,9 +202,7 @@
     "searchPlaceholder": "वीडियो खोजें…",
     "noResults": "आपकी खोज से कोई वीडियो नहीं मिला।",
     "showMore": "और {count} दिखाएँ",
-    "showLess": "कम दिखाएँ",
-    "video1Title": "प्लेसहोल्डर वीडियो १",
-    "video2Title": "प्लेसहोल्डर वीडियो २"
+    "showLess": "कम दिखाएँ"
   },
   "privacy": {
     "pageTitle": "गोपनीयता नीति",

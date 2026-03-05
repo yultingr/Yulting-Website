@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/Container";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { siteConfig } from "@/lib/config";
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -41,7 +42,7 @@ export default async function ContactPage({ params }: Props) {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="mailto:tulkuyulting@gmail.com"
+                href={`mailto:${siteConfig.email}`}
                 className="inline-flex items-center gap-2 rounded-full bg-foreground px-8 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
               >
                 <svg
@@ -60,7 +61,7 @@ export default async function ContactPage({ params }: Props) {
                 Email Me
               </a>
               <a
-                href="https://instagram.com/yultingr"
+                href={siteConfig.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-border px-8 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
@@ -87,7 +88,7 @@ export default async function ContactPage({ params }: Props) {
           <div className="space-y-4">
             {/* Email card */}
             <a
-              href="mailto:tulkuyulting@gmail.com"
+              href={`mailto:${siteConfig.email}`}
               className="block rounded-2xl border border-border bg-card p-6 transition-colors hover:bg-muted/50"
             >
               <div className="flex items-start gap-4">
@@ -111,7 +112,7 @@ export default async function ContactPage({ params }: Props) {
                     {t("emailLabel")}
                   </h2>
                   <span className="mt-1 inline-block text-sm text-accent-foreground">
-                    tulkuyulting@gmail.com
+                    {siteConfig.email}
                   </span>
                 </div>
               </div>
@@ -119,7 +120,7 @@ export default async function ContactPage({ params }: Props) {
 
             {/* Instagram card */}
             <a
-              href="https://instagram.com/yultingr"
+              href={siteConfig.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="block rounded-2xl border border-border bg-card p-6 transition-colors hover:bg-muted/50"

@@ -112,7 +112,7 @@ export function VideoList({ videos }: VideoListProps) {
       {filteredVideos.length === 0 ? (
         <div className="rounded-2xl border border-border bg-muted p-12 text-center">
           <p className="text-muted-foreground">
-            {searchQuery ? t("noResults") : "No videos available yet."}
+            {searchQuery ? t("noResults") : t("noResults")}
           </p>
         </div>
       ) : (
@@ -163,6 +163,8 @@ export function VideoList({ videos }: VideoListProps) {
                               <img
                                 src={`https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`}
                                 alt={video.title || "Video thumbnail"}
+                                width={480}
+                                height={360}
                                 className="absolute inset-0 h-full w-full object-cover"
                                 loading="lazy"
                               />

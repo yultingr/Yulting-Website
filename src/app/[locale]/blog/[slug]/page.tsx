@@ -80,7 +80,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           ]} />
           <article>
             <header className="mb-8">
-              <time className="text-sm text-neutral-500">
+              <time className="text-sm text-muted-foreground">
                 {new Date(post.date).toLocaleDateString(locale, {
                   year: "numeric",
                   month: "long",
@@ -90,7 +90,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
                 {post.title}
               </h1>
-              <p className="mt-2 text-sm text-neutral-500">{post.readingTime}</p>
+              <p className="mt-2 text-sm text-muted-foreground">{post.readingTime}</p>
             </header>
             <div className="prose">
               <MDXContent components={components} />
@@ -106,7 +106,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   className="group rounded-2xl border border-border bg-card p-5 transition-all hover:border-foreground/20 hover:shadow-lg"
                 >
                   <span className="text-xs text-muted-foreground">{t("prevPost")}</span>
-                  <p className="mt-1 font-medium text-foreground transition-colors group-hover:text-foreground/80">
+                  <p className="mt-1 font-medium text-foreground transition-colors group-hover:text-accent">
                     {prev.title}
                   </p>
                 </Link>
@@ -117,7 +117,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   className="group rounded-2xl border border-border bg-card p-5 text-right transition-all hover:border-foreground/20 hover:shadow-lg"
                 >
                   <span className="text-xs text-muted-foreground">{t("nextPost")}</span>
-                  <p className="mt-1 font-medium text-foreground transition-colors group-hover:text-foreground/80">
+                  <p className="mt-1 font-medium text-foreground transition-colors group-hover:text-accent">
                     {next.title}
                   </p>
                 </Link>

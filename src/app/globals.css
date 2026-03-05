@@ -43,9 +43,9 @@
   --accent-light: #2d3a4e;
   --muted: #2d3a4e;
   --muted-foreground: #94a3b8;
-  --card: #2d3a4e;
+  --card: #334155;
   --card-foreground: #fef3c7;
-  --border-color: #3b4a5e;
+  --border-color: #475569;
 }
 
 body {
