@@ -201,6 +201,8 @@
     "subtitle": "教学、讲座与活动。",
     "searchPlaceholder": "搜索视频…",
     "noResults": "没有找到匹配的视频。",
+    "showMore": "显示更多 {count} 个",
+    "showLess": "收起",
     "video1Title": "占位视频一",
     "video2Title": "占位视频二"
   },

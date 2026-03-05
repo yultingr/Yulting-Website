@@ -34,15 +34,29 @@ function highlightMatch(text: string, query: string): React.ReactNode {
   );
 }
 
+const VIDEOS_PER_CATEGORY = 3;
+
 export function VideoList({ videos }: VideoListProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [playingVideos, setPlayingVideos] = useState<Set<string>>(new Set());
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
   const t = useTranslations("videos");
 
   const togglePlay = (id: string) =>
     setPlayingVideos((prev) => {
       const next = new Set(prev);
       next.add(id);
+      return next;
+    });
+
+  const toggleCategory = (category: string) =>
+    setExpandedCategories((prev) => {
+      const next = new Set(prev);
+      if (next.has(category)) {
+        next.delete(category);
+      } else {
+        next.add(category);
+      }
       return next;
     });
 
@@ -110,7 +124,10 @@ export function VideoList({ videos }: VideoListProps) {
                   {highlightMatch(group.category, searchQuery)}
                 </h2>
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                  {group.videos.map((video) => (
+                  {(expandedCategories.has(group.category)
+                    ? group.videos
+                    : group.videos.slice(0, VIDEOS_PER_CATEGORY)
+                  ).map((video) => (
                     <div
                       key={video.id}
                       className="group overflow-hidden rounded-2xl border border-border bg-card transition-all hover:shadow-lg"
@@ -169,6 +186,30 @@ export function VideoList({ videos }: VideoListProps) {
                     </div>
                   ))}
                 </div>
+                {group.videos.length > VIDEOS_PER_CATEGORY && (
+                  <div className="mt-6 text-center">
+                    <button
+                      onClick={() => toggleCategory(group.category)}
+                      className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+                    >
+                      {expandedCategories.has(group.category) ? (
+                        <>
+                          {t("showLess")}
+                          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+                          </svg>
+                        </>
+                      ) : (
+                        <>
+                          {t("showMore", { count: group.videos.length - VIDEOS_PER_CATEGORY })}
+                          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                )}
               </div>
             </AnimateOnScroll>
           ))}
