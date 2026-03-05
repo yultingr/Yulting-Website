@@ -27,7 +27,7 @@ export default function Home() {
 
               <h1 className="mt-6 text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.5rem]">
                 {t("title")}{" "}
-                <span className="text-muted-foreground">
+                <span className="block text-muted-foreground">
                   {t("subtitle")}
                 </span>
               </h1>
