@@ -6,11 +6,13 @@ import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import { getPostBySlug, getAllPostSlugs, getAdjacentPosts } from "@/lib/blog";
 import { Container } from "@/components/layout/Container";
+import { ShareButtons } from "@/components/blog/ShareButtons";
+import { Comments } from "@/components/blog/Comments";
+import { BlogPostJsonLd } from "@/components/seo/JsonLd";
 import { useMDXComponents } from "../../../../../mdx-components";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
-import { ShareButtons } from "@/components/blog/ShareButtons";
 import { ReadingProgress } from "@/components/blog/ReadingProgress";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
@@ -97,6 +99,14 @@ export default async function BlogPostPage({ params }: PageProps) {
             </div>
             <ShareButtons title={post.title} slug={slug} />
           </article>
+          <Comments postSlug={slug} />
+          <BlogPostJsonLd
+            title={post.title}
+            description={post.summary}
+            date={post.date}
+            slug={slug}
+            readingTime={post.readingTime}
+          />
           {/* Previous / Next Navigation */}
           {(prev || next) && (
             <nav className="mt-16 grid gap-4 sm:grid-cols-2" aria-label="Blog post navigation">

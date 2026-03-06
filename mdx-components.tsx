@@ -1,7 +1,19 @@
 import type { MDXComponents } from "mdx/types";
+import Image from "next/image";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
+    img: ({ src, alt, ...props }) => (
+      <Image
+        src={src || ""}
+        alt={alt || ""}
+        width={800}
+        height={450}
+        className="my-4 rounded-lg"
+        style={{ width: "100%", height: "auto" }}
+        {...props}
+      />
+    ),
     h1: ({ children }) => (
       <h1 className="mb-4 mt-8 text-3xl font-bold tracking-tight">{children}</h1>
     ),

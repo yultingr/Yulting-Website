@@ -5,6 +5,7 @@ import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { TibetanDivider } from "@/components/ui/TibetanDivider";
 import { ButtonLink, ButtonAnchor } from "@/components/ui/Button";
 import { siteConfig } from "@/lib/config";
+import { PersonJsonLd } from "@/components/seo/JsonLd";
 
 export default function Home() {
   const t = useTranslations("home");
@@ -233,6 +234,8 @@ export default function Home() {
           </AnimateOnScroll>
         </Container>
       </section>
+
+      <PersonJsonLd />
     </>
   );
 }
