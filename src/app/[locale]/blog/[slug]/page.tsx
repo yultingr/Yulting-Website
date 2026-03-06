@@ -6,6 +6,9 @@ import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import { getPostBySlug, getAllPostSlugs } from "@/lib/blog";
 import { Container } from "@/components/layout/Container";
+import { ShareButtons } from "@/components/blog/ShareButtons";
+import { Comments } from "@/components/blog/Comments";
+import { BlogPostJsonLd } from "@/components/seo/JsonLd";
 import { useMDXComponents } from "../../../../../mdx-components";
 import { routing } from "@/i18n/routing";
 
@@ -82,7 +85,16 @@ export default async function BlogPostPage({ params }: PageProps) {
           <div className="prose">
             <MDXContent components={components} />
           </div>
+          <ShareButtons title={post.title} slug={slug} />
         </article>
+        <Comments postSlug={slug} />
+        <BlogPostJsonLd
+          title={post.title}
+          description={post.summary}
+          date={post.date}
+          slug={slug}
+          readingTime={post.readingTime}
+        />
       </Container>
     </section>
   );

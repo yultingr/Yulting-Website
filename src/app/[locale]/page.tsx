@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/layout/Container";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
+import { PersonJsonLd } from "@/components/seo/JsonLd";
 
 export default function Home() {
   const t = useTranslations("home");
@@ -210,6 +211,8 @@ export default function Home() {
           </AnimateOnScroll>
         </Container>
       </section>
+
+      <PersonJsonLd />
     </>
   );
 }

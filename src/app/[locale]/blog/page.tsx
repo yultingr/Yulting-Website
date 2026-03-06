@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { getAllPosts } from "@/lib/blog";
 import { Container } from "@/components/layout/Container";
 import { BlogPostList } from "@/components/blog/BlogPostList";
+import { BlogSearch } from "@/components/blog/BlogSearch";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 
 interface Props {
@@ -43,6 +44,7 @@ export default async function BlogPage({ params }: Props) {
               {t("subtitle")}
             </p>
           </div>
+          <BlogSearch locale={locale} />
         </AnimateOnScroll>
 
         <BlogPostList posts={posts} allTags={allTags} locale={locale} />

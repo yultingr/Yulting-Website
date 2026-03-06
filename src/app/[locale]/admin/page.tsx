@@ -2,28 +2,32 @@
 
 import { useState, useEffect, useActionState, useTransition } from "react";
 import { Container } from "@/components/layout/Container";
-import { type Video } from "@/data/videos";
-import {
-  login,
-  logout,
-  isAuthenticated,
-  getVideos,
-  addVideo,
-  deleteVideo,
-  reorderVideos,
-} from "@/lib/actions";
+import { login, logout, isAuthenticated } from "@/lib/actions";
+import { VideoManager } from "@/components/admin/VideoManager";
+import { BlogEditor } from "@/components/admin/BlogEditor";
+import { ProjectManager } from "@/components/admin/ProjectManager";
+import { SkillsEditor } from "@/components/admin/SkillsEditor";
+import { ContactSubmissions } from "@/components/admin/ContactSubmissions";
+import { AnalyticsDashboard } from "@/components/admin/AnalyticsDashboard";
+import { AuditLog } from "@/components/admin/AuditLog";
 
-// ---------------------------------------------------------------------------
-// Login form
-// ---------------------------------------------------------------------------
+const tabs = [
+  { id: "videos", label: "Videos", icon: "M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" },
+  { id: "blog", label: "Blog", icon: "M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" },
+  { id: "projects", label: "Projects", icon: "M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" },
+  { id: "skills", label: "Skills", icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" },
+  { id: "messages", label: "Messages", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },
+  { id: "analytics", label: "Analytics", icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" },
+  { id: "audit", label: "Audit Log", icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" },
+] as const;
+
+type TabId = (typeof tabs)[number]["id"];
 
 function LoginForm({ onSuccess }: { onSuccess: () => void }) {
   const [state, formAction, pending] = useActionState(login, null);
 
   useEffect(() => {
-    if (state?.success) {
-      onSuccess();
-    }
+    if (state?.success) onSuccess();
   }, [state, onSuccess]);
 
   return (
@@ -31,46 +35,15 @@ function LoginForm({ onSuccess }: { onSuccess: () => void }) {
       <Container>
         <div className="mx-auto max-w-md">
           <div className="mb-10 text-center">
-            <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-              Admin Panel
-            </span>
-            <h1 className="mt-3 text-4xl font-bold tracking-tight text-foreground">
-              Sign In
-            </h1>
-            <p className="mt-3 text-muted-foreground">
-              Enter your password to access the admin panel.
-            </p>
+            <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Admin Panel</span>
+            <h1 className="mt-3 text-4xl font-bold tracking-tight text-foreground">Sign In</h1>
+            <p className="mt-3 text-muted-foreground">Enter your password to access the admin panel.</p>
           </div>
-
-          <form
-            action={formAction}
-            className="rounded-2xl border border-border bg-card p-6 sm:p-8"
-          >
-            <label
-              htmlFor="password"
-              className="mb-2 block text-sm font-medium text-card-foreground"
-            >
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              autoFocus
-              required
-              placeholder="Enter admin password..."
-              className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
-            />
-
-            {state?.error && (
-              <p className="mt-3 text-sm text-red-500">{state.error}</p>
-            )}
-
-            <button
-              type="submit"
-              disabled={pending}
-              className="mt-6 w-full rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-80 disabled:opacity-50"
-            >
+          <form action={formAction} className="rounded-2xl border border-border bg-card p-6 sm:p-8">
+            <label htmlFor="password" className="mb-2 block text-sm font-medium text-card-foreground">Password</label>
+            <input id="password" name="password" type="password" autoFocus required placeholder="Enter admin password..." className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20" />
+            {state?.error && <p className="mt-3 text-sm text-red-500">{state.error}</p>}
+            <button type="submit" disabled={pending} className="mt-6 w-full rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-80 disabled:opacity-50">
               {pending ? "Signing in..." : "Sign In"}
             </button>
           </form>
@@ -80,58 +53,9 @@ function LoginForm({ onSuccess }: { onSuccess: () => void }) {
   );
 }
 
-// ---------------------------------------------------------------------------
-// Admin dashboard
-// ---------------------------------------------------------------------------
-
 function AdminDashboard({ onLogout }: { onLogout: () => void }) {
-  const [videos, setVideos] = useState<Video[]>([]);
-  const [mounted, setMounted] = useState(false);
-  const [addState, addFormAction, addPending] = useActionState(addVideo, null);
+  const [activeTab, setActiveTab] = useState<TabId>("videos");
   const [, startTransition] = useTransition();
-
-  // Load videos on mount
-  useEffect(() => {
-    getVideos().then((v) => {
-      setVideos(v);
-      setMounted(true);
-    });
-  }, []);
-
-  // Reload videos after successful add (addState becomes null on success)
-  useEffect(() => {
-    if (addState === null && mounted) {
-      getVideos().then(setVideos);
-    }
-  }, [addState, mounted]);
-
-  function handleDelete(id: string) {
-    startTransition(async () => {
-      await deleteVideo(id);
-      const updated = await getVideos();
-      setVideos(updated);
-    });
-  }
-
-  function handleMoveUp(index: number) {
-    if (index === 0) return;
-    const updated = [...videos];
-    [updated[index - 1], updated[index]] = [updated[index], updated[index - 1]];
-    setVideos(updated);
-    startTransition(async () => {
-      await reorderVideos(updated.map((v) => v.id));
-    });
-  }
-
-  function handleMoveDown(index: number) {
-    if (index === videos.length - 1) return;
-    const updated = [...videos];
-    [updated[index], updated[index + 1]] = [updated[index + 1], updated[index]];
-    setVideos(updated);
-    startTransition(async () => {
-      await reorderVideos(updated.map((v) => v.id));
-    });
-  }
 
   function handleLogout() {
     startTransition(async () => {
@@ -140,235 +64,51 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
     });
   }
 
-  if (!mounted) {
-    return (
-      <section className="py-20">
-        <Container>
-          <div className="text-center text-muted-foreground">Loading...</div>
-        </Container>
-      </section>
-    );
-  }
-
   return (
-    <section className="py-20">
+    <section className="py-8 sm:py-12">
       <Container>
-        {/* Header */}
-        <div className="mb-10 flex items-start justify-between">
+        <div className="mb-8 flex items-start justify-between">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-              Admin Panel
-            </span>
-            <h1 className="mt-3 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              Manage Videos
-            </h1>
-            <p className="mt-3 text-muted-foreground">
-              Add, remove, and reorder videos. Changes are saved automatically
-              and appear on the Videos page.
-            </p>
+            <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Admin Panel</span>
+            <h1 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Dashboard</h1>
           </div>
-          <button
-            onClick={handleLogout}
-            className="shrink-0 rounded-full border border-border px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-          >
+          <button onClick={handleLogout} className="shrink-0 rounded-full border border-border px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
             Sign Out
           </button>
         </div>
 
-        {/* Add Video Form */}
-        <form
-          action={addFormAction}
-          className="mb-12 rounded-2xl border border-border bg-card p-6 sm:p-8"
-        >
-          <h2 className="mb-6 text-xl font-semibold text-card-foreground">
-            Add New Video
-          </h2>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label
-                htmlFor="video-url"
-                className="mb-2 block text-sm font-medium text-card-foreground"
-              >
-                Video URL
-              </label>
-              <input
-                id="video-url"
-                name="url"
-                type="text"
-                placeholder="https://www.youtube.com/watch?v=..."
-                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
-              />
-              <p className="mt-1.5 text-xs text-muted-foreground">
-                Supports YouTube and Facebook video URLs
-              </p>
-            </div>
-
-            <div>
-              <label
-                htmlFor="video-title"
-                className="mb-2 block text-sm font-medium text-card-foreground"
-              >
-                Title
-              </label>
-              <input
-                id="video-title"
-                name="title"
-                type="text"
-                placeholder="Enter video title..."
-                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
-              />
-            </div>
-          </div>
-
-          {addState?.error && (
-            <p className="mt-3 text-sm text-red-500">{addState.error}</p>
-          )}
-
-          <button
-            type="submit"
-            disabled={addPending}
-            className="mt-6 inline-flex items-center rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-80 disabled:opacity-50"
-          >
-            {addPending ? "Adding..." : "Add Video"}
-          </button>
-        </form>
-
-        {/* Video List */}
-        <div className="mb-6 flex items-center justify-between">
-          <h2 className="text-xl font-semibold text-foreground">
-            Videos ({videos.length})
-          </h2>
+        <div className="mb-8 -mx-1 flex gap-1 overflow-x-auto pb-2">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                activeTab === tab.id
+                  ? "bg-foreground text-background"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              }`}
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+                <path d={tab.icon} />
+              </svg>
+              {tab.label}
+            </button>
+          ))}
         </div>
 
-        {videos.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-border py-16 text-center">
-            <p className="text-muted-foreground">
-              No videos yet. Add one using the form above.
-            </p>
-          </div>
-        ) : (
-          <div className="grid gap-6 sm:grid-cols-2">
-            {videos.map((video, index) => (
-              <div
-                key={video.id}
-                className="group overflow-hidden rounded-2xl border border-border bg-card transition-all"
-              >
-                {/* Video preview */}
-                <div className="relative aspect-video w-full">
-                  {video.platform === "youtube" ? (
-                    <iframe
-                      src={`https://www.youtube.com/embed/${video.videoId}`}
-                      title={video.title || "Video"}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      className="absolute inset-0 h-full w-full"
-                    />
-                  ) : (
-                    <iframe
-                      src={`https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(video.videoId)}&show_text=false`}
-                      title={video.title || "Video"}
-                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                      allowFullScreen
-                      className="absolute inset-0 h-full w-full"
-                    />
-                  )}
-                </div>
-
-                {/* Video info + actions */}
-                <div className="flex items-center justify-between gap-3 p-4">
-                  <div className="min-w-0 flex-1">
-                    <h3 className="truncate text-sm font-semibold text-card-foreground">
-                      {video.title}
-                    </h3>
-                    <p className="mt-0.5 text-xs text-muted-foreground">
-                      {video.platform === "youtube" ? "YouTube" : "Facebook"}{" "}
-                      &middot; {video.videoId.slice(0, 20)}
-                      {video.videoId.length > 20 ? "..." : ""}
-                    </p>
-                  </div>
-
-                  <div className="flex shrink-0 items-center gap-1">
-                    {/* Move up */}
-                    <button
-                      onClick={() => handleMoveUp(index)}
-                      disabled={index === 0}
-                      className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:opacity-30"
-                      title="Move up"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="m18 15-6-6-6 6" />
-                      </svg>
-                    </button>
-
-                    {/* Move down */}
-                    <button
-                      onClick={() => handleMoveDown(index)}
-                      disabled={index === videos.length - 1}
-                      className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:opacity-30"
-                      title="Move down"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="m6 9 6 6 6-6" />
-                      </svg>
-                    </button>
-
-                    {/* Delete */}
-                    <button
-                      onClick={() => handleDelete(video.id)}
-                      className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-red-50 hover:text-red-500 dark:hover:bg-red-500/10"
-                      title="Delete video"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M3 6h18" />
-                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+        <div>
+          {activeTab === "videos" && <VideoManager />}
+          {activeTab === "blog" && <BlogEditor />}
+          {activeTab === "projects" && <ProjectManager />}
+          {activeTab === "skills" && <SkillsEditor />}
+          {activeTab === "messages" && <ContactSubmissions />}
+          {activeTab === "analytics" && <AnalyticsDashboard />}
+          {activeTab === "audit" && <AuditLog />}
+        </div>
       </Container>
     </section>
   );
 }
-
-// ---------------------------------------------------------------------------
-// Main page component — checks auth then renders login or dashboard
-// ---------------------------------------------------------------------------
 
 export default function AdminPage() {
   const [authed, setAuthed] = useState<boolean | null>(null);
@@ -377,7 +117,6 @@ export default function AdminPage() {
     isAuthenticated().then(setAuthed);
   }, []);
 
-  // Show nothing while checking auth
   if (authed === null) {
     return (
       <section className="py-20">
@@ -388,9 +127,6 @@ export default function AdminPage() {
     );
   }
 
-  if (!authed) {
-    return <LoginForm onSuccess={() => setAuthed(true)} />;
-  }
-
+  if (!authed) return <LoginForm onSuccess={() => setAuthed(true)} />;
   return <AdminDashboard onLogout={() => setAuthed(false)} />;
 }
