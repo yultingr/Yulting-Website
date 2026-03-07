@@ -1,9 +1,9 @@
 "use server";
 
-import { cookies } from "next/headers";
-import { createHmac, timingSafeEqual } from "crypto";
+import { cookies, headers } from "next/headers";
+import { createHmac, timingSafeEqual, randomUUID } from "crypto";
 import { writeFileSync, existsSync, mkdirSync, unlinkSync, readFileSync } from "fs";
-import { join } from "path";
+import { join, resolve } from "path";
 import { type Video, parseVideoUrl } from "@/data/videos";
 import type {
   Project,
@@ -21,8 +21,13 @@ import { checkRateLimit, recordFailedAttempt, resetAttempts } from "@/lib/rate-l
 // ---------------------------------------------------------------------------
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? "";
-const ADMIN_SECRET = process.env.ADMIN_SECRET ?? "";
+const ADMIN_SECRET = process.env.ADMIN_SECRET || "CHANGE-ME-SET-ADMIN-SECRET-ENV";
 const COOKIE_NAME = "admin_session";
+
+// Warn loudly if secret is not configured
+if (process.env.ADMIN_SECRET === undefined || process.env.ADMIN_SECRET === "") {
+  console.warn("[SECURITY] ADMIN_SECRET env var is not set. Using insecure fallback. Set it in production!");
+}
 
 // ---------------------------------------------------------------------------
 // Audit helper
@@ -41,6 +46,9 @@ function audit(action: string, details: string): void {
 // Auth helpers
 // ---------------------------------------------------------------------------
 
+// Server-side session store (random tokens, invalidatable)
+const activeSessions = new Set<string>();
+
 function sign(value: string): string {
   return createHmac("sha256", ADMIN_SECRET).update(value).digest("hex");
 }
@@ -54,6 +62,16 @@ function verify(value: string, signature: string): boolean {
   }
 }
 
+async function requireAuth(): Promise<boolean> {
+  const authed = await isAuthenticated();
+  return authed;
+}
+
+async function getClientIP(): Promise<string> {
+  const h = await headers();
+  return h.get("x-forwarded-for")?.split(",")[0]?.trim() || h.get("x-real-ip") || "unknown";
+}
+
 // ---------------------------------------------------------------------------
 // Auth actions
 // ---------------------------------------------------------------------------
@@ -62,7 +80,8 @@ export async function login(
   _prev: { error?: string; success?: boolean } | null,
   formData: FormData,
 ): Promise<{ error?: string; success?: boolean }> {
-  const rl = checkRateLimit();
+  const ip = await getClientIP();
+  const rl = checkRateLimit(ip);
   if (!rl.allowed) {
     return { error: `Too many attempts. Try again in ${rl.resetIn} seconds.` };
   }
@@ -70,18 +89,20 @@ export async function login(
   const password = formData.get("password") as string;
 
   if (!password || password !== ADMIN_PASSWORD) {
-    recordFailedAttempt();
-    audit("login_failed", "Invalid password attempt");
+    recordFailedAttempt(ip);
+    audit("login_failed", `Invalid password attempt from ${ip}`);
     return { error: "Invalid password." };
   }
 
-  resetAttempts();
+  resetAttempts(ip);
 
-  const token = "authenticated";
-  const sig = sign(token);
+  // Generate a random session token (not static)
+  const sessionId = randomUUID();
+  activeSessions.add(sessionId);
+  const sig = sign(sessionId);
   const cookieStore = await cookies();
 
-  cookieStore.set(COOKIE_NAME, `${token}.${sig}`, {
+  cookieStore.set(COOKIE_NAME, `${sessionId}.${sig}`, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
@@ -89,12 +110,17 @@ export async function login(
     maxAge: 60 * 60 * 24,
   });
 
-  audit("login", "Admin logged in");
+  audit("login", `Admin logged in from ${ip}`);
   return { success: true };
 }
 
 export async function logout(): Promise<void> {
   const cookieStore = await cookies();
+  const cookie = cookieStore.get(COOKIE_NAME);
+  if (cookie) {
+    const [sessionId] = cookie.value.split(".");
+    activeSessions.delete(sessionId);
+  }
   cookieStore.delete(COOKIE_NAME);
   audit("logout", "Admin logged out");
 }
@@ -104,10 +130,14 @@ export async function isAuthenticated(): Promise<boolean> {
   const cookie = cookieStore.get(COOKIE_NAME);
   if (!cookie) return false;
 
-  const [token, sig] = cookie.value.split(".");
-  if (!token || !sig) return false;
+  const [sessionId, sig] = cookie.value.split(".");
+  if (!sessionId || !sig) return false;
 
-  return verify(token, sig);
+  // Verify HMAC signature and check session is still active
+  if (!verify(sessionId, sig)) return false;
+  if (!activeSessions.has(sessionId)) return false;
+
+  return true;
 }
 
 // ---------------------------------------------------------------------------
@@ -301,8 +331,28 @@ export async function updateSkillCategory(
 // Blog CRUD (MDX files)
 // ---------------------------------------------------------------------------
 
+const SLUG_RE = /^[a-z0-9-]+$/;
+
 function getBlogDirPath(locale: string = "en"): string {
   return join(process.cwd(), "content", "blog", locale);
+}
+
+function validateSlug(slug: string): boolean {
+  return SLUG_RE.test(slug);
+}
+
+function safeBlogPath(slug: string, locale: string = "en"): string | null {
+  if (!validateSlug(slug)) return null;
+  const blogDir = getBlogDirPath(locale);
+  const filePath = join(blogDir, `${slug}.mdx`);
+  // Ensure resolved path stays inside blog directory
+  if (!resolve(filePath).startsWith(resolve(blogDir))) return null;
+  return filePath;
+}
+
+/** Escape a string for YAML double-quoted value */
+function yamlEscape(str: string): string {
+  return str.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/\n/g, "\\n");
 }
 
 export async function createBlogPost(
@@ -323,25 +373,28 @@ export async function createBlogPost(
   if (!slug) return { error: "Slug is required." };
   if (!summary) return { error: "Summary is required." };
 
-  if (!/^[a-z0-9-]+$/.test(slug)) {
+  const filePath = safeBlogPath(slug);
+  if (!filePath) {
     return { error: "Slug must contain only lowercase letters, numbers, and hyphens." };
   }
 
   const blogDir = getBlogDirPath("en");
   if (!existsSync(blogDir)) mkdirSync(blogDir, { recursive: true });
 
-  const filePath = join(blogDir, `${slug}.mdx`);
   if (existsSync(filePath)) {
     return { error: "A post with this slug already exists." };
   }
 
   const date = new Date().toISOString().split("T")[0];
+  const tagsList = tags
+    ? tags.split(",").map((t) => `"${yamlEscape(t.trim())}"`).join(", ")
+    : "";
   const frontmatter = [
     "---",
-    `title: "${title}"`,
+    `title: "${yamlEscape(title)}"`,
     `date: "${date}"`,
-    `summary: "${summary}"`,
-    `tags: [${tags ? tags.split(",").map((t) => `"${t.trim()}"`).join(", ") : ""}]`,
+    `summary: "${yamlEscape(summary)}"`,
+    `tags: [${tagsList}]`,
     `published: ${published}`,
     "---",
     "",
@@ -362,7 +415,8 @@ export async function updateBlogPost(
   const authed = await isAuthenticated();
   if (!authed) return { error: "Not authenticated." };
 
-  const filePath = join(getBlogDirPath("en"), `${slug}.mdx`);
+  const filePath = safeBlogPath(slug);
+  if (!filePath) return { error: "Invalid slug." };
   if (!existsSync(filePath)) return { error: "Post not found." };
 
   const raw = readFileSync(filePath, "utf-8");
@@ -387,13 +441,13 @@ export async function updateBlogPost(
 
   const tagsArray = tags.startsWith("[")
     ? tags
-    : `[${tags.split(",").map((t) => `"${t.trim()}"`).join(", ")}]`;
+    : `[${tags.split(",").map((t) => `"${yamlEscape(t.trim())}"`).join(", ")}]`;
 
   const frontmatter = [
     "---",
-    `title: "${title}"`,
+    `title: "${yamlEscape(title)}"`,
     `date: "${date}"`,
-    `summary: "${summary}"`,
+    `summary: "${yamlEscape(summary)}"`,
     `tags: ${tagsArray}`,
     `published: ${published}`,
     "---",
@@ -411,7 +465,8 @@ export async function deleteBlogPost(slug: string): Promise<{ error: string } | 
   const authed = await isAuthenticated();
   if (!authed) return { error: "Not authenticated." };
 
-  const filePath = join(getBlogDirPath("en"), `${slug}.mdx`);
+  const filePath = safeBlogPath(slug);
+  if (!filePath) return { error: "Invalid slug." };
   if (!existsSync(filePath)) return { error: "Post not found." };
 
   unlinkSync(filePath);
@@ -425,6 +480,7 @@ export async function deleteBlogPost(slug: string): Promise<{ error: string } | 
 // ---------------------------------------------------------------------------
 
 export async function getContactSubmissions(): Promise<ContactSubmission[]> {
+  if (!(await requireAuth())) return [];
   return db.getSubmissions();
 }
 
@@ -454,6 +510,7 @@ export async function deleteSubmission(id: string): Promise<void> {
 // ---------------------------------------------------------------------------
 
 export async function getCommentsList(): Promise<Comment[]> {
+  if (!(await requireAuth())) return [];
   return db.getComments();
 }
 
@@ -484,6 +541,7 @@ export async function deleteComment(id: string): Promise<void> {
 // ---------------------------------------------------------------------------
 
 export async function getAnalyticsSummary(): Promise<AnalyticsSummary> {
+  if (!(await requireAuth())) return { totalViews: 0, uniquePaths: 0, topPages: [], viewsByDay: [] };
   const views = db.getPageViews();
   const now = new Date();
   const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
@@ -523,5 +581,6 @@ export async function getAnalyticsSummary(): Promise<AnalyticsSummary> {
 // ---------------------------------------------------------------------------
 
 export async function getAuditLogEntries(): Promise<AuditLogEntry[]> {
+  if (!(await requireAuth())) return [];
   return db.getAuditLog().reverse().slice(0, 100);
 }

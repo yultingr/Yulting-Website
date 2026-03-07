@@ -1,8 +1,37 @@
 import { NextRequest, NextResponse } from "next/server";
 import { addSubmission } from "@/lib/db";
+import { checkApiRateLimit } from "@/lib/rate-limit";
 import type { ContactSubmission } from "@/types";
 
+function getClientIP(request: NextRequest): string {
+  return request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+}
+
+function checkOrigin(request: NextRequest): boolean {
+  const origin = request.headers.get("origin");
+  const host = request.headers.get("host");
+  if (!origin) return true; // Same-origin requests may not have origin header
+  try {
+    const originHost = new URL(origin).host;
+    return originHost === host;
+  } catch {
+    return false;
+  }
+}
+
 export async function POST(request: NextRequest) {
+  // CSRF: verify origin matches host
+  if (!checkOrigin(request)) {
+    return NextResponse.json({ error: "Forbidden." }, { status: 403 });
+  }
+
+  // Rate limit per IP
+  const ip = getClientIP(request);
+  const rl = checkApiRateLimit(`contact:${ip}`);
+  if (!rl.allowed) {
+    return NextResponse.json({ error: "Too many requests. Try again later." }, { status: 429 });
+  }
+
   try {
     const body = await request.json();
     const { name, email, message } = body;
@@ -11,9 +40,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "All fields are required." }, { status: 400 });
     }
 
-    // Basic email validation
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
+    }
+
+    // Limit field lengths to prevent abuse
+    if (name.length > 200 || email.length > 200 || message.length > 5000) {
+      return NextResponse.json({ error: "Input too long." }, { status: 400 });
     }
 
     const submission: ContactSubmission = {
@@ -40,8 +73,8 @@ export async function POST(request: NextRequest) {
           body: JSON.stringify({
             from: process.env.RESEND_FROM || "noreply@yulting.dev",
             to: "tulkuyulting@gmail.com",
-            subject: `New contact from ${name}`,
-            text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+            subject: `New contact from ${name.trim().slice(0, 100)}`,
+            text: `Name: ${name.trim()}\nEmail: ${email.trim()}\n\n${message.trim()}`,
           }),
         });
       } catch {

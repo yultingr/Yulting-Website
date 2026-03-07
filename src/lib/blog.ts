@@ -4,8 +4,12 @@ import matter from "gray-matter";
 import readingTime from "reading-time";
 import type { BlogPostMeta, BlogPost } from "@/types";
 
+const VALID_LOCALES = new Set(["en", "bo", "zh", "ne", "hi"]);
+
 function getBlogDir(locale: string): string {
-  return path.join(process.cwd(), "content", "blog", locale);
+  // Prevent path traversal via locale parameter
+  const safeLocale = VALID_LOCALES.has(locale) ? locale : "en";
+  return path.join(process.cwd(), "content", "blog", safeLocale);
 }
 
 export function getAllPostSlugs(locale: string = "en"): string[] {
@@ -26,6 +30,10 @@ export function getAllPostSlugs(locale: string = "en"): string[] {
 }
 
 export function getPostBySlug(slug: string, locale: string = "en"): BlogPost {
+  // Validate slug to prevent path traversal
+  if (!/^[a-z0-9-]+$/.test(slug)) {
+    throw new Error("Invalid slug");
+  }
   let blogDir = getBlogDir(locale);
   let filePath = path.join(blogDir, `${slug}.mdx`);
 

@@ -33,6 +33,12 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# data files (contain PII from submissions, comments, etc.)
+/data/submissions.json
+/data/comments.json
+/data/analytics.json
+/data/audit-log.json
+
 # vercel
 .vercel
 

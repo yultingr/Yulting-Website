@@ -1,10 +1,36 @@
-// Simple in-memory rate limiter for admin login
-// Tracks failed attempts per IP-like key (in dev, uses a global key)
+// In-memory rate limiter for login and API endpoints
 
 const attempts = new Map<string, { count: number; resetAt: number }>();
 
 const MAX_ATTEMPTS = 5;
 const WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+
+// API rate limiter (separate store, higher limits)
+const apiAttempts = new Map<string, { count: number; resetAt: number }>();
+const API_MAX = 30; // 30 requests per window
+const API_WINDOW_MS = 60 * 1000; // 1 minute
+
+export function checkApiRateLimit(key: string): { allowed: boolean; resetIn: number } {
+  const now = Date.now();
+  const entry = apiAttempts.get(key);
+
+  if (entry && now > entry.resetAt) {
+    apiAttempts.delete(key);
+  }
+
+  const current = apiAttempts.get(key);
+  if (!current) {
+    apiAttempts.set(key, { count: 1, resetAt: now + API_WINDOW_MS });
+    return { allowed: true, resetIn: 0 };
+  }
+
+  current.count++;
+  if (current.count > API_MAX) {
+    return { allowed: false, resetIn: Math.ceil((current.resetAt - now) / 1000) };
+  }
+
+  return { allowed: true, resetIn: 0 };
+}
 
 export function checkRateLimit(key: string = "global"): {
   allowed: boolean;
