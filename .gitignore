@@ -38,6 +38,9 @@ yarn-error.log*
 /data/comments.json
 /data/analytics.json
 /data/audit-log.json
+/data/site.db
+/data/site.db-wal
+/data/site.db-shm
 
 # vercel
 .vercel

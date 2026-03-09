@@ -46,9 +46,6 @@ function audit(action: string, details: string): void {
 // Auth helpers
 // ---------------------------------------------------------------------------
 
-// Server-side session store (random tokens, invalidatable)
-const activeSessions = new Set<string>();
-
 function sign(value: string): string {
   return createHmac("sha256", ADMIN_SECRET).update(value).digest("hex");
 }
@@ -101,9 +98,9 @@ export async function login(
 
   resetAttempts(ip);
 
-  // Generate a random session token (not static)
+  // Generate a random session token stored in SQLite (persists across deploys)
   const sessionId = randomUUID();
-  activeSessions.add(sessionId);
+  db.createSession(sessionId);
   const sig = sign(sessionId);
   const cookieStore = await cookies();
 
@@ -124,7 +121,7 @@ export async function logout(): Promise<void> {
   const cookie = cookieStore.get(COOKIE_NAME);
   if (cookie) {
     const [sessionId] = cookie.value.split(".");
-    activeSessions.delete(sessionId);
+    db.deleteSession(sessionId);
   }
   cookieStore.delete(COOKIE_NAME);
   audit("logout", "Admin logged out");
@@ -138,9 +135,9 @@ export async function isAuthenticated(): Promise<boolean> {
   const [sessionId, sig] = cookie.value.split(".");
   if (!sessionId || !sig) return false;
 
-  // Verify HMAC signature and check session is still active
+  // Verify HMAC signature and check session is still active (in SQLite)
   if (!verify(sessionId, sig)) return false;
-  if (!activeSessions.has(sessionId)) return false;
+  if (!db.hasSession(sessionId)) return false;
 
   return true;
 }
