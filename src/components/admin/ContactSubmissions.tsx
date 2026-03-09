@@ -59,7 +59,7 @@ export function ContactSubmissions() {
                   {expanded === sub.id && (
                     <div className="mt-3 rounded-lg bg-muted/50 p-3">
                       <p className="whitespace-pre-wrap text-sm text-foreground">{sub.message}</p>
-                      <a href={`mailto:${sub.email}?subject=Re: Message from ${sub.name}`} className="mt-2 inline-block text-xs text-accent hover:underline">Reply via email</a>
+                      <a href={`mailto:${encodeURIComponent(sub.email)}?subject=${encodeURIComponent(`Re: Message from ${sub.name}`)}`} className="mt-2 inline-block text-xs text-accent hover:underline">Reply via email</a>
                     </div>
                   )}
                 </div>

@@ -35,7 +35,7 @@ if (process.env.ADMIN_SECRET === undefined || process.env.ADMIN_SECRET === "") {
 
 function audit(action: string, details: string): void {
   db.addAuditEntry({
-    id: Date.now().toString(),
+    id: randomUUID(),
     action,
     details,
     timestamp: new Date().toISOString(),
@@ -88,7 +88,12 @@ export async function login(
 
   const password = formData.get("password") as string;
 
-  if (!password || password !== ADMIN_PASSWORD) {
+  // Timing-safe password comparison to prevent timing attacks
+  const passwordMatch = password && ADMIN_PASSWORD &&
+    password.length === ADMIN_PASSWORD.length &&
+    timingSafeEqual(Buffer.from(password), Buffer.from(ADMIN_PASSWORD));
+
+  if (!password || !passwordMatch) {
     recordFailedAttempt(ip);
     audit("login_failed", `Invalid password attempt from ${ip}`);
     return { error: "Invalid password." };
@@ -169,7 +174,7 @@ export async function addVideo(
 
   const videos = db.getVideos();
   videos.push({
-    id: Date.now().toString(),
+    id: randomUUID(),
     platform: parsed.platform,
     videoId: parsed.videoId,
     title,
@@ -237,7 +242,7 @@ export async function addProject(
 
   const projects = db.getProjects();
   projects.push({
-    id: Date.now().toString(),
+    id: randomUUID(),
     title,
     description,
     technologies: techs ? techs.split(",").map((t) => t.trim()).filter(Boolean) : [],
@@ -286,7 +291,7 @@ export async function addSkillCategory(
 
   const categories = db.getSkills();
   categories.push({
-    id: Date.now().toString(),
+    id: randomUUID(),
     name,
     skills: skillsStr ? skillsStr.split(",").map((s) => s.trim()).filter(Boolean) : [],
   });

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { randomUUID } from "crypto";
 import { addComment, getComments } from "@/lib/db";
 import { checkApiRateLimit } from "@/lib/rate-limit";
 import type { Comment } from "@/types";
@@ -8,6 +9,10 @@ function getClientIP(request: NextRequest): string {
 }
 
 function checkOrigin(request: NextRequest): boolean {
+  const fetchSite = request.headers.get("sec-fetch-site");
+  if (fetchSite && fetchSite !== "same-origin" && fetchSite !== "none") {
+    return false;
+  }
   const origin = request.headers.get("origin");
   const host = request.headers.get("host");
   if (!origin) return true;
@@ -67,7 +72,7 @@ export async function POST(request: NextRequest) {
     }
 
     const comment: Comment = {
-      id: Date.now().toString(),
+      id: randomUUID(),
       postSlug: postSlug.trim(),
       name: name.trim(),
       email: email?.trim() || "",

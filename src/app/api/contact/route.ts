@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { randomUUID } from "crypto";
 import { addSubmission } from "@/lib/db";
 import { checkApiRateLimit } from "@/lib/rate-limit";
 import type { ContactSubmission } from "@/types";
@@ -8,9 +9,14 @@ function getClientIP(request: NextRequest): string {
 }
 
 function checkOrigin(request: NextRequest): boolean {
+  // Sec-Fetch-Site is set by modern browsers and cannot be spoofed by JS
+  const fetchSite = request.headers.get("sec-fetch-site");
+  if (fetchSite && fetchSite !== "same-origin" && fetchSite !== "none") {
+    return false;
+  }
   const origin = request.headers.get("origin");
   const host = request.headers.get("host");
-  if (!origin) return true; // Same-origin requests may not have origin header
+  if (!origin) return true; // Same-origin or non-browser requests
   try {
     const originHost = new URL(origin).host;
     return originHost === host;
@@ -50,7 +56,7 @@ export async function POST(request: NextRequest) {
     }
 
     const submission: ContactSubmission = {
-      id: Date.now().toString(),
+      id: randomUUID(),
       name: name.trim(),
       email: email.trim(),
       message: message.trim(),

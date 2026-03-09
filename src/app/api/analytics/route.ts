@@ -7,6 +7,10 @@ function getClientIP(request: NextRequest): string {
 }
 
 function checkOrigin(request: NextRequest): boolean {
+  const fetchSite = request.headers.get("sec-fetch-site");
+  if (fetchSite && fetchSite !== "same-origin" && fetchSite !== "none") {
+    return false;
+  }
   const origin = request.headers.get("origin");
   const host = request.headers.get("host");
   if (!origin) return true;
