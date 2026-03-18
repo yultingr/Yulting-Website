@@ -36,17 +36,13 @@ export default async function BlogPage({ params }: Props) {
         {/* Section header */}
         <AnimateOnScroll>
           <div className="max-w-2xl">
-            <p className="text-sm uppercase tracking-wider text-muted-foreground">
-              Blog
-            </p>
-            <h1 className="mt-3 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
               {t("pageTitle")}
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
               {t("subtitle")}
             </p>
           </div>
-          <BlogSearch locale={locale} />
         </AnimateOnScroll>
 
         <BlogPostList posts={posts} allTags={allTags} locale={locale} />

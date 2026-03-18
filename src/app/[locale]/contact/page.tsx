@@ -31,10 +31,7 @@ export default async function ContactPage({ params }: Props) {
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
           {/* Left side: heading, intro, CTA */}
           <div className="flex flex-col justify-center">
-            <p className="text-sm uppercase tracking-wider text-muted-foreground">
-              Contact
-            </p>
-            <h1 className="mt-3 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
               {t("pageTitle")}
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground">

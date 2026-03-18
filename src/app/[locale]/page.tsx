@@ -33,7 +33,7 @@ export default function Home() {
               </p>
 
               <div className="mt-10 flex justify-center gap-4">
-                <ButtonLink href="/about" variant="primary">
+                <ButtonLink href="/about" variant="secondary">
                   {t("aboutButton")}
                 </ButtonLink>
                 <ButtonLink href="/blog" variant="secondary">

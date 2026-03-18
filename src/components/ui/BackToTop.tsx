@@ -19,7 +19,7 @@ export function BackToTop() {
       aria-label="Back to top"
       aria-hidden={!show}
       tabIndex={show ? 0 : -1}
-      className={`fixed bottom-6 right-6 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-background shadow-lg transition-all duration-300 hover:opacity-90 ${
+      className={`fixed bottom-20 right-6 z-40 flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-background shadow-lg transition-all duration-300 hover:opacity-90 ${
         show
           ? "opacity-100 translate-y-0"
           : "pointer-events-none opacity-0 translate-y-4"

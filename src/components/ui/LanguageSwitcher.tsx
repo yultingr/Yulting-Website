@@ -12,6 +12,14 @@ const localeNames: Record<string, string> = {
   hi: "हिन्दी",
 };
 
+const localeShort: Record<string, string> = {
+  en: "EN",
+  bo: "བོད",
+  zh: "中",
+  ne: "ने",
+  hi: "हि",
+};
+
 export function LanguageSwitcher() {
   const locale = useLocale();
   const router = useRouter();
@@ -24,17 +32,34 @@ export function LanguageSwitcher() {
   }
 
   return (
-    <select
-      value={locale}
-      onChange={handleChange}
-      aria-label={t("label")}
-      className="rounded-lg border border-border bg-transparent px-2.5 py-1.5 text-sm text-muted-foreground transition-colors hover:border-foreground/30 focus:outline-none focus:ring-2 focus:ring-accent/50"
-    >
-      {Object.entries(localeNames).map(([code, name]) => (
-        <option key={code} value={code}>
-          {name}
-        </option>
-      ))}
-    </select>
+    <>
+      {/* Desktop: full names */}
+      <select
+        value={locale}
+        onChange={handleChange}
+        aria-label={t("label")}
+        className="hidden rounded-lg border border-border bg-transparent px-2.5 py-1.5 text-sm text-muted-foreground transition-colors hover:border-foreground/30 focus:outline-none focus:ring-2 focus:ring-accent/50 md:inline-block"
+      >
+        {Object.entries(localeNames).map(([code, name]) => (
+          <option key={code} value={code}>
+            {name}
+          </option>
+        ))}
+      </select>
+
+      {/* Mobile: short codes */}
+      <select
+        value={locale}
+        onChange={handleChange}
+        aria-label={t("label")}
+        className="inline-block rounded-lg border border-border bg-transparent px-1.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-foreground/30 focus:outline-none focus:ring-2 focus:ring-accent/50 md:hidden"
+      >
+        {Object.entries(localeShort).map(([code, name]) => (
+          <option key={code} value={code}>
+            {name}
+          </option>
+        ))}
+      </select>
+    </>
   );
 }

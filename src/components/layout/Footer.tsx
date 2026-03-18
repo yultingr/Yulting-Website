@@ -11,7 +11,7 @@ export function Footer() {
   const tCommon = useTranslations("common");
 
   return (
-    <footer className="bg-foreground text-background">
+    <footer className="bg-[#1e293b] text-[#e2e8f0] dark:bg-[#0f172a]">
       <Container>
         <div className="py-16">
           <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
@@ -138,7 +138,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-background/10 py-6">
+        <div className="border-t border-white/10 py-6">
           <p className="text-sm opacity-40">
             {t("copyright", { year: new Date().getFullYear() })}
           </p>
