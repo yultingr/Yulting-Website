@@ -28,7 +28,7 @@ function CloudMotif() {
       height="24"
       viewBox="0 0 80 24"
       fill="none"
-      className="text-foreground/30 dark:text-foreground/40 shrink-0"
+      className="text-accent/40 shrink-0"
     >
       <path
         d="M4 16c4-8 8-8 12 0s8 8 12 0 8-8 12 0 8 8 12 0 8-8 12 0 8 8 12 0"
@@ -53,31 +53,39 @@ function CloudMotif() {
 function KnotMotif() {
   return (
     <svg
-      width="40"
-      height="40"
-      viewBox="0 0 40 40"
+      width="44"
+      height="44"
+      viewBox="0 0 44 44"
       fill="none"
-      className="text-foreground/30 dark:text-foreground/40 shrink-0"
+      className="text-accent/50 shrink-0"
     >
-      {/* Outer loops */}
-      <path
-        d="M10 8 L30 8 Q34 8 34 12 L34 28 Q34 32 30 32 L10 32 Q6 32 6 28 L6 12 Q6 8 10 8 Z"
+      {/* Two interlaced rounded loops on the diagonals */}
+      <rect
+        x="22"
+        y="4.5"
+        width="17.7"
+        height="17.7"
+        rx="6"
+        transform="rotate(45 22 4.5)"
         stroke="currentColor"
         strokeWidth="1.5"
-        fill="none"
       />
-      {/* Inner cross weave */}
-      <path
-        d="M14 8 L14 32 M26 8 L26 32 M6 16 L34 16 M6 24 L34 24"
+      <rect
+        x="22"
+        y="11.5"
+        width="7.8"
+        height="7.8"
+        rx="2.5"
+        transform="rotate(45 22 11.5)"
         stroke="currentColor"
-        strokeWidth="1"
-        opacity="0.4"
+        strokeWidth="1.2"
+        opacity="0.6"
       />
-      {/* Interlocking corners */}
-      <circle cx="14" cy="16" r="2" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-      <circle cx="26" cy="16" r="2" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-      <circle cx="14" cy="24" r="2" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-      <circle cx="26" cy="24" r="2" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+      {/* Weave dots at the crossings */}
+      <circle cx="22" cy="8" r="1.2" fill="currentColor" opacity="0.7" />
+      <circle cx="22" cy="36" r="1.2" fill="currentColor" opacity="0.7" />
+      <circle cx="8" cy="22" r="1.2" fill="currentColor" opacity="0.7" />
+      <circle cx="36" cy="22" r="1.2" fill="currentColor" opacity="0.7" />
     </svg>
   );
 }
@@ -92,7 +100,7 @@ function DiamondMotif() {
       height="20"
       viewBox="0 0 20 20"
       fill="none"
-      className="text-foreground/30 dark:text-foreground/40 shrink-0"
+      className="text-accent/40 shrink-0"
     >
       <rect
         x="10"

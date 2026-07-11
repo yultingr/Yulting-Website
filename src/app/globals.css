@@ -21,6 +21,7 @@
   --color-card-foreground: var(--card-foreground);
   --color-border: var(--border-color);
   --font-sans: var(--font-inter);
+  --font-serif: var(--font-garamond), "Monlam", Georgia, serif;
   --font-tibetan: "Monlam", sans-serif;
 }
 
@@ -53,6 +54,14 @@ body {
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Traditional serif for headings; Tibetan glyphs fall through to Monlam */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-garamond), "Monlam", Georgia, serif;
 }
 
 /* Subtle old-paper / woven-silk texture (light mode) */

@@ -29,11 +29,11 @@ export default function Home() {
         <Container>
           <AnimateOnScroll>
             <div className="mx-auto max-w-2xl text-center">
-              <p className="text-sm tracking-wide text-muted-foreground">
+              <p className="text-xs font-medium uppercase tracking-[0.25em] text-accent">
                 {t("location")}
               </p>
 
-              <h1 className="mt-6 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+              <h1 className="mt-6 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
                 {t("title")}
               </h1>
 

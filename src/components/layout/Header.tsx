@@ -26,7 +26,7 @@ export function Header() {
     <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md">
       <Container>
         <nav className="flex h-[72px] items-center justify-between">
-          <Link href="/" className="text-lg font-bold tracking-tight">
+          <Link href="/" className="font-serif text-xl font-bold tracking-tight">
             {tCommon("siteName")}
           </Link>
 

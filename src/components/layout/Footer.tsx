@@ -11,7 +11,7 @@ export function Footer() {
   const tCommon = useTranslations("common");
 
   return (
-    <footer className="bg-[#1e293b] text-[#e2e8f0] dark:bg-[#0f172a]">
+    <footer className="bg-[#2a2320] text-[#ece5dc] dark:bg-[#0f172a] dark:text-[#e2e8f0]">
       <Container>
         <div className="py-16">
           <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
