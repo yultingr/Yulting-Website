@@ -5,10 +5,22 @@ import { Container } from "@/components/layout/Container";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { VideoList } from "@/components/videos/VideoList";
-import { getVideos } from "@/lib/db";
+import { getVideos as getVideosFromDb } from "@/lib/db";
+import { type Video } from "@/data/videos";
+import fallbackVideos from "../../../../data/videos.json";
 
 interface Props {
   params: Promise<{ locale: string }>;
+}
+
+function getVideos(): Video[] {
+  try {
+    return getVideosFromDb();
+  } catch {
+    // Read-only serverless filesystems can't open SQLite; use the
+    // committed snapshot so the page still renders
+    return fallbackVideos as Video[];
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
