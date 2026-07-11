@@ -91,7 +91,11 @@
     "formMessage": "消息内容",
     "formMessagePlaceholder": "在此输入您的消息...",
     "formSend": "发送消息",
-    "formNote": "这将打开您的默认邮件应用程序。"
+    "formNote": "这将打开您的默认邮件应用程序。",
+    "formSending": "发送中…",
+    "formSuccess": "谢谢您！您的消息已成功发送。",
+    "formSendAnother": "再发送一条消息",
+    "formError": "出了点问题，请重试。"
   },
   "footer": {
     "pages": "页面",
@@ -208,5 +212,15 @@
     "s9p1": "如果您对本隐私政策或我们的数据处理有任何疑问，请通过以下方式联系我们：",
     "s9email": "电子邮件：tulkuyulting@gmail.com",
     "s9location": "甘丹夏孜寺，蒙德戈德，卡纳塔克邦，印度"
+  },
+  "comments": {
+    "title": "评论",
+    "namePlaceholder": "您的姓名 *",
+    "emailPlaceholder": "邮箱（可选）",
+    "contentPlaceholder": "写下您的评论…",
+    "submit": "发表评论",
+    "submitting": "提交中…",
+    "submitted": "评论已提交！审核通过后将会显示。",
+    "error": "提交失败，请重试。"
   }
 }

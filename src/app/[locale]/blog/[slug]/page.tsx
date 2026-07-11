@@ -13,6 +13,7 @@ import { useMDXComponents } from "../../../../../mdx-components";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
+import { localeAlternates } from "@/lib/seo";
 import { ReadingProgress } from "@/components/blog/ReadingProgress";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
@@ -37,9 +38,11 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   try {
     const post = getPostBySlug(slug, locale);
+    if (!post.published) return {};
     return {
       title: post.title,
       description: post.summary,
+      alternates: localeAlternates(locale, `/blog/${slug}`),
     };
   } catch {
     return {};
@@ -53,6 +56,11 @@ export default async function BlogPostPage({ params }: PageProps) {
   try {
     post = getPostBySlug(slug, locale);
   } catch {
+    notFound();
+  }
+
+  // Unpublished drafts are not publicly accessible
+  if (!post.published) {
     notFound();
   }
 
@@ -105,6 +113,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             description={post.summary}
             date={post.date}
             slug={slug}
+            locale={locale}
             readingTime={post.readingTime}
           />
           {/* Previous / Next Navigation */}

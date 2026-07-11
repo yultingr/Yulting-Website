@@ -13,19 +13,24 @@ function getBlogDir(locale: string): string {
 }
 
 export function getAllPostSlugs(locale: string = "en"): string[] {
-  const blogDir = getBlogDir(locale);
+  let blogDir = getBlogDir(locale);
   if (!fs.existsSync(blogDir)) {
     // Fallback to English if locale dir doesn't exist
-    const enDir = getBlogDir("en");
-    if (!fs.existsSync(enDir)) return [];
-    return fs
-      .readdirSync(enDir)
-      .filter((file) => file.endsWith(".mdx"))
-      .map((file) => file.replace(/\.mdx$/, ""));
+    blogDir = getBlogDir("en");
+    if (!fs.existsSync(blogDir)) return [];
   }
   return fs
     .readdirSync(blogDir)
     .filter((file) => file.endsWith(".mdx"))
+    .filter((file) => {
+      // Exclude unpublished drafts
+      try {
+        const { data } = matter(fs.readFileSync(path.join(blogDir, file), "utf-8"));
+        return data.published !== false;
+      } catch {
+        return false;
+      }
+    })
     .map((file) => file.replace(/\.mdx$/, ""));
 }
 
@@ -45,7 +50,9 @@ export function getPostBySlug(slug: string, locale: string = "en"): BlogPost {
 
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
-  const stats = readingTime(content);
+  // Strip a leading H1 — the post template already renders the title
+  const body = content.replace(/^\s*#\s+.+\r?\n+/, "");
+  const stats = readingTime(body);
 
   return {
     title: data.title,
@@ -55,7 +62,7 @@ export function getPostBySlug(slug: string, locale: string = "en"): BlogPost {
     published: data.published ?? true,
     slug,
     readingTime: stats.text,
-    content,
+    content: body,
   };
 }
 

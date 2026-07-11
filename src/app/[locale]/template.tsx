@@ -1,9 +1,8 @@
-import { PageTransition } from "@/components/ui/PageTransition";
-
 export default function LocaleTemplate({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <PageTransition>{children}</PageTransition>;
+  // Templates remount on navigation, replaying the CSS enter animation
+  return <div className="page-enter">{children}</div>;
 }

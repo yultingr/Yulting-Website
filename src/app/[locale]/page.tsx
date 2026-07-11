@@ -1,10 +1,23 @@
+import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
+import { localeAlternates } from "@/lib/seo";
 import { Container } from "@/components/layout/Container";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { TibetanDivider } from "@/components/ui/TibetanDivider";
 import { ButtonLink, ButtonAnchor } from "@/components/ui/Button";
 import { siteConfig } from "@/lib/config";
 import { PersonJsonLd } from "@/components/seo/JsonLd";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return {
+    alternates: localeAlternates(locale),
+  };
+}
 
 export default function Home() {
   const t = useTranslations("home");

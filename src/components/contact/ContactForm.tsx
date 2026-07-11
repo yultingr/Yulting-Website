@@ -45,10 +45,10 @@ export function ContactForm() {
       {status === "sent" ? (
         <div className="mt-8 max-w-xl rounded-xl border border-green-200 bg-green-50 p-6 dark:border-green-800 dark:bg-green-900/20">
           <p className="text-sm font-medium text-green-700 dark:text-green-400">
-            Thank you! Your message has been sent successfully.
+            {t("formSuccess")}
           </p>
           <button onClick={() => setStatus("idle")} className="mt-3 text-sm text-green-600 underline hover:no-underline dark:text-green-400">
-            Send another message
+            {t("formSendAnother")}
           </button>
         </div>
       ) : (
@@ -65,9 +65,9 @@ export function ContactForm() {
             <label htmlFor="contact-message" className="block text-sm font-medium text-foreground">{t("formMessage")}</label>
             <textarea id="contact-message" rows={5} value={message} onChange={(e) => setMessage(e.target.value)} required className="mt-1 w-full resize-none rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-foreground/40 focus:outline-none focus:ring-1 focus:ring-foreground/40" placeholder={t("formMessagePlaceholder")} />
           </div>
-          {status === "error" && <p className="text-sm text-red-500">Something went wrong. Please try again.</p>}
+          {status === "error" && <p className="text-sm text-red-500">{t("formError")}</p>}
           <button type="submit" disabled={status === "sending"} className="inline-flex items-center gap-2 rounded-full bg-foreground px-8 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-50">
-            {status === "sending" ? "Sending..." : t("formSend")}
+            {status === "sending" ? t("formSending") : t("formSend")}
           </button>
         </form>
       )}

@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import type { BlogPostMeta } from "@/types";
 
 export function BlogSearch({ locale }: { locale: string }) {
+  const t = useTranslations("blog");
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<BlogPostMeta[]>([]);
   const [open, setOpen] = useState(false);
@@ -45,7 +47,7 @@ export function BlogSearch({ locale }: { locale: string }) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => results.length > 0 && setOpen(true)}
-          placeholder="Search posts..."
+          placeholder={t("searchPlaceholder")}
           className="w-full rounded-xl border border-border bg-card py-2.5 pl-10 pr-4 text-sm text-foreground placeholder:text-muted-foreground focus:border-foreground/40 focus:outline-none focus:ring-1 focus:ring-foreground/40"
         />
       </div>
@@ -67,7 +69,7 @@ export function BlogSearch({ locale }: { locale: string }) {
 
       {open && query.length >= 2 && results.length === 0 && (
         <div className="absolute z-10 mt-2 w-full rounded-xl border border-border bg-card p-4 shadow-lg">
-          <p className="text-sm text-muted-foreground">No posts found.</p>
+          <p className="text-sm text-muted-foreground">{t("noResults")}</p>
         </div>
       )}
     </div>

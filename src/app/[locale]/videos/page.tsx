@@ -1,27 +1,14 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { readFileSync } from "fs";
-import { join } from "path";
+import { localeAlternates } from "@/lib/seo";
 import { Container } from "@/components/layout/Container";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { VideoList } from "@/components/videos/VideoList";
-import { type Video } from "@/data/videos";
+import { getVideos } from "@/lib/db";
 
 interface Props {
   params: Promise<{ locale: string }>;
-}
-
-function getVideos(): Video[] {
-  try {
-    const raw = readFileSync(
-      join(process.cwd(), "data", "videos.json"),
-      "utf-8",
-    );
-    return JSON.parse(raw);
-  } catch {
-    return [];
-  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -30,6 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: t("pageTitle"),
     description: t("metaDescription"),
+    alternates: localeAlternates(locale, "/videos"),
   };
 }
 

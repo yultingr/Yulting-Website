@@ -1,8 +1,17 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
-import { getAllPostSlugs } from "@/lib/blog";
+import { getAllPosts } from "@/lib/blog";
 
 const BASE_URL = "https://yultingrinpoche.com";
+
+function languageAlternates(path: string): Record<string, string> {
+  return {
+    ...Object.fromEntries(
+      routing.locales.map((locale) => [locale, `${BASE_URL}/${locale}${path}`]),
+    ),
+    "x-default": `${BASE_URL}/${routing.defaultLocale}${path}`,
+  };
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = ["", "/about", "/projects", "/blog", "/videos", "/contact", "/terms", "/privacy"];
@@ -13,22 +22,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const page of pages) {
       entries.push({
         url: `${BASE_URL}/${locale}${page}`,
-        lastModified: new Date(),
         changeFrequency: page === "" ? "weekly" : "monthly",
         priority: page === "" ? 1.0 : 0.8,
+        alternates: { languages: languageAlternates(page) },
       });
     }
   }
 
-  // Blog posts for each locale
+  // Published blog posts for each locale
   for (const locale of routing.locales) {
-    const slugs = getAllPostSlugs(locale);
-    for (const slug of slugs) {
+    for (const post of getAllPosts(locale)) {
       entries.push({
-        url: `${BASE_URL}/${locale}/blog/${slug}`,
-        lastModified: new Date(),
+        url: `${BASE_URL}/${locale}/blog/${post.slug}`,
+        lastModified: new Date(post.date),
         changeFrequency: "monthly",
         priority: 0.6,
+        alternates: { languages: languageAlternates(`/blog/${post.slug}`) },
       });
     }
   }

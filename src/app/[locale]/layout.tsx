@@ -5,7 +5,6 @@ import { ThemeProvider } from "next-themes";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { BackToTop } from "@/components/ui/BackToTop";
-import { SetHtmlLang } from "@/components/ui/SetHtmlLang";
 import { AnalyticsTracker } from "@/components/ui/AnalyticsTracker";
 import { WebSiteJsonLd } from "@/components/seo/JsonLd";
 import { routing } from "@/i18n/routing";
@@ -65,25 +64,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <NextIntlClientProvider messages={messages}>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <SetHtmlLang locale={locale} />
         <div className="flex min-h-screen flex-col">
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "Person",
-                name: "Yulting Rinpoche",
-                url: "https://yultingrinpoche.com",
-                jobTitle: "Buddhist Scholar, Educator, Translator",
-                worksFor: {
-                  "@type": "Organization",
-                  name: "Gaden Shartse Monastery",
-                },
-                sameAs: ["https://instagram.com/yultingr"],
-              }),
-            }}
-          />
           <a
             href="#main-content"
             className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-background focus:px-4 focus:py-2 focus:text-foreground focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent"

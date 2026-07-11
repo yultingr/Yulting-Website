@@ -1,6 +1,7 @@
 "use server";
 
 import { cookies, headers } from "next/headers";
+import { revalidatePath } from "next/cache";
 import { createHmac, timingSafeEqual, randomUUID } from "crypto";
 import { writeFileSync, existsSync, mkdirSync, unlinkSync, readFileSync } from "fs";
 import { join, resolve } from "path";
@@ -179,6 +180,7 @@ export async function addVideo(
   });
   db.setVideos(videos);
   audit("video_add", `Added video: ${title}`);
+  revalidatePath("/[locale]/videos", "page");
 
   return null;
 }
@@ -191,6 +193,7 @@ export async function deleteVideo(id: string): Promise<{ error: string } | null>
   const video = videos.find((v) => v.id === id);
   db.setVideos(videos.filter((v) => v.id !== id));
   audit("video_delete", `Deleted video: ${video?.title ?? id}`);
+  revalidatePath("/[locale]/videos", "page");
 
   return null;
 }
@@ -208,6 +211,7 @@ export async function reorderVideos(ids: string[]): Promise<{ error: string } | 
   }
 
   db.setVideos(reordered);
+  revalidatePath("/[locale]/videos", "page");
   return null;
 }
 

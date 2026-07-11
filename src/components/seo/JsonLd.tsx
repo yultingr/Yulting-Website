@@ -1,16 +1,18 @@
+import { siteConfig } from "@/lib/config";
+
 export function PersonJsonLd() {
   const data = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Yulting Rinpoche",
-    url: "https://yulting.dev",
+    url: siteConfig.url,
     jobTitle: "Buddhist Scholar, Translator & Educator",
     worksFor: {
       "@type": "Organization",
-      name: "Gaden Shartse Monastery",
+      name: siteConfig.monastery,
     },
     knowsLanguage: ["English", "Tibetan"],
-    sameAs: ["https://instagram.com/yultingr"],
+    sameAs: [siteConfig.instagram],
   };
 
   return (
@@ -26,7 +28,7 @@ export function WebSiteJsonLd() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Yulting Rinpoche",
-    url: "https://yulting.dev",
+    url: siteConfig.url,
     description: "Personal website of Yulting Rinpoche — educator, translator, and Buddhist scholar.",
     inLanguage: ["en", "bo", "zh", "ne", "hi"],
   };
@@ -44,12 +46,14 @@ export function BlogPostJsonLd({
   description,
   date,
   slug,
+  locale,
   readingTime,
 }: {
   title: string;
   description: string;
   date: string;
   slug: string;
+  locale: string;
   readingTime: string;
 }) {
   const data = {
@@ -61,13 +65,14 @@ export function BlogPostJsonLd({
     author: {
       "@type": "Person",
       name: "Yulting Rinpoche",
-      url: "https://yulting.dev",
+      url: siteConfig.url,
     },
     publisher: {
       "@type": "Person",
       name: "Yulting Rinpoche",
     },
-    url: `https://yulting.dev/en/blog/${slug}`,
+    url: `${siteConfig.url}/${locale}/blog/${slug}`,
+    inLanguage: locale,
     timeRequired: readingTime,
   };
 

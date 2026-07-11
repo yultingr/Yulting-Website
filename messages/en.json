@@ -91,7 +91,11 @@
     "formMessage": "Message",
     "formMessagePlaceholder": "Write your message here...",
     "formSend": "Send Message",
-    "formNote": "This will open your default email application."
+    "formNote": "This will open your default email application.",
+    "formSending": "Sending…",
+    "formSuccess": "Thank you! Your message has been sent successfully.",
+    "formSendAnother": "Send another message",
+    "formError": "Something went wrong. Please try again."
   },
   "footer": {
     "pages": "Pages",
@@ -208,5 +212,15 @@
     "s9p1": "If you have any questions about this Privacy Policy or our data practices, please contact us at:",
     "s9email": "Email: tulkuyulting@gmail.com",
     "s9location": "Gaden Shartse Monastery, Mundgod, Karnataka, India"
+  },
+  "comments": {
+    "title": "Comments",
+    "namePlaceholder": "Your name *",
+    "emailPlaceholder": "Email (optional)",
+    "contentPlaceholder": "Write a comment…",
+    "submit": "Post Comment",
+    "submitting": "Submitting…",
+    "submitted": "Comment submitted! It will appear after approval.",
+    "error": "Failed to submit. Please try again."
   }
 }
