@@ -35,9 +35,16 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Invalid slug." }, { status: 400 });
   }
 
-  const comments = getComments()
-    .filter((c) => c.postSlug === slug && c.approved)
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  // On read-only serverless hosts SQLite is unavailable; show no comments
+  // rather than failing the request
+  let comments: Comment[] = [];
+  try {
+    comments = getComments()
+      .filter((c) => c.postSlug === slug && c.approved)
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  } catch {
+    // Database unavailable
+  }
 
   return NextResponse.json(comments);
 }
@@ -81,7 +88,15 @@ export async function POST(request: NextRequest) {
       approved: false,
     };
 
-    addComment(comment);
+    try {
+      addComment(comment);
+    } catch {
+      // Database unavailable (e.g. read-only serverless filesystem)
+      return NextResponse.json(
+        { error: "Comments are temporarily unavailable." },
+        { status: 503 },
+      );
+    }
 
     return NextResponse.json({ success: true, message: "Comment submitted for review." });
   } catch {

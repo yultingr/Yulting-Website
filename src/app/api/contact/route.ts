@@ -64,28 +64,47 @@ export async function POST(request: NextRequest) {
       read: false,
     };
 
-    addSubmission(submission);
+    // Save to the database when available. On read-only serverless hosts
+    // (e.g. Vercel) SQLite cannot be opened, so treat this as best-effort
+    // and rely on the email delivery below instead.
+    let saved = false;
+    try {
+      addSubmission(submission);
+      saved = true;
+    } catch {
+      // Database unavailable
+    }
 
-    // Optionally send email via Resend if API key is configured
+    // Send email via Resend if configured
+    let emailed = false;
     const resendKey = process.env.RESEND_API_KEY;
     if (resendKey) {
       try {
-        await fetch("https://api.resend.com/emails", {
+        const res = await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: {
             Authorization: `Bearer ${resendKey}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            from: process.env.RESEND_FROM || "noreply@yulting.dev",
+            from: process.env.RESEND_FROM || "onboarding@resend.dev",
             to: "tulkuyulting@gmail.com",
             subject: `New contact from ${name.trim().slice(0, 100)}`,
             text: `Name: ${name.trim()}\nEmail: ${email.trim()}\n\n${message.trim()}`,
           }),
         });
+        emailed = res.ok;
       } catch {
-        // Email sending failed but submission was saved
+        // Email delivery failed
       }
+    }
+
+    // Only report success if the message was actually stored or delivered
+    if (!saved && !emailed) {
+      return NextResponse.json(
+        { error: "Message could not be delivered." },
+        { status: 503 },
+      );
     }
 
     return NextResponse.json({ success: true });

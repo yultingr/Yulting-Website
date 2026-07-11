@@ -46,12 +46,18 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Invalid path." }, { status: 400 });
     }
 
-    addPageView({
-      path: path.slice(0, 500),
-      timestamp: new Date().toISOString(),
-      referrer: typeof body.referrer === "string" ? body.referrer.slice(0, 500) : undefined,
-      userAgent: request.headers.get("user-agent")?.slice(0, 500) || undefined,
-    });
+    // Analytics are best-effort: if the database is unavailable (e.g.
+    // read-only serverless filesystem), drop the view rather than erroring
+    try {
+      addPageView({
+        path: path.slice(0, 500),
+        timestamp: new Date().toISOString(),
+        referrer: typeof body.referrer === "string" ? body.referrer.slice(0, 500) : undefined,
+        userAgent: request.headers.get("user-agent")?.slice(0, 500) || undefined,
+      });
+    } catch {
+      // Database unavailable
+    }
 
     return NextResponse.json({ success: true });
   } catch {
