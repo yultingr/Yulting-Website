@@ -134,7 +134,7 @@ export function VideoList({ videos }: VideoListProps) {
                   <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
                     {highlightMatch(group.category, searchQuery)}
                   </h2>
-                  <p className="mt-1 text-xs font-medium uppercase tracking-[0.2em] text-accent">
+                  <p className="mt-1 font-serif small-caps text-sm text-accent">
                     {t("teachingCount", { count: group.videos.length })}
                   </p>
                   {t.has(`series.${slug}`) && (
@@ -148,11 +148,8 @@ export function VideoList({ videos }: VideoListProps) {
                     ? group.videos
                     : group.videos.slice(0, VIDEOS_PER_CATEGORY)
                   ).map((video) => (
-                    <div
-                      key={video.id}
-                      className="group overflow-hidden rounded-2xl border border-border bg-card transition-all hover:shadow-lg"
-                    >
-                      <div className="relative aspect-video w-full">
+                    <div key={video.id} className="group">
+                      <div className="relative aspect-video w-full overflow-hidden rounded-sm">
                         {playingVideos.has(video.id) ? (
                           video.platform === "youtube" ? (
                             <iframe
@@ -200,11 +197,9 @@ export function VideoList({ videos }: VideoListProps) {
                           </button>
                         )}
                       </div>
-                      <div className="p-4">
-                        <h3 className="text-sm font-semibold leading-snug text-card-foreground">
-                          {highlightMatch(video.title || "", searchQuery)}
-                        </h3>
-                      </div>
+                      <h3 className="mt-3 font-serif text-base leading-snug text-foreground">
+                        {highlightMatch(video.title || "", searchQuery)}
+                      </h3>
                     </div>
                   ))}
                 </div>
@@ -212,7 +207,7 @@ export function VideoList({ videos }: VideoListProps) {
                   <div className="mt-6 text-center">
                     <button
                       onClick={() => toggleCategory(group.category)}
-                      className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+                      className="inline-flex items-center gap-2 rounded-sm px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-accent"
                     >
                       {expandedCategories.has(group.category) ? (
                         <>

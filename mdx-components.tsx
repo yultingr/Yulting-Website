@@ -46,8 +46,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <li className="text-lg leading-8 text-foreground/85">{children}</li>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="my-6 border-l-2 border-accent/40 pl-5 italic text-muted-foreground">
-        {children}
+      <blockquote className="my-10 text-center">
+        <span aria-hidden="true" className="mb-4 block text-accent/60">
+          ✻
+        </span>
+        <div className="mx-auto max-w-[55ch] font-serif text-xl italic leading-9 text-foreground/80 [&_p]:mb-0 [&_p]:font-serif [&_p]:text-xl [&_p]:italic [&_p]:leading-9 [&_p]:text-foreground/80">
+          {children}
+        </div>
       </blockquote>
     ),
     code: ({ children }) => (

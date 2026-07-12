@@ -5,6 +5,14 @@ import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/layout/Container";
 import { siteConfig } from "@/lib/config";
 
+const pageLinks = [
+  { key: "about", href: "/about" as const },
+  { key: "videos", href: "/videos" as const },
+  { key: "blog", href: "/blog" as const },
+  { key: "translations", href: "/translations" as const },
+  { key: "contact", href: "/contact" as const },
+];
+
 export function Footer() {
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
@@ -13,133 +21,64 @@ export function Footer() {
   return (
     <footer className="bg-[#2a2320] text-[#ece5dc] dark:bg-[#1a1410] dark:text-[#ece5dc]">
       <Container>
-        <div className="py-16">
-          <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-            {/* Brand */}
-            <div className="sm:col-span-2 lg:col-span-1">
-              <h3 className="text-lg font-bold">{tCommon("siteName")}</h3>
-              <p className="mt-3 text-sm leading-relaxed opacity-60">
-                {tCommon("siteDescription")}
-              </p>
-            </div>
+        {/* Colophon */}
+        <div className="py-14 text-center">
+          <p lang="bo" className="font-tibetan text-lg leading-relaxed opacity-80">
+            {siteConfig.tibetanName}
+          </p>
+          <h3 className="mt-1 text-xl font-bold">{tCommon("siteName")}</h3>
+          <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed opacity-60">
+            {tCommon("siteDescription")}
+          </p>
 
-            {/* Navigation */}
-            <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wider opacity-40">
-                {t("pages")}
-              </h4>
-              <nav className="mt-4 flex flex-col gap-3">
-                <Link href="/about" className="text-sm opacity-60 transition-opacity hover:opacity-100">
-                  {tNav("about")}
-                </Link>
-                <Link href="/videos" className="text-sm opacity-60 transition-opacity hover:opacity-100">
-                  {tNav("videos")}
-                </Link>
-                <Link href="/blog" className="text-sm opacity-60 transition-opacity hover:opacity-100">
-                  {tNav("blog")}
-                </Link>
-                <Link href="/translations" className="text-sm opacity-60 transition-opacity hover:opacity-100">
-                  {tNav("translations")}
-                </Link>
-                <Link href="/contact" className="text-sm opacity-60 transition-opacity hover:opacity-100">
-                  {tNav("contact")}
-                </Link>
-              </nav>
-            </div>
+          <nav className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            {pageLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm opacity-60 transition-opacity hover:opacity-100"
+              >
+                {tNav(link.key)}
+              </Link>
+            ))}
+          </nav>
 
-            {/* Contact */}
-            <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wider opacity-40">
-                {t("contact")}
-              </h4>
-              <nav className="mt-4 flex flex-col gap-3">
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="inline-flex items-center gap-2 text-sm opacity-60 transition-opacity hover:opacity-100"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <rect width="20" height="16" x="2" y="4" rx="2" />
-                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                  </svg>
-                  {t("email")}
-                </a>
-                <a
-                  href={siteConfig.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm opacity-60 transition-opacity hover:opacity-100"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                  </svg>
-                  Instagram
-                </a>
-                <a
-                  href="/feed.xml"
-                  className="inline-flex items-center gap-2 text-sm opacity-60 transition-opacity hover:opacity-100"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M4 11a9 9 0 0 1 9 9" />
-                    <path d="M4 4a16 16 0 0 1 16 16" />
-                    <circle cx="5" cy="19" r="1" />
-                  </svg>
-                  {t("subscribe")}
-                </a>
-              </nav>
-            </div>
+          <nav className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="text-sm opacity-60 transition-opacity hover:opacity-100"
+            >
+              {t("email")}
+            </a>
+            <a
+              href={siteConfig.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm opacity-60 transition-opacity hover:opacity-100"
+            >
+              Instagram
+            </a>
+            <a
+              href="/feed.xml"
+              className="text-sm opacity-60 transition-opacity hover:opacity-100"
+            >
+              {t("subscribe")}
+            </a>
+            <Link
+              href="/terms"
+              className="text-sm opacity-60 transition-opacity hover:opacity-100"
+            >
+              {t("terms")}
+            </Link>
+            <Link
+              href="/privacy"
+              className="text-sm opacity-60 transition-opacity hover:opacity-100"
+            >
+              {t("privacy")}
+            </Link>
+          </nav>
 
-            {/* Legal */}
-            <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wider opacity-40">
-                {t("legal")}
-              </h4>
-              <nav className="mt-4 flex flex-col gap-3">
-                <Link href="/terms" className="text-sm opacity-60 transition-opacity hover:opacity-100">
-                  {t("terms")}
-                </Link>
-                <Link href="/privacy" className="text-sm opacity-60 transition-opacity hover:opacity-100">
-                  {t("privacy")}
-                </Link>
-              </nav>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="border-t border-white/10 py-6">
-          <p className="text-sm opacity-40">
+          <p className="mt-10 text-sm opacity-40">
             {t("copyright", { year: new Date().getFullYear() })}
           </p>
         </div>

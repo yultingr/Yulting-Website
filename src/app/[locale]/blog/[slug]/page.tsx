@@ -13,8 +13,8 @@ import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import { localeAlternates } from "@/lib/seo";
-import { ReadingProgress } from "@/components/blog/ReadingProgress";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { KnotSeal } from "@/components/ui/TibetanDivider";
 
 interface PageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -80,7 +80,6 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <>
-      <ReadingProgress />
       <section className="py-16">
         <Container>
           <Breadcrumbs items={[
@@ -104,7 +103,11 @@ export default async function BlogPostPage({ params }: PageProps) {
             <div className="prose">
               <MDXContent components={components} />
             </div>
-            <ShareButtons title={post.title} slug={slug} />
+            {/* Seal — the knot as a signature at the end of the writing */}
+            <div className="mt-14 flex justify-center" aria-hidden="true">
+              <KnotSeal className="text-accent/60" size={32} />
+            </div>
+            <ShareButtons title={post.title} slug={slug} locale={locale} />
             <p className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
               {t("writeToMe")}{" "}
               <Link href="/contact" className="text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent">
@@ -122,25 +125,26 @@ export default async function BlogPostPage({ params }: PageProps) {
           />
           {/* Previous / Next Navigation */}
           {(prev || next) && (
-            <nav className="mt-16 grid gap-4 sm:grid-cols-2" aria-label="Blog post navigation">
+            <nav
+              className="mx-auto mt-16 grid max-w-[68ch] gap-4 border-t border-border pt-8 sm:grid-cols-2"
+              aria-label="Blog post navigation"
+            >
               {prev ? (
-                <Link
-                  href={`/blog/${prev.slug}`}
-                  className="group rounded-2xl border border-border bg-card p-5 transition-all hover:border-foreground/20 hover:shadow-lg"
-                >
-                  <span className="text-xs text-muted-foreground">{t("prevPost")}</span>
-                  <p className="mt-1 font-medium text-foreground transition-colors group-hover:text-accent">
+                <Link href={`/blog/${prev.slug}`} className="group block">
+                  <span className="font-serif small-caps text-sm text-muted-foreground">
+                    {t("prevPost")}
+                  </span>
+                  <p className="mt-1 font-serif text-lg text-foreground transition-colors group-hover:text-accent">
                     {prev.title}
                   </p>
                 </Link>
               ) : <div />}
               {next ? (
-                <Link
-                  href={`/blog/${next.slug}`}
-                  className="group rounded-2xl border border-border bg-card p-5 text-right transition-all hover:border-foreground/20 hover:shadow-lg"
-                >
-                  <span className="text-xs text-muted-foreground">{t("nextPost")}</span>
-                  <p className="mt-1 font-medium text-foreground transition-colors group-hover:text-accent">
+                <Link href={`/blog/${next.slug}`} className="group block text-right">
+                  <span className="font-serif small-caps text-sm text-muted-foreground">
+                    {t("nextPost")}
+                  </span>
+                  <p className="mt-1 font-serif text-lg text-foreground transition-colors group-hover:text-accent">
                     {next.title}
                   </p>
                 </Link>

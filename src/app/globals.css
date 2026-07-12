@@ -20,7 +20,7 @@
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-border: var(--border-color);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-inter), "Monlam", ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-garamond), "Monlam", Georgia, serif;
   --font-tibetan: "Monlam", sans-serif;
 }
@@ -28,7 +28,8 @@
 :root {
   --background: #fffbf5;
   --foreground: #1e293b;
-  --accent: #ea580c;
+  /* Burnt saffron — mineral pigment rather than web orange */
+  --accent: #b45309;
   --accent-light: #fff7ed;
   --muted: #fef3c7;
   --muted-foreground: #64748b;
@@ -63,6 +64,70 @@ h2,
 h3,
 h4 {
   font-family: var(--font-garamond), "Monlam", Georgia, serif;
+}
+
+/* Bookmaker's details: oldstyle numerals in serif settings and dates */
+h1,
+h2,
+h3,
+h4,
+time,
+.font-serif {
+  font-feature-settings: "onum" 1;
+}
+
+/* True small caps (EB Garamond carries real smcp glyphs) */
+.small-caps {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.08em;
+}
+
+/* A restrained alternative to a drop cap: ease the reader in */
+.prose > p:first-of-type {
+  font-size: 1.1875rem;
+  line-height: 1.9;
+}
+
+/* Inline Tibetan inside body text: Monlam runs optically small,
+   so give marked spans a little more size and air */
+.prose [lang="bo"],
+span[lang="bo"] {
+  font-family: var(--font-tibetan);
+  font-size: 1.15em;
+  line-height: 1.8;
+}
+
+/* ============================================================
+   Per-language typography
+   Scripts differ in optical density; each locale gets its own
+   size, leading, and serif stack so no language reads second-class.
+   ============================================================ */
+html[lang="bo"] body {
+  font-size: 1.0625rem;
+  line-height: 1.85;
+}
+
+html[lang="bo"] h1,
+html[lang="bo"] h2,
+html[lang="bo"] h3,
+html[lang="bo"] h4 {
+  line-height: 1.5;
+}
+
+html[lang="hi"] body,
+html[lang="ne"] body {
+  line-height: 1.8;
+}
+
+html[lang="zh"] body {
+  line-height: 1.85;
+}
+
+html[lang="zh"] h1,
+html[lang="zh"] h2,
+html[lang="zh"] h3,
+html[lang="zh"] h4 {
+  font-family: var(--font-garamond), "Songti SC", "Noto Serif SC", "Monlam", Georgia, serif;
 }
 
 /* Subtle old-paper / woven-silk texture (light mode) */

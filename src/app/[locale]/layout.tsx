@@ -4,7 +4,6 @@ import { getMessages, getTranslations } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { BackToTop } from "@/components/ui/BackToTop";
 import { AnalyticsTracker } from "@/components/ui/AnalyticsTracker";
 import { WebSiteJsonLd } from "@/components/seo/JsonLd";
 import { routing } from "@/i18n/routing";
@@ -74,7 +73,6 @@ export default async function LocaleLayout({ children, params }: Props) {
           <Header />
           <main id="main-content" className="flex-1">{children}</main>
           <Footer />
-          <BackToTop />
           <AnalyticsTracker />
           <WebSiteJsonLd />
         </div>

@@ -31,35 +31,54 @@ export function LanguageSwitcher() {
     router.replace(pathname, { locale: nextLocale });
   }
 
+  const chevron = (
+    <svg
+      aria-hidden="true"
+      className="pointer-events-none absolute right-0 top-1/2 h-3 w-3 -translate-y-1/2 text-muted-foreground"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+    </svg>
+  );
+
   return (
     <>
-      {/* Desktop: full names */}
-      <select
-        value={locale}
-        onChange={handleChange}
-        aria-label={t("label")}
-        className="hidden rounded-lg border border-border bg-transparent px-2.5 py-1.5 text-sm text-muted-foreground transition-colors hover:border-foreground/30 focus:outline-none focus:ring-2 focus:ring-accent/50 md:inline-block"
-      >
-        {Object.entries(localeNames).map(([code, name]) => (
-          <option key={code} value={code}>
-            {name}
-          </option>
-        ))}
-      </select>
+      {/* Desktop: full names, styled as quiet text */}
+      <span className="relative hidden md:inline-block">
+        <select
+          value={locale}
+          onChange={handleChange}
+          aria-label={t("label")}
+          className="appearance-none rounded-sm border-none bg-transparent py-1 pl-1 pr-5 text-sm text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+        >
+          {Object.entries(localeNames).map(([code, name]) => (
+            <option key={code} value={code}>
+              {name}
+            </option>
+          ))}
+        </select>
+        {chevron}
+      </span>
 
       {/* Mobile: short codes */}
-      <select
-        value={locale}
-        onChange={handleChange}
-        aria-label={t("label")}
-        className="inline-block rounded-lg border border-border bg-transparent px-1.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-foreground/30 focus:outline-none focus:ring-2 focus:ring-accent/50 md:hidden"
-      >
-        {Object.entries(localeShort).map(([code, name]) => (
-          <option key={code} value={code}>
-            {name}
-          </option>
-        ))}
-      </select>
+      <span className="relative inline-block md:hidden">
+        <select
+          value={locale}
+          onChange={handleChange}
+          aria-label={t("label")}
+          className="appearance-none rounded-sm border-none bg-transparent py-1 pl-1 pr-4 text-xs text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+        >
+          {Object.entries(localeShort).map(([code, name]) => (
+            <option key={code} value={code}>
+              {name}
+            </option>
+          ))}
+        </select>
+        {chevron}
+      </span>
     </>
   );
 }

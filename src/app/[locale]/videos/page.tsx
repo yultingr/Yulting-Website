@@ -30,7 +30,7 @@ export default async function VideosPage({ params }: Props) {
       <Container>
         <Breadcrumbs items={[{ labelKey: "videos" }]} />
         <div className="mb-14">
-          <span className="text-xs font-medium uppercase tracking-[0.25em] text-accent">
+          <span className="font-serif small-caps text-sm text-accent">
             {t("subtitle")}
           </span>
           <h1 className="mt-3 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">

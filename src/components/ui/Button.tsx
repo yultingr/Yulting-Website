@@ -20,7 +20,7 @@ const sizeStyles: Record<Size, string> = {
 };
 
 const baseStyles =
-  "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
+  "inline-flex items-center justify-center gap-2 rounded-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
 
 interface ButtonProps extends ComponentProps<"button"> {
   variant?: Variant;

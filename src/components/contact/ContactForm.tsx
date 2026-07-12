@@ -66,7 +66,7 @@ export function ContactForm() {
             <textarea id="contact-message" rows={5} value={message} onChange={(e) => setMessage(e.target.value)} required className="mt-1 w-full resize-none rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-foreground/40 focus:outline-none focus:ring-1 focus:ring-foreground/40" placeholder={t("formMessagePlaceholder")} />
           </div>
           {status === "error" && <p className="text-sm text-red-500">{t("formError")}</p>}
-          <button type="submit" disabled={status === "sending"} className="inline-flex items-center gap-2 rounded-full bg-foreground px-8 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-50">
+          <button type="submit" disabled={status === "sending"} className="inline-flex items-center gap-2 rounded-sm bg-accent px-8 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50 dark:text-[#221c16]">
             {status === "sending" ? t("formSending") : t("formSend")}
           </button>
         </form>

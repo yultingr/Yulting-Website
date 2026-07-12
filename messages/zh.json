@@ -31,7 +31,8 @@
     "ctaEmail": "发送邮件",
     "ctaFollow": "关注",
     "fromTeachings": "来自开示",
-    "fromWritings": "来自文集"
+    "fromWritings": "来自文集",
+    "heroLink": "阅读文集"
   },
   "about": {
     "pageTitle": "关于",

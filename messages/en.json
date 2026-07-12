@@ -31,7 +31,8 @@
     "ctaEmail": "Email",
     "ctaFollow": "Follow",
     "fromTeachings": "From the teachings",
-    "fromWritings": "From the writings"
+    "fromWritings": "From the writings",
+    "heroLink": "Read the writings"
   },
   "about": {
     "pageTitle": "About",
