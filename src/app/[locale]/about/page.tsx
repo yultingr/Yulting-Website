@@ -42,7 +42,7 @@ export default async function AboutPage({ params }: Props) {
         </div>
 
         <Container>
-          <TibetanDivider variant="simple" />
+          <TibetanDivider />
         </Container>
 
         {/* ── Studies ─────────────────────────────────── */}
@@ -59,7 +59,7 @@ export default async function AboutPage({ params }: Props) {
         </div>
 
         <Container>
-          <TibetanDivider variant="simple" />
+          <TibetanDivider />
         </Container>
 
         {/* ── Teaching & Translation ──────────────────── */}
@@ -76,7 +76,7 @@ export default async function AboutPage({ params }: Props) {
         </div>
 
         <Container>
-          <TibetanDivider variant="simple" />
+          <TibetanDivider />
         </Container>
 
         {/* ── Wider Engagements ───────────────────────── */}

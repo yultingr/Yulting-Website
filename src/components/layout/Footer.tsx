@@ -19,7 +19,7 @@ export function Footer() {
   const tCommon = useTranslations("common");
 
   return (
-    <footer className="bg-[#2a2320] text-[#ece5dc] dark:bg-[#1a1410] dark:text-[#ece5dc]">
+    <footer className="bg-[#2a2320] text-[#ece5dc] dark:bg-[#1a1410] dark:text-[#ece5dc] print:hidden">
       <Container>
         {/* Colophon */}
         <div className="py-14 text-center">

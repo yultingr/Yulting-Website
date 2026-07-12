@@ -29,7 +29,7 @@ export function ShareButtons({
   }
 
   return (
-    <div className="mt-8 text-center">
+    <div className="mt-8 text-center print:hidden">
       <button
         onClick={handleCopy}
         className="inline-flex items-center gap-2 rounded-sm px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-accent"

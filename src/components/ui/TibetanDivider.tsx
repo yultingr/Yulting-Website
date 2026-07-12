@@ -1,15 +1,12 @@
 /**
  * Decorative section divider built around the site's single mark:
- * a simplified endless knot. The `variant` prop is kept for
- * compatibility but every variant now renders the same motif —
- * one mark, used consistently, reads as identity.
+ * a simplified endless knot. One mark, used consistently, reads
+ * as identity.
  */
 
-type Variant = "cloud" | "knot" | "simple";
-
-export function TibetanDivider({ variant: _ = "knot" }: { variant?: Variant }) {
+export function TibetanDivider() {
   return (
-    <div className="tibetan-divider" aria-hidden="true">
+    <div className="tibetan-divider print:hidden" aria-hidden="true">
       <KnotSeal className="text-accent/50" size={36} />
     </div>
   );

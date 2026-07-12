@@ -98,6 +98,32 @@ span[lang="bo"] {
 }
 
 /* ============================================================
+   Print: a teaching should print like the page it aspires to be
+   ============================================================ */
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  body::before {
+    display: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  main a {
+    color: inherit;
+  }
+
+  .prose a {
+    text-decoration: underline;
+  }
+}
+
+/* ============================================================
    Per-language typography
    Scripts differ in optical density; each locale gets its own
    size, leading, and serif stack so no language reads second-class.
@@ -180,9 +206,10 @@ html {
   }
 }
 
+/* A pale saffron wash — long readings select a lot of text */
 ::selection {
-  background: var(--accent);
-  color: white;
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  color: var(--foreground);
 }
 
 /* ============================================================

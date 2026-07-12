@@ -4,5 +4,7 @@ import { routing } from "./i18n/routing";
 export default createMiddleware(routing);
 
 export const config = {
-  matcher: ["/((?!api|_next|.*\\..*).*)"],
+  // Skip API routes, Next internals, metadata images, and any path with
+  // a file extension
+  matcher: ["/((?!api|_next|opengraph-image|.*\\..*).*)"],
 };

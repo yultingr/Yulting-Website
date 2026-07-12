@@ -44,7 +44,7 @@ export default async function TranslationsPage({ params }: Props) {
             {t("intro2")}
           </p>
 
-          <TibetanDivider variant="knot" />
+          <TibetanDivider />
 
           <p className="text-muted-foreground">{t("cta")}</p>
           <div className="mt-6">

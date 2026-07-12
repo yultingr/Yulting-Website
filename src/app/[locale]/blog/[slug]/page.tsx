@@ -108,7 +108,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               <KnotSeal className="text-accent/60" size={32} />
             </div>
             <ShareButtons title={post.title} slug={slug} locale={locale} />
-            <p className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
+            <p className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground print:hidden">
               {t("writeToMe")}{" "}
               <Link href="/contact" className="text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent">
                 {t("writeToMeLink")}
@@ -126,7 +126,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           {/* Previous / Next Navigation */}
           {(prev || next) && (
             <nav
-              className="mx-auto mt-16 grid max-w-[68ch] gap-4 border-t border-border pt-8 sm:grid-cols-2"
+              className="mx-auto mt-16 grid max-w-[68ch] gap-4 border-t border-border pt-8 sm:grid-cols-2 print:hidden"
               aria-label="Blog post navigation"
             >
               {prev ? (
