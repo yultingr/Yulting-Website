@@ -4,10 +4,14 @@
 
 @font-face {
   font-family: "Monlam";
-  src: url("/fonts/MonlamUniOuChan2.ttf") format("truetype");
+  /* Subset to the Tibetan block and WOFF2-compressed (422 KB vs the
+     1.5 MB source TTF, which is kept only for server-side OG images).
+     unicode-range means browsers fetch it only when Tibetan appears. */
+  src: url("/fonts/MonlamUniOuChan2.subset.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0F00-0FFF;
 }
 
 @theme inline {

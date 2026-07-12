@@ -8,7 +8,7 @@ import { getPostBySlug, getAllPostSlugs, getAdjacentPosts } from "@/lib/blog";
 import { Container } from "@/components/layout/Container";
 import { ShareButtons } from "@/components/blog/ShareButtons";
 import { BlogPostJsonLd } from "@/components/seo/JsonLd";
-import { useMDXComponents } from "../../../../../mdx-components";
+import { useMDXComponents as getMDXComponents } from "../../../../../mdx-components";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
@@ -74,7 +74,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     baseUrl: import.meta.url,
   });
 
-  const components = useMDXComponents({});
+  const components = getMDXComponents({});
   const t = await getTranslations({ locale, namespace: "blog" });
   const { prev, next } = getAdjacentPosts(slug, locale);
 

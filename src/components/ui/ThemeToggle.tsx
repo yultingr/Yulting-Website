@@ -1,15 +1,20 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
 
+const emptySubscribe = () => () => {};
+
 export function ThemeToggle() {
-  const [mounted, setMounted] = useState(false);
+  // Hydration guard: false during SSR, true on the client
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
   const { theme, setTheme } = useTheme();
   const t = useTranslations("theme");
-
-  useEffect(() => setMounted(true), []);
 
   if (!mounted) {
     return <div className="h-9 w-9" />;

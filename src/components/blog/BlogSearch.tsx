@@ -12,18 +12,24 @@ export function BlogSearch({ locale }: { locale: string }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (query.length < 2) { setResults([]); return; }
-
-    const timer = setTimeout(async () => {
-      try {
-        const res = await fetch(`/api/blog/search?q=${encodeURIComponent(query)}&locale=${locale}`);
-        const data = await res.json();
-        setResults(Array.isArray(data) ? data : []);
-        setOpen(true);
-      } catch {
-        setResults([]);
-      }
-    }, 300);
+    const tooShort = query.length < 2;
+    const timer = setTimeout(
+      async () => {
+        if (tooShort) {
+          setResults([]);
+          return;
+        }
+        try {
+          const res = await fetch(`/api/blog/search?q=${encodeURIComponent(query)}&locale=${locale}`);
+          const data = await res.json();
+          setResults(Array.isArray(data) ? data : []);
+          setOpen(true);
+        } catch {
+          setResults([]);
+        }
+      },
+      tooShort ? 0 : 300,
+    );
 
     return () => clearTimeout(timer);
   }, [query, locale]);
