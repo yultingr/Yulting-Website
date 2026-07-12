@@ -100,7 +100,7 @@ export function VideoList({ videos }: VideoListProps) {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder={t("searchPlaceholder")}
-          className="w-full rounded-xl border border-border bg-card py-3 pl-12 pr-10 text-sm text-foreground placeholder:text-muted-foreground focus:border-foreground/30 focus:outline-none focus:ring-1 focus:ring-foreground/20"
+          className="w-full rounded-sm border border-border bg-card py-3 pl-12 pr-10 text-sm text-foreground placeholder:text-muted-foreground focus:border-foreground/30 focus:outline-none focus:ring-1 focus:ring-foreground/20"
         />
         {searchQuery && (
           <button
@@ -116,7 +116,7 @@ export function VideoList({ videos }: VideoListProps) {
 
       {/* Video groups */}
       {filteredVideos.length === 0 ? (
-        <div className="rounded-2xl border border-border bg-muted p-12 text-center">
+        <div className="border-y border-border py-12 text-center">
           <p className="text-muted-foreground">
             {searchQuery ? t("noResults") : t("noResults")}
           </p>

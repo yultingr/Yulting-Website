@@ -4,7 +4,6 @@ import { localeAlternates } from "@/lib/seo";
 import { getAllPosts } from "@/lib/blog";
 import { Container } from "@/components/layout/Container";
 import { BlogPostList } from "@/components/blog/BlogPostList";
-import { BlogSearch } from "@/components/blog/BlogSearch";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 interface Props {

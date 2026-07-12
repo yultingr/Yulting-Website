@@ -64,7 +64,7 @@ export function BlogPostList({ posts, allTags, locale }: BlogPostListProps) {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder={t("searchPlaceholder")}
-          className="w-full rounded-xl border border-border bg-card py-3 pl-12 pr-10 text-sm text-foreground placeholder:text-muted-foreground focus:border-foreground/30 focus:outline-none focus:ring-1 focus:ring-foreground/20"
+          className="w-full rounded-sm border border-border bg-card py-3 pl-12 pr-10 text-sm text-foreground placeholder:text-muted-foreground focus:border-foreground/30 focus:outline-none focus:ring-1 focus:ring-foreground/20"
         />
         {searchQuery && (
           <button
@@ -83,7 +83,7 @@ export function BlogPostList({ posts, allTags, locale }: BlogPostListProps) {
         <div className="mt-4 flex flex-wrap gap-2">
           <button
             onClick={() => setActiveTag(null)}
-            className={`rounded-sm px-3 py-1 text-sm transition-colors ${
+            className={`rounded-sm px-3 py-2 text-sm transition-colors ${
               activeTag === null
                 ? "text-accent underline decoration-accent/40 underline-offset-4"
                 : "text-muted-foreground hover:text-foreground"
@@ -97,7 +97,7 @@ export function BlogPostList({ posts, allTags, locale }: BlogPostListProps) {
               onClick={() =>
                 setActiveTag(activeTag === tag ? null : tag)
               }
-              className={`rounded-sm px-3 py-1 text-sm transition-colors ${
+              className={`rounded-sm px-3 py-2 text-sm transition-colors ${
                 activeTag === tag
                   ? "text-accent underline decoration-accent/40 underline-offset-4"
                   : "text-muted-foreground hover:text-foreground"

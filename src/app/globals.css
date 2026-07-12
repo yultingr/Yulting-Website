@@ -187,6 +187,19 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Keyboard focus on text links matches the accent system */
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 /* Page enter transition — pure CSS so content is never left invisible
    if JavaScript fails or is disabled */
 @keyframes page-enter {

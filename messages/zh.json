@@ -77,7 +77,7 @@
     "locationLabel": "地址",
     "locationValue": "甘丹夏孜寺，印度",
     "formTitle": "发送消息",
-    "formSubtitle": "填写以下表单，它将打开您的邮件客户端并预填消息内容。",
+    "formSubtitle": "您可以直接在此留言，信息将通过电子邮件送达。",
     "formName": "您的姓名",
     "formNamePlaceholder": "请输入您的姓名",
     "formEmail": "您的邮箱",

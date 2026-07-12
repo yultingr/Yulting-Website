@@ -78,7 +78,7 @@ export function Footer() {
             </Link>
           </nav>
 
-          <p className="mt-10 text-sm opacity-40">
+          <p className="mt-10 text-sm opacity-60">
             {t("copyright", { year: new Date().getFullYear() })}
           </p>
         </div>
