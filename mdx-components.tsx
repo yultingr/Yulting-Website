@@ -9,56 +9,52 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         alt={alt || ""}
         width={800}
         height={450}
-        className="my-4 rounded-lg"
+        className="my-6 rounded-lg"
         style={{ width: "100%", height: "auto" }}
         {...props}
       />
     ),
     h1: ({ children }) => (
-      <h1 className="mb-4 mt-8 text-3xl font-bold tracking-tight">{children}</h1>
+      <h1 className="mb-4 mt-10 text-3xl font-bold tracking-tight">{children}</h1>
     ),
     h2: ({ children }) => (
-      <h2 className="mb-3 mt-8 text-2xl font-semibold tracking-tight">
+      <h2 className="mb-3 mt-10 text-2xl font-semibold tracking-tight">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="mb-2 mt-6 text-xl font-semibold">{children}</h3>
+      <h3 className="mb-2 mt-8 text-xl font-semibold">{children}</h3>
     ),
     p: ({ children }) => (
-      <p className="mb-4 leading-7 text-neutral-700 dark:text-neutral-300">
-        {children}
-      </p>
+      <p className="mb-5 text-lg leading-8 text-foreground/85">{children}</p>
     ),
     a: ({ href, children }) => (
       <a
         href={href}
-        className="text-blue-600 underline decoration-blue-600/30 underline-offset-2 transition-colors hover:decoration-blue-600 dark:text-blue-400"
+        className="text-accent underline decoration-accent/40 underline-offset-2 transition-colors hover:decoration-accent"
       >
         {children}
       </a>
     ),
     ul: ({ children }) => (
-      <ul className="mb-4 ml-6 list-disc space-y-1">{children}</ul>
+      <ul className="mb-5 ml-6 list-disc space-y-2">{children}</ul>
     ),
     ol: ({ children }) => (
-      <ol className="mb-4 ml-6 list-decimal space-y-1">{children}</ol>
+      <ol className="mb-5 ml-6 list-decimal space-y-2">{children}</ol>
     ),
     li: ({ children }) => (
-      <li className="text-neutral-700 dark:text-neutral-300">{children}</li>
+      <li className="text-lg leading-8 text-foreground/85">{children}</li>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="my-4 border-l-2 border-neutral-300 pl-4 italic text-neutral-600 dark:border-neutral-700 dark:text-neutral-400">
+      <blockquote className="my-6 border-l-2 border-accent/40 pl-5 italic text-muted-foreground">
         {children}
       </blockquote>
     ),
     code: ({ children }) => (
-      <code className="rounded bg-neutral-100 px-1.5 py-0.5 text-sm dark:bg-neutral-800">
-        {children}
-      </code>
+      <code className="rounded bg-muted px-1.5 py-0.5 text-sm">{children}</code>
     ),
     pre: ({ children }) => (
-      <pre className="my-4 overflow-x-auto rounded-lg bg-neutral-950 p-4 text-sm text-neutral-100">
+      <pre className="my-6 overflow-x-auto rounded-lg bg-[#1c1917] p-4 text-sm text-[#e7e5e4]">
         {children}
       </pre>
     ),

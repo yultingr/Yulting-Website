@@ -3,7 +3,13 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { type Video } from "@/data/videos";
-import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
+
+function categorySlug(category: string): string {
+  return category
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
 
 interface VideoListProps {
   videos: Video[];
@@ -116,13 +122,27 @@ export function VideoList({ videos }: VideoListProps) {
           </p>
         </div>
       ) : (
-        <div className="space-y-16">
-          {groups.map((group) => (
-            <AnimateOnScroll key={group.category}>
-              <div>
-                <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground">
-                  {highlightMatch(group.category, searchQuery)}
-                </h2>
+        <div className="space-y-14">
+          {groups.map((group) => {
+            const slug = categorySlug(group.category);
+            return (
+              <section
+                key={group.category}
+                className="border-t border-border pt-12 first:border-t-0 first:pt-0"
+              >
+                <header className="mb-8">
+                  <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                    {highlightMatch(group.category, searchQuery)}
+                  </h2>
+                  <p className="mt-1 text-xs font-medium uppercase tracking-[0.2em] text-accent">
+                    {t("teachingCount", { count: group.videos.length })}
+                  </p>
+                  {t.has(`series.${slug}`) && (
+                    <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                      {t(`series.${slug}`)}
+                    </p>
+                  )}
+                </header>
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {(expandedCategories.has(group.category)
                     ? group.videos
@@ -212,9 +232,9 @@ export function VideoList({ videos }: VideoListProps) {
                     </button>
                   </div>
                 )}
-              </div>
-            </AnimateOnScroll>
-          ))}
+              </section>
+            );
+          })}
         </div>
       )}
     </>

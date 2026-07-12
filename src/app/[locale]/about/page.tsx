@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { localeAlternates } from "@/lib/seo";
 import { Container } from "@/components/layout/Container";
-import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { TibetanDivider } from "@/components/ui/TibetanDivider";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
@@ -30,7 +29,7 @@ export default async function AboutPage({ params }: Props) {
         <Breadcrumbs items={[{ labelKey: "about" }]} />
 
         {/* ── Introduction ────────────────────────────── */}
-        <AnimateOnScroll>
+        <div>
           <div className="mx-auto max-w-2xl text-center">
             <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
               {t("pageTitle")}
@@ -40,14 +39,14 @@ export default async function AboutPage({ params }: Props) {
               <p>{t("bio2")}</p>
             </div>
           </div>
-        </AnimateOnScroll>
+        </div>
 
         <Container>
           <TibetanDivider variant="simple" />
         </Container>
 
         {/* ── Studies ─────────────────────────────────── */}
-        <AnimateOnScroll>
+        <div>
           <div className="mx-auto max-w-2xl">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground">
               {t("studiesTitle")}
@@ -57,14 +56,14 @@ export default async function AboutPage({ params }: Props) {
               <p>{t("studiesText2")}</p>
             </div>
           </div>
-        </AnimateOnScroll>
+        </div>
 
         <Container>
           <TibetanDivider variant="simple" />
         </Container>
 
         {/* ── Teaching & Translation ──────────────────── */}
-        <AnimateOnScroll>
+        <div>
           <div className="mx-auto max-w-2xl">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground">
               {t("teachingTitle")}
@@ -74,14 +73,14 @@ export default async function AboutPage({ params }: Props) {
               <p>{t("teachingText2")}</p>
             </div>
           </div>
-        </AnimateOnScroll>
+        </div>
 
         <Container>
           <TibetanDivider variant="simple" />
         </Container>
 
         {/* ── Wider Engagements ───────────────────────── */}
-        <AnimateOnScroll>
+        <div>
           <div className="mx-auto max-w-2xl">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground">
               {t("engagementsTitle")}
@@ -91,7 +90,7 @@ export default async function AboutPage({ params }: Props) {
               <p>{t("engagementsText2")}</p>
             </div>
           </div>
-        </AnimateOnScroll>
+        </div>
 
       </Container>
     </section>

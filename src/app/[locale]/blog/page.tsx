@@ -5,7 +5,6 @@ import { getAllPosts } from "@/lib/blog";
 import { Container } from "@/components/layout/Container";
 import { BlogPostList } from "@/components/blog/BlogPostList";
 import { BlogSearch } from "@/components/blog/BlogSearch";
-import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 interface Props {
@@ -36,7 +35,7 @@ export default async function BlogPage({ params }: Props) {
       <Container>
         <Breadcrumbs items={[{ labelKey: "blog" }]} />
         {/* Section header */}
-        <AnimateOnScroll>
+        <div>
           <div className="max-w-2xl">
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
               {t("pageTitle")}
@@ -45,7 +44,7 @@ export default async function BlogPage({ params }: Props) {
               {t("subtitle")}
             </p>
           </div>
-        </AnimateOnScroll>
+        </div>
 
         <BlogPostList posts={posts} allTags={allTags} locale={locale} />
       </Container>

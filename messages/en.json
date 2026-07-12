@@ -6,10 +6,10 @@
   },
   "nav": {
     "about": "About",
-    "projects": "Projects",
-    "blog": "Blog",
+    "blog": "Writings",
     "contact": "Contact",
-    "videos": "Videos"
+    "videos": "Teachings",
+    "translations": "Translations"
   },
   "home": {
     "title": "Yulting Rinpoche",
@@ -29,7 +29,9 @@
     "ctaHeading": "Get in Touch",
     "ctaText": "Whether you have a question, a thought to share, or simply wish to connect, I would be glad to hear from you.",
     "ctaEmail": "Email",
-    "ctaFollow": "Follow"
+    "ctaFollow": "Follow",
+    "fromTeachings": "From the teachings",
+    "fromWritings": "From the writings"
   },
   "about": {
     "pageTitle": "About",
@@ -47,19 +49,8 @@
     "engagementsText1": "I have had the good fortune to participate in gatherings beyond the monastery, including the Second Indo-Tibetan Scholars Conference, where I spoke about contemplative practice and Buddhist psychology. I have also given Dharma talks in Singapore and other places when invited.",
     "engagementsText2": "These experiences have taught me a great deal about how the Dharma can speak to people in different contexts and cultures. I remain a student above all, grateful for every opportunity to learn and share."
   },
-  "projects": {
-    "pageTitle": "Projects",
-    "metaDescription": "A collection of my projects and work.",
-    "subtitle": "A few things I have been working on.",
-    "liveDemo": "Live Demo",
-    "github": "GitHub",
-    "project1Title": "Personal Website",
-    "project1Desc": "My personal website and blog built with Next.js, TypeScript, Tailwind CSS, and MDX.",
-    "comingSoon": "More Projects Coming Soon",
-    "comingSoonDesc": "I'm working on new projects. Check back later for updates!"
-  },
   "blog": {
-    "pageTitle": "Blog",
+    "pageTitle": "Writings",
     "metaDescription": "Thoughts, reflections, and insights on Buddhist philosophy, translation, and education.",
     "subtitle": "Thoughts, reflections, and insights.",
     "readMore": "Read more",
@@ -72,7 +63,9 @@
     "prevPost": "Previous",
     "nextPost": "Next",
     "share": "Share",
-    "copyLink": "Copy link"
+    "copyLink": "Copy link",
+    "writeToMe": "Questions or reflections are welcome —",
+    "writeToMeLink": "write to me."
   },
   "contact": {
     "pageTitle": "Contact",
@@ -165,13 +158,20 @@
     "s7p3": "As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature."
   },
   "videos": {
-    "pageTitle": "Videos",
-    "metaDescription": "Watch videos of teachings, talks, and events by Yulting Rinpoche.",
-    "subtitle": "Teachings, talks, and events.",
+    "pageTitle": "Teachings",
+    "metaDescription": "Dharma teachings, talks, and series by Yulting Rinpoche.",
+    "subtitle": "A library of dharma talks and teaching series.",
     "searchPlaceholder": "Search videos…",
     "noResults": "No videos match your search.",
     "showMore": "Show {count} more",
-    "showLess": "Show less"
+    "showLess": "Show less",
+    "teachingCount": "{count, plural, one {# teaching} other {# teachings}}",
+    "series": {
+      "covid-19-series": "Guidance for transforming the difficulty of the pandemic into practice.",
+      "teachings": "A series for lay practitioners based on Nagarjuna's Letter to a Friend.",
+      "ancient-everyday-wisdom": "Applying ancient wisdom to the challenges of modern daily life.",
+      "managing-mental-struggles": "Buddhist psychology for working with anger, doubt, craving, and jealousy."
+    }
   },
   "privacy": {
     "pageTitle": "Privacy Policy",
@@ -222,5 +222,13 @@
     "submitting": "Submitting…",
     "submitted": "Comment submitted! It will appear after approval.",
     "error": "Failed to submit. Please try again."
+  },
+  "translations": {
+    "pageTitle": "Translations",
+    "subtitle": "Bridging Tibetan and English.",
+    "metaDescription": "English–Tibetan translation work by Yulting Rinpoche, bridging monastic scholarship and wider audiences.",
+    "intro1": "Translation is a central part of my work — carrying texts and teachings between Tibetan and English, so that monastic scholarship can reach wider audiences and students of the Dharma can meet the tradition in their own language.",
+    "intro2": "This page will grow as translation projects are completed and published. In the meantime, translated teachings appear throughout the writings and teachings on this site.",
+    "cta": "If you would like to discuss a translation project, please get in touch."
   }
 }

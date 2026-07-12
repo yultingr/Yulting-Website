@@ -6,10 +6,10 @@
   },
   "nav": {
     "about": "关于",
-    "projects": "项目",
-    "blog": "博客",
+    "blog": "文集",
     "contact": "联系",
-    "videos": "视频"
+    "videos": "开示",
+    "translations": "翻译"
   },
   "home": {
     "title": "玉灵仁波切",
@@ -29,7 +29,9 @@
     "ctaHeading": "与我联系",
     "ctaText": "无论您有问题想问、有想法想分享，还是仅仅想与我交流，我都很乐意收到您的来信。",
     "ctaEmail": "发送邮件",
-    "ctaFollow": "关注"
+    "ctaFollow": "关注",
+    "fromTeachings": "来自开示",
+    "fromWritings": "来自文集"
   },
   "about": {
     "pageTitle": "关于",
@@ -47,19 +49,8 @@
     "engagementsText1": "我有幸参加了寺院以外的一些活动，包括第二届印藏学者会议，在会上就禅修实践和佛教心理学进行了发言。应邀在新加坡等地也做过佛法开示。",
     "engagementsText2": "这些经历让我深刻体会到佛法如何能在不同的文化和环境中利益人们。我始终以学生自居，感恩每一个学习和分享的机会。"
   },
-  "projects": {
-    "pageTitle": "项目",
-    "metaDescription": "我的项目和作品集。",
-    "subtitle": "我一直在做的一些事情。",
-    "liveDemo": "在线演示",
-    "github": "GitHub",
-    "project1Title": "个人网站",
-    "project1Desc": "使用 Next.js、TypeScript、Tailwind CSS 和 MDX 构建的个人网站和博客。",
-    "comingSoon": "更多项目即将推出",
-    "comingSoonDesc": "我正在开发新项目，请稍后回来查看更新！"
-  },
   "blog": {
-    "pageTitle": "博客",
+    "pageTitle": "文集",
     "metaDescription": "关于佛教哲学、翻译和教育的思考、反思与见解。",
     "subtitle": "思考、反思与见解。",
     "readMore": "阅读更多",
@@ -72,7 +63,9 @@
     "prevPost": "上一篇",
     "nextPost": "下一篇",
     "share": "分享",
-    "copyLink": "复制链接"
+    "copyLink": "复制链接",
+    "writeToMe": "欢迎提出问题或分享感想——",
+    "writeToMeLink": "来信告诉我。"
   },
   "contact": {
     "pageTitle": "联系方式",
@@ -165,13 +158,20 @@
     "s7p3": "只要本网站及其信息和服务是免费提供的，我们将不对任何性质的损失或损害承担责任。"
   },
   "videos": {
-    "pageTitle": "视频",
-    "metaDescription": "观看玉灵仁波切的教学、讲座和活动视频。",
-    "subtitle": "教学、讲座与活动。",
+    "pageTitle": "开示",
+    "metaDescription": "尊贵的雍汀仁波切的佛法开示、讲座与系列课程。",
+    "subtitle": "佛法开示与系列讲座的合集。",
     "searchPlaceholder": "搜索视频…",
     "noResults": "没有找到匹配的视频。",
     "showMore": "显示更多 {count} 个",
-    "showLess": "收起"
+    "showLess": "收起",
+    "teachingCount": "{count} 场开示",
+    "series": {
+      "covid-19-series": "疫情期间将困境转为道用的指导。",
+      "teachings": "依龙树《亲友书》为在家修行者开示的系列。",
+      "ancient-everyday-wisdom": "将古老智慧应用于现代日常生活。",
+      "managing-mental-struggles": "以佛教心理学面对愤怒、疑虑、贪着与嫉妒。"
+    }
   },
   "privacy": {
     "pageTitle": "隐私政策",
@@ -222,5 +222,13 @@
     "submitting": "提交中…",
     "submitted": "评论已提交！审核通过后将会显示。",
     "error": "提交失败，请重试。"
+  },
+  "translations": {
+    "pageTitle": "翻译",
+    "subtitle": "沟通藏文与英文。",
+    "metaDescription": "雍汀仁波切的英藏翻译工作，让寺院学术走向更广大的读者。",
+    "intro1": "翻译是我工作的核心之一——在藏文与英文之间传译经典与教法，使寺院的学术传统能够利益更多人，也让佛法学人能以自己的语言亲近传承。",
+    "intro2": "随着翻译项目的完成与出版，本页内容将不断增加。目前，已翻译的教法散见于本站的文集与开示之中。",
+    "cta": "如果您想探讨翻译项目，欢迎与我联系。"
   }
 }

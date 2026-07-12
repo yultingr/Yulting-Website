@@ -14,7 +14,7 @@ function languageAlternates(path: string): Record<string, string> {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = ["", "/about", "/projects", "/blog", "/videos", "/contact", "/terms", "/privacy"];
+  const pages = ["", "/about", "/videos", "/blog", "/translations", "/contact", "/terms", "/privacy"];
   const entries: MetadataRoute.Sitemap = [];
 
   // Static pages for each locale

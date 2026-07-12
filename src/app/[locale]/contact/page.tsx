@@ -3,7 +3,6 @@ import { getTranslations } from "next-intl/server";
 import { localeAlternates } from "@/lib/seo";
 import { Container } from "@/components/layout/Container";
 import { ContactForm } from "@/components/contact/ContactForm";
-import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { siteConfig } from "@/lib/config";
 
@@ -29,7 +28,7 @@ export default async function ContactPage({ params }: Props) {
     <section className="py-24">
       <Container>
         <Breadcrumbs items={[{ labelKey: "contact" }]} />
-        <AnimateOnScroll>
+        <div>
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
           {/* Left side: heading, intro, CTA */}
           <div className="flex flex-col justify-center">
@@ -219,11 +218,11 @@ export default async function ContactPage({ params }: Props) {
 
           </div>
         </div>
-        </AnimateOnScroll>
+        </div>
 
-        <AnimateOnScroll>
+        <div>
           <ContactForm />
-        </AnimateOnScroll>
+        </div>
       </Container>
     </section>
   );

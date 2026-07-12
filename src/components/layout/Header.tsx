@@ -10,9 +10,9 @@ import { Container } from "@/components/layout/Container";
 
 const navKeys = [
   { key: "about", href: "/about" as const },
-  { key: "projects", href: "/projects" as const },
-  { key: "blog", href: "/blog" as const },
   { key: "videos", href: "/videos" as const },
+  { key: "blog", href: "/blog" as const },
+  { key: "translations", href: "/translations" as const },
   { key: "contact", href: "/contact" as const },
 ];
 

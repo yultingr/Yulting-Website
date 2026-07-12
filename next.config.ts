@@ -4,6 +4,17 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
+  async redirects() {
+    return [
+      // The Projects page was removed in the Teachings/Writings restructure
+      {
+        source: "/:locale(en|bo|zh|ne|hi)/projects",
+        destination: "/:locale",
+        permanent: true,
+      },
+      { source: "/projects", destination: "/", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

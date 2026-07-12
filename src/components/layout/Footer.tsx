@@ -11,7 +11,7 @@ export function Footer() {
   const tCommon = useTranslations("common");
 
   return (
-    <footer className="bg-[#2a2320] text-[#ece5dc] dark:bg-[#0f172a] dark:text-[#e2e8f0]">
+    <footer className="bg-[#2a2320] text-[#ece5dc] dark:bg-[#1a1410] dark:text-[#ece5dc]">
       <Container>
         <div className="py-16">
           <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
@@ -32,14 +32,14 @@ export function Footer() {
                 <Link href="/about" className="text-sm opacity-60 transition-opacity hover:opacity-100">
                   {tNav("about")}
                 </Link>
-                <Link href="/projects" className="text-sm opacity-60 transition-opacity hover:opacity-100">
-                  {tNav("projects")}
+                <Link href="/videos" className="text-sm opacity-60 transition-opacity hover:opacity-100">
+                  {tNav("videos")}
                 </Link>
                 <Link href="/blog" className="text-sm opacity-60 transition-opacity hover:opacity-100">
                   {tNav("blog")}
                 </Link>
-                <Link href="/videos" className="text-sm opacity-60 transition-opacity hover:opacity-100">
-                  {tNav("videos")}
+                <Link href="/translations" className="text-sm opacity-60 transition-opacity hover:opacity-100">
+                  {tNav("translations")}
                 </Link>
                 <Link href="/contact" className="text-sm opacity-60 transition-opacity hover:opacity-100">
                   {tNav("contact")}

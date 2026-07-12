@@ -7,7 +7,6 @@ import rehypeSlug from "rehype-slug";
 import { getPostBySlug, getAllPostSlugs, getAdjacentPosts } from "@/lib/blog";
 import { Container } from "@/components/layout/Container";
 import { ShareButtons } from "@/components/blog/ShareButtons";
-import { Comments } from "@/components/blog/Comments";
 import { BlogPostJsonLd } from "@/components/seo/JsonLd";
 import { useMDXComponents } from "../../../../../mdx-components";
 import { routing } from "@/i18n/routing";
@@ -88,8 +87,8 @@ export default async function BlogPostPage({ params }: PageProps) {
             { labelKey: "blog", href: "/blog" },
             { label: post.title },
           ]} />
-          <article>
-            <header className="mb-8">
+          <article className="mx-auto max-w-[68ch]">
+            <header className="mb-10">
               <time className="text-sm text-muted-foreground">
                 {new Date(post.date).toLocaleDateString(locale, {
                   year: "numeric",
@@ -106,8 +105,13 @@ export default async function BlogPostPage({ params }: PageProps) {
               <MDXContent components={components} />
             </div>
             <ShareButtons title={post.title} slug={slug} />
+            <p className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
+              {t("writeToMe")}{" "}
+              <Link href="/contact" className="text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent">
+                {t("writeToMeLink")}
+              </Link>
+            </p>
           </article>
-          <Comments postSlug={slug} />
           <BlogPostJsonLd
             title={post.title}
             description={post.summary}
