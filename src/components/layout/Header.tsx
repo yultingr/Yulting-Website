@@ -30,7 +30,7 @@ export function Header() {
             {tCommon("siteName")}
           </Link>
 
-          <div className="hidden items-center gap-8 md:flex">
+          <div className="hidden items-center gap-8 lg:flex">
             {navKeys.map((link) => (
               <Link
                 key={link.href}
@@ -46,12 +46,12 @@ export function Header() {
             ))}
           </div>
 
-          <div className="hidden items-center gap-3 md:flex">
+          <div className="hidden items-center gap-3 lg:flex">
             <LanguageSwitcher />
             <ThemeToggle />
           </div>
 
-          <div className="flex items-center gap-3 md:hidden">
+          <div className="flex items-center gap-3 lg:hidden">
             <LanguageSwitcher />
             <ThemeToggle />
             <button
