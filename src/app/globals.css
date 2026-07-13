@@ -14,6 +14,22 @@
   unicode-range: U+0F00-0FFF;
 }
 
+@font-face {
+  /* Micro-subset (13 KB) with only the glyphs of the site's Tibetan name
+     and the language switcher's བོད་སྐད label — the Tibetan that appears
+     on every page. It is its own family (not an overlapping "Monlam"
+     range) so the font-fallback walk stops here and non-Tibetan pages
+     never download the 422 KB face. */
+  font-family: "Monlam Name";
+  src: url("/fonts/MonlamName.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0F0B, U+0F0D, U+0F44, U+0F46, U+0F51, U+0F53, U+0F54,
+    U+0F56, U+0F61-0F63, U+0F66, U+0F72, U+0F74, U+0F7A, U+0F7C, U+0F90,
+    U+0F9F;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -24,9 +40,16 @@
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-border: var(--border-color);
-  --font-sans: var(--font-inter), "Monlam", ui-sans-serif, system-ui, sans-serif;
+  /* The full "Monlam" face is deliberately absent from the sans and
+     name stacks: Chrome probes every range-intersecting face in a stack
+     when shaping Tibetan runs, which would download the 422 KB face on
+     every page. The micro subset fully covers the name and switcher;
+     full-Tibetan contexts (bo locale, inline lang="bo") use stacks that
+     do include the full face. */
+  --font-sans: var(--font-inter), "Monlam Name", ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-garamond), "Monlam", Georgia, serif;
   --font-tibetan: "Monlam", sans-serif;
+  --font-tibetan-name: "Monlam Name", sans-serif;
 }
 
 :root {

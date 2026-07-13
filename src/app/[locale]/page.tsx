@@ -55,7 +55,7 @@ export default async function Home({ params }: Props) {
             ) : (
               <p
                 lang="bo"
-                className="mt-6 font-tibetan text-xl leading-relaxed text-muted-foreground"
+                className="mt-6 font-tibetan-name text-xl leading-relaxed text-muted-foreground"
               >
                 {siteConfig.tibetanName}
               </p>

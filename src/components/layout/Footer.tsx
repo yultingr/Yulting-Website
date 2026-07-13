@@ -23,7 +23,7 @@ export function Footer() {
       <Container>
         {/* Colophon */}
         <div className="py-14 text-center">
-          <p lang="bo" className="font-tibetan text-lg leading-relaxed opacity-80">
+          <p lang="bo" className="font-tibetan-name text-lg leading-relaxed opacity-80">
             {siteConfig.tibetanName}
           </p>
           <h3 className="mt-1 text-xl font-bold">{tCommon("siteName")}</h3>

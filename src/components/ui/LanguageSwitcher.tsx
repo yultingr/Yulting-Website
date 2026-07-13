@@ -52,7 +52,7 @@ export function LanguageSwitcher() {
           value={locale}
           onChange={handleChange}
           aria-label={t("label")}
-          className="appearance-none rounded-sm border-none bg-transparent py-1 pl-1 pr-5 text-sm text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+          className="appearance-none rounded-sm border-none bg-transparent py-2.5 pl-2 pr-6 text-sm text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
         >
           {Object.entries(localeNames).map(([code, name]) => (
             <option key={code} value={code}>
@@ -69,7 +69,7 @@ export function LanguageSwitcher() {
           value={locale}
           onChange={handleChange}
           aria-label={t("label")}
-          className="appearance-none rounded-sm border-none bg-transparent py-1 pl-1 pr-4 text-xs text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+          className="appearance-none rounded-sm border-none bg-transparent py-2.5 pl-2 pr-5 text-sm text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
         >
           {Object.entries(localeShort).map(([code, name]) => (
             <option key={code} value={code}>

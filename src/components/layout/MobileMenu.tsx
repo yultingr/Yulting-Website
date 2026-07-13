@@ -16,7 +16,7 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
   const t = useTranslations("nav");
 
   return (
-    <div className="border-b border-border bg-background px-5 pb-6 pt-2 lg:hidden">
+    <div id="mobile-menu" className="border-b border-border bg-background px-5 pb-6 pt-2 lg:hidden">
       <nav className="flex flex-col gap-1">
         {navKeys.map((link) => (
           <Link
